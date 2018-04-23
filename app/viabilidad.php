@@ -11,13 +11,13 @@ class viabilidad extends Model
     protected $fillable = ['observacion','orden_id'];
 
 
-      public function orden()
-    {
-        return $this->belongsTo('App\orden');
-    }
-
     public function observacion(){
 
         return $this->hasMany('App\observacion');
+    }
+
+       public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

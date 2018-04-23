@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class observacion extends Model
 {
-    //
+    protected $table = "observaciones";
+
+    protected $fillable = ['observacion'];
+
 
 
        public function orden()

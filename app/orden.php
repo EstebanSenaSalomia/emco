@@ -11,8 +11,13 @@ class orden extends Model
     protected $fillable = ['nombre','direccion','red'];
 
 
-     public function viabilidad()
+    public function observaciones(){
+
+        return $this->hasMany('App\observacion');
+    }
+
+       public function user()
     {
-        return $this->hasOne('App\viabilidad');
+        return $this->belongsTo('App\User');
     }
 }
