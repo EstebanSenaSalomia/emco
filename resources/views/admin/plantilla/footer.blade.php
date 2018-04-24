@@ -1,5 +1,4 @@
-<p>&nbsp</p>
-<p>&nbsp</p>
+
 <p>&nbsp</p>
 <footer>
       <div class="p-3 mb-3 bg-footer text-white">

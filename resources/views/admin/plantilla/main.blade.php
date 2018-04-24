@@ -22,6 +22,14 @@
   <body>
     @include('admin.plantilla.nav')
     <!-- Grey with black text -->
+
+    <section>
+      <div class="container">
+      <!--flass -->
+      @include('admin.plantilla.error')
+      @yield('content')
+      </div>
+    </section>
     
     
     @include('admin.plantilla.footer')

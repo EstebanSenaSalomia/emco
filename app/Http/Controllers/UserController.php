@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.plantilla.main');
+        return view('admin.users.index');
     }
 
     /**
