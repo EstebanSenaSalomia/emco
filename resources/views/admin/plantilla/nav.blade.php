@@ -9,13 +9,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-center">
-      <li class="nav-item active">
+      <li class="nav-item @yield('marca1')">
         <a class="nav-link" href="">Ordenes</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item @yield('marca2')">
         <a class="nav-link" href="#">Viabilidades</a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item @yield('marca3')">
         <a class="nav-link" href="{{route('users.index')}}">Usuarios</a>
       </li>
     </ul>
