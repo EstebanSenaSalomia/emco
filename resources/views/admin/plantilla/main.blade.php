@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>@yield('title','default')</title>
 
     <!-- Bootstrap -->
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/bootstrap.css')}}"  media="screen,projection"/>
@@ -22,9 +22,12 @@
   <body>
     @include('admin.plantilla.nav')
     <!-- Grey with black text -->
-  
+    
+    
+    @include('admin.plantilla.footer')
+
+    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/bootstrap.js')}}"></script>

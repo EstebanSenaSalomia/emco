@@ -7,17 +7,22 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-center">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#">Ordenes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Viabilidades</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Disabled</a>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Working...</a>
       </li>
+    
     </ul>
+    <span class="navbar-text text-center">
+      Realiza los seguimientos a las ordenes y viabilidades
+    </span>
+    
   </div>
 </nav>
