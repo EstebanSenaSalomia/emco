@@ -22,9 +22,15 @@
   <body>
     @include('admin.plantilla.nav')
     <!-- Grey with black text -->
+    
 
     <section>
       <div class="container">
+        <div class="card text-center">
+          <div class="card-body">
+            <h4> @yield('title')</h4>
+          </div>
+        </div>
       <!--flass -->
       @include('admin.plantilla.error')
       @yield('content')
