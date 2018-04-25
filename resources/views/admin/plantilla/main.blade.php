@@ -22,8 +22,6 @@
   <body>
     @include('admin.plantilla.nav')
     <!-- Grey with black text -->
-    
-
     <section>
       <div class="container">
         <div class="card text-center">
@@ -33,6 +31,7 @@
         </div>
       <!--flass -->
       @include('admin.plantilla.error')
+      @include('flash::message')
       @yield('content')
       </div>
     </section>

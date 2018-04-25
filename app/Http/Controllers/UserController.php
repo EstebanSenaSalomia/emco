@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequests;
+use laracasts\flash;
 
 class UserController extends Controller
 {
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::orderBy('id','ASC')->paginate(10);
+        return view('admin.users.index')->with('users',$users);
     }
 
     /**
@@ -41,7 +43,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         //dd($user);
         $user->save();
-        Alert::success('Usuario Creado exitosamente', 'Felicitaciones')->persistent("cerrar");
+        flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se a creado exitosamente")->success()->important();
         return redirect('admin/users/');
     }
 
