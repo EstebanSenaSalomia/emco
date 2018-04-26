@@ -66,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+         return view('admin.users.edit')->with('user',$user);
     }
 
     /**
@@ -78,7 +79,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se a modificado correctamente")->success()->important();
+         return redirect('admin/users');
     }
 
     /**
@@ -89,6 +94,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        flash('El usuario '.'<strong>'.$user->name.'</strong>'." se ha eliminado exitosamente")->info()->important();
+         return redirect('admin/users');
     }
 }

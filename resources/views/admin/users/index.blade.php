@@ -7,7 +7,7 @@
 	  <div class="card-body">
 	    <a href="{{route('users.create')}}" class="btn btn-outline-info btn-lg btn-block">Crear usuario</a>
 		<div class="table-responsive">
-		  <table class="table">
+		  <table class="table table-hover">
 		    <thead>
 		    	<th>ID</th>
 		    	<th>NOMBRE</th>
@@ -30,15 +30,14 @@
 					@endif
 					</td>
 					<td>
-						<a href="{{route('users.edit',$user->id)}}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-						<a href="{{route('admin.users.destroy',$user->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
+						<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
+						<a href="{{route('admin.users.destroy',$user->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
               		</td>
 				</tr>
 	          @endforeach
 		    </tbody>
 		  </table>
 		</div>
-
 	  </div>
 	</div>
 @endsection
