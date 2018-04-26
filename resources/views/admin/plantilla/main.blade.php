@@ -10,29 +10,30 @@
     <!-- Bootstrap -->
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/bootstrap.css')}}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/main.css')}}"  media="screen,projection"/>
-     
-
+      <link type="text/css" rel="stylesheet" href="{{asset('recursos/fontawesome/web-fonts-with-css/css/fontawesome-all.css')}}"  media="screen,projection"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
+    
     @include('admin.plantilla.nav')
     <!-- Grey with black text -->
     <section>
       <div class="container">
         <div class="card text-center">
-          <div class="card-body">
+          <div class="card-body bg-secondary text-white">
             <h4> @yield('title')</h4>
           </div>
         </div>
       <!--flass -->
-      @include('admin.plantilla.error')
-      @include('flash::message')
-      @yield('content')
+          @include('admin.plantilla.error')
+          @include('flash::message')
+          @yield('content')
       </div>
     </section>
     

@@ -1,6 +1,6 @@
 @extends('admin.plantilla.main')
 @section('title')
-    Home
+    Inicio
 @endsection
 
 @section('content')

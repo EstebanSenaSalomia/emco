@@ -5,7 +5,7 @@
 @section('content')
 	<div class="card">
 	  <div class="card-body">
-	    <a href="" class="btn btn-outline-info btn-lg btn-block">Crear usuario</a>
+	    <a href="{{route('users.create')}}" class="btn btn-outline-info btn-lg btn-block">Crear usuario</a>
 		<div class="table-responsive">
 		  <table class="table">
 		    <thead>
@@ -22,18 +22,16 @@
 					<td>{{$user->email}}</td>
 					<td>
 					@if($user->type == 'admin')
-
-						<div class="cyan-text"><i class="material-icons left">face</i>{{$user->type}}</div>
-					
+						<div class=""><i class="fa fa-user-secret"></i>  {{$user->type}}</div>
+					@elseif($user->type =='supervisor')
+						<div class=""><i class="fas fa-binoculars"></i>  {{$user->type}}</div>
 					@else
-						
-						<div class="pink-text"><i class="material-icons left">tag_faces</i>{{$user->type}}</div>
-
+						<div class=""><i class="fas fa-building"></i>  {{$user->type}}</div>
 					@endif
 					</td>
 					<td>
-						<a href="{{route('users.edit',$user->id)}}" class="btn btn-warning"></a>
-						<a href="{{route('admin.users.destroy',$user->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="waves-effect orange darken-4 btn"><i class="material-icons center">delete</i></a>
+						<a href="{{route('users.edit',$user->id)}}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+						<a href="{{route('admin.users.destroy',$user->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
               		</td>
 				</tr>
 	          @endforeach

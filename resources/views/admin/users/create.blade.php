@@ -1,5 +1,5 @@
 @extends('admin.plantilla.main')
-@section('title','Crear Usuario')
+	@section('title','Crear Usuario')
 
 @section('content')
 	<div class="card text-center">
