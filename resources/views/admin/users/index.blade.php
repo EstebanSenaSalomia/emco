@@ -37,6 +37,14 @@
 	          @endforeach
 		    </tbody>
 		  </table>
+		  <nav aria-label="Page navigation example">
+		    <ul class="pagination">
+		      <li>{!!$users->links()!!}</li>
+		    </ul>
+		  </nav>
+		 
+	 	  		
+	 	  
 		</div>
 	  </div>
 	</div>
