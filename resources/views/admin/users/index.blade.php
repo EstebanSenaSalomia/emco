@@ -37,14 +37,10 @@
 	          @endforeach
 		    </tbody>
 		  </table>
-		  <nav aria-label="Page navigation example">
-		    <ul class="pagination">
-		      <li>{!!$users->links()!!}</li>
-		    </ul>
-		  </nav>
-		 
-	 	  		
-	 	  
+		
+		  <div class="mx-auto" style="width: 200px;">
+			{{$users->render("pagination::bootstrap-4")}}
+		</div>		
 		</div>
 	  </div>
 	</div>
