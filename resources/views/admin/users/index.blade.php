@@ -3,32 +3,28 @@
 @section('marca3','active')
 
 @section('content')
+<p>&nbsp</p>
 	<div class="card">
 	  <div class="card-body">
-	  	<!-- -->
-	  	<div class="row justify-content-between">
-	  		<div class="col-md-4">
-	  			<a href="{{route('users.create')}}" class="btn btn-outline-info btn-block">Crear usuario</a>
-	  		</div>
-	  		<p>&nbsp</p>
-	  		<div class="col-md-4 ">
+	 
 	  			{!! Form::open(['route'=>'users.index','method'=>'GET','class'=>''])!!}
-	  				<div class="form-row align-items-right">
-	  				{!! Form::text('name',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search'])!!}
-	  					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar <i class="fa fa-search"></i></button>
-	  				</div>	
+	  			<div class="form-row align-items-right">
+	  				<div class="col-sm-6">
+	  						<a href="{{route('users.create')}}" class="btn btn-outline-info btn-block">Crear usuario</a>
+	  				</div>
+
+	  				<div class="col-sm-6">
+				      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+				      	<div class="input-group">
+				       		<div class="input-group-prepend">
+				          		<div class="input-group-text"><i class="fa fa-search"></i></div>
+				        	</div>
+				       		 {!! Form::text('name',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
+				      	</div>
+	  				</div>
+	  			</div>	
 	  			{!! Form::close()!!}	
-	  		</div>
-	    </div>
-	    <div class="col-sm-3 my-1">
-	      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
-	      <div class="input-group">
-	        <div class="input-group-prepend">
-	          <div class="input-group-text">@</div>
-	        </div>
-	        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
-	      </div>
-	    </div>
+	
 	    <p>&nbsp</p>
 		<div class="table-responsive">
 		  <table class="table table-hover">
