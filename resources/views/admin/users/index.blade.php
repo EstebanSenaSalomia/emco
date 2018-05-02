@@ -5,7 +5,31 @@
 @section('content')
 	<div class="card">
 	  <div class="card-body">
-	    <a href="{{route('users.create')}}" class="btn btn-outline-info btn-lg btn-block">Crear usuario</a>
+	  	<!-- -->
+	  	<div class="row justify-content-between">
+	  		<div class="col-md-4">
+	  			<a href="{{route('users.create')}}" class="btn btn-outline-info btn-block">Crear usuario</a>
+	  		</div>
+	  		<p>&nbsp</p>
+	  		<div class="col-md-4 ">
+	  			{!! Form::open(['route'=>'users.index','method'=>'GET','class'=>''])!!}
+	  				<div class="form-row align-items-right">
+	  				{!! Form::text('name',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search'])!!}
+	  					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar <i class="fa fa-search"></i></button>
+	  				</div>	
+	  			{!! Form::close()!!}	
+	  		</div>
+	    </div>
+	    <div class="col-sm-3 my-1">
+	      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+	      <div class="input-group">
+	        <div class="input-group-prepend">
+	          <div class="input-group-text">@</div>
+	        </div>
+	        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+	      </div>
+	    </div>
+	    <p>&nbsp</p>
 		<div class="table-responsive">
 		  <table class="table table-hover">
 		    <thead>
@@ -13,6 +37,7 @@
 		    	<th>NOMBRE</th>
 		    	<th>E-MAIL</th>
 		    	<th>TIPO</th>
+		    	<th>TELEFONO</th>
 		    </thead>
 		    <tbody>
 		    	@foreach($users as $user)
@@ -29,6 +54,7 @@
 						<div class=""><i class="fas fa-building"></i>  {{$user->type}}</div>
 					@endif
 					</td>
+					<td>{{$user->telefono}}</td>
 					<td>
 						<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
 						<a href="{{route('admin.users.destroy',$user->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>

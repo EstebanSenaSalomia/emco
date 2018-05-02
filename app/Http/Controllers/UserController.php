@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequests;
+use App\Http\Requests\UserEditRequests;
 use laracasts\flash;
 
 class UserController extends Controller
@@ -43,7 +44,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         //dd($user);
         $user->save();
-        flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se a creado exitosamente")->success()->important();
+        flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se ha creado exitosamente")->success()->important();
         return redirect('admin/users/');
     }
 
@@ -77,12 +78,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequests $request, $id)
     {
         $user = User::find($id);
         $user->fill($request->all());
         $user->save();
-        flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se a modificado correctamente")->success()->important();
+        flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/users');
     }
 

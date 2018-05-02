@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('telefono');
             $table->enum('type', ['contratista', 'supervisor','admin'])->default('supervisor');
             $table->string('password');
             $table->rememberToken();
