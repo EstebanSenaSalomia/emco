@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddObservacionesTable extends Migration
+class AddOrdenesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class AddObservacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('observaciones', function (Blueprint $table) {
+        Schema::create('ordenes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('orden_id')->unsigned();
+            $table->string('numero');
             $table->integer('viabilidad_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('orden_id')
-            ->references('id')
-            ->on('ordenes')
-            ->onDelete('cascade');
 
             $table->foreign('viabilidad_id')
             ->references('id')
@@ -38,6 +33,6 @@ class AddObservacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('observaciones');
+         Schema::dropIfExists('ordenes');
     }
 }

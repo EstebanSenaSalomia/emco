@@ -27,18 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function ordenes(){
-
-        return $this->hasMany('App\orden');
-    }
-
     public function viabilidades(){
 
         return $this->hasMany('App\viabilidad');
     }
+
     public function scopeSearch($query, $name)
     {
-
         return $query->where('name','LIKE','%'.$name.'%');
     }
 }

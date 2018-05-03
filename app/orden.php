@@ -8,16 +8,18 @@ class orden extends Model
 {
     protected $table = "ordenes";
 
-    protected $fillable = ['nombre','direccion','red'];
+    protected $fillable = ['numero','viabilidad_id'];
 
 
-    public function observaciones(){
+    public function obs_orden(){
 
-        return $this->hasMany('App\observacion');
+        return $this->hasMany('App\obsOrden');
     }
 
-       public function user()
+       public function viabilidad()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\viabilidad');
     }
+
+  
 }

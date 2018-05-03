@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrdenesTable extends Migration
+class AddObsOrdenTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,17 @@ class AddOrdenesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordenes', function (Blueprint $table) {
+         Schema::create('obs_ordenes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('numero');
-            $table->string('nombre');
-            $table->string('direccion');
-            $table->enum('red', ['fibra','cobre','television'])->default('television');
-            $table->integer('user_id')->unsigned();
+            $table->text('contenido');
+            $table->integer('orden_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')
+            $table->foreign('orden_id')
             ->references('id')
-            ->on('users')
+            ->on('ordenes')
             ->onDelete('cascade');
-        });
-    }
+        });    }
 
     /**
      * Reverse the migrations.
@@ -36,6 +32,6 @@ class AddOrdenesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordenes');
+         Schema::dropIfExists('obs_ordenes');
     }
 }
