@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="form-group row">
-			{!! Form::label('telefono','Telefono',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('telefono','Celular',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::text('telefono',null,['class'=>'form-control','required'])!!}
 			</div>	
