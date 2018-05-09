@@ -41,7 +41,7 @@
 			</div>
 		</div>	
 		<div class="text-center">
-			{!!Form::submit('Guardar',['class'=>'btn btn-outline-success btn-lg'])!!}
+			{!!Form::submit('Guardar',['class'=>'btn btn-outline-success'])!!}
 		</div>
 		{!! Form::close() !!}
 	</div>
