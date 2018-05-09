@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,14 +11,33 @@
 */
 
 Route::get('/', function () {
-    return view('admin.auth.login');
-});
+	    return view('admin.auth.login');
+	});
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
+
+	Route::get('home', function () {
+	    return view('welcome');
+	});
+
 	Route::resource('users','UserController');
 	Route::get('user/{id}/destroy',[
 		'uses'=>'UserController@destroy',
 		'as'=>'admin.users.destroy'
 	]);
-
 });
+
+Route::get('admin/auth/login',[
+	'uses'=>'Auth\LoginController@showLoginForm',
+	'as'  =>'admin.auth.login'
+]);
+
+Route::post('admin/auth/login',[
+	'uses'=>'Auth\LoginController@login',
+	'as'  =>'admin.auth.login'
+]);
+
+Route::get('admin/auth/logout',[
+	'uses'=>'Auth\LoginController@logout',
+	'as'  =>'admin.auth.logout'
+]);

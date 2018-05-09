@@ -5,7 +5,7 @@
 	
 	<div class="card text-center">
 	  <div class="card-body">
-		{!! Form::open(['action'=>'UserController@store','method'=>'POST'])!!}
+		{!! Form::open(['route'=>'admin.auth.login','method'=>'POST'])!!}
 	
 		<div class="form-group row">
 			{!! Form::label('email','E-mail',['class'=>'col-sm-2 col-form-label'])!!}

@@ -1,3 +1,5 @@
+@if (Auth::check())
+  {{-- expr --}}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
   <a class="navbar-brand" href="{{url('/')}}">
     <img src="{{asset('recursos/images/marca2.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -19,10 +21,19 @@
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
     </ul>
-    <span class="navbar-text text-center">
-      Realiza los seguimientos a las ordenes y viabilidades
-    </span>
+    <div class="my-2 my-lg-0">
+      <div class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{Auth::user()->name}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{route('admin.auth.logout')}}">Cerrar Sesión</a>
+          
+        </div>
+      </div>
+    </div>
     
   </div>
 </nav>
+@endif
 <p>&nbsp</p>
