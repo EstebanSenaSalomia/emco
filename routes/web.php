@@ -25,6 +25,12 @@ Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
 		'uses'=>'UserController@destroy',
 		'as'=>'admin.users.destroy'
 	]);
+
+	Route::resource('viabilidades','ViabilidadController');
+	/*Route::get('user/{id}/destroy',[
+		'uses'=>'UserController@destroy',
+		'as'=>'admin.users.destroy'
+	]);*/
 });
 
 Route::get('admin/auth/login',[

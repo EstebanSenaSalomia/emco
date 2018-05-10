@@ -3,7 +3,7 @@
 
 @section('content')
 	
-	<div class="card text-center">
+	<div class="card text-center styleLogin">
 	  <div class="card-body">
 		{!! Form::open(['route'=>'admin.auth.login','method'=>'POST'])!!}
 	
@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="text-center">
-			{!!Form::submit('Ingresar',['class'=>'btn btn-outline-primary'])!!}
+			{!!Form::submit('Ingresar',['class'=>'btn btn-outline-light'])!!}
 		</div>
 		{!! Form::close() !!}
 	</div>
