@@ -1,10 +1,12 @@
 @if (Auth::check())
   {{-- expr --}}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
-  <a class="navbar-brand" href="{{url('/')}}">
+  
+    <a class="navbar-brand" href="{{url('/')}}">
     <img src="{{asset('recursos/images/marca2.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
     EMCOMUNITEL S.A.S.
   </a>
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
