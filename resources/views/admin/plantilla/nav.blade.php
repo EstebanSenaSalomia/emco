@@ -1,7 +1,6 @@
 @if (Auth::check())
   {{-- expr --}}
-<nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
-  
+<nav class="navbar navbar-expand-md navbar-dark nav-color  justify-content-between">
     <a class="navbar-brand" href="{{url('/')}}">
     <img src="{{asset('recursos/images/marca2.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
     EMCOMUNITEL S.A.S.

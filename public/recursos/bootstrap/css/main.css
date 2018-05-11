@@ -1,9 +1,27 @@
 .bg-footer{
-	background-color: #80d8ff;
+	background-color: #F2B84B;
 }
 .styleLogin{
-	
-	color: white;
-	background-color: #6F7278; 
+	width: 30rem; 
 
+}
+#fuente{
+	font-family: 'Exo 2', sans-serif;
+	font-size: 3em;
+}
+.nav-color{
+	background-color: #53575A;
+}
+body{
+	background-size: cover;
+	background-image: url();
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #F0F1F1;
+
+}
+.style{
+	width: 100px; height: 100px;
 }

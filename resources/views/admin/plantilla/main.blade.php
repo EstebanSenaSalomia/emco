@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>@yield('title','default')</title>
+    <title>@yield('title','Inicio')</title>
 
     <!-- Bootstrap -->
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/bootstrap.css')}}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/main.css')}}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/fontawesome/web-fonts-with-css/css/fontawesome-all.css')}}"  media="screen,projection"/>
+      <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,14 +23,13 @@
   <body>
     
     @include('admin.plantilla.nav')
+    @yield('welcome')
     <!-- Grey with black text -->
     <section>
       <div class="container">
-        <div class="card text-center">
-          <div class="card-body bg-secondary text-white">
-            <h4> @yield('title')</h4>
-          </div>
-        </div>
+        @if (Auth::check())
+           <h4 id="fuente" class="text-center">@yield('title')</h4>  
+        @endif
       <!--flass -->
           @include('admin.plantilla.error')
           @include('flash::message')
@@ -37,9 +37,9 @@
       </div>
     </section>
     
-    
+   
     @include('admin.plantilla.footer')
-
+  
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/jquery.min.js')}}"></script>

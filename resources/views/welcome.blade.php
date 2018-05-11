@@ -1,21 +1,39 @@
 @extends('admin.plantilla.main')
-@section('title')
-    Inicio
-@endsection
-
-@section('content')
- <div class="row text-center" >
-     <div class="col-sm-4">
-        <h2>hola mundo</h2>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus provident alias facere eligendi eaque sit, quia, fuga tenetur ducimus quis et ullam unde praesentium similique hic maiores dolorem voluptatibus? Ab?</p>
-     </div>
-     <div class="col-sm-4">
-        <h2>hola mundo</h2>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum quae aperiam adipisci quis animi eius, possimus, eos voluptatibus laborum amet illo enim? Fuga omnis, possimus repellat facere incidunt perferendis, molestiae.</p>
-     </div>
-     <div class="col-sm-4">
-        <h2>hola mundo</h2>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate velit, obcaecati, quisquam excepturi voluptatibus eveniet quam ullam temporibus aut tempora, earum animi magni dolorem non ipsa officiis porro. Voluptatem, commodi.</p>
-     </div>
- </div>
+@section('welcome')
+    <div class="">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="{{asset('recursos/images/emco.jpg')}}" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="{{asset('recursos/images/movistar.jpg')}}" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="{{asset('recursos/images/construccion.jpg')}}" alt="Third slide">
+            </div>
+            <div class="carousel-item" >
+              <img class="d-block w-100" src="{{asset('recursos/images/movistar-TV.jpg')}}" alt="Third slide">
+            </div>
+            <div class="carousel-item" >
+              <img class="d-block w-100" src="{{asset('recursos/images/slider1.jpg')}}" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+    </div>
 @endsection

@@ -1,32 +1,33 @@
 @extends('admin/plantilla/main')
-@section('title','Login')
-
+<div id="bg-login">
+@section('title','Inicio de sesión')
 @section('content')
-	
-	<div class="card text-center styleLogin">
-	  <div class="card-body">
-		{!! Form::open(['route'=>'admin.auth.login','method'=>'POST'])!!}
-	
-		<div class="form-group row">
-			{!! Form::label('email','E-mail',['class'=>'col-sm-2 col-form-label'])!!}
-			<div class="col-sm-10">
-				{!! Form::email('email',null,['class'=>'form-control','required'])!!}
-			</div>	
-		</div>
-		
-		<div class="form-group row">
-			{!! Form::label('password','Contraseña',['class'=>'col-sm-2 col-form-label'])!!}
-			<div class="col-sm-10">
-				{!! Form::password('password',['class'=>'form-control','required'])!!}
-			</div>	
-		</div>
+<div class="container ">
 
-		<div class="text-center">
-			{!!Form::submit('Ingresar',['class'=>'btn btn-outline-light'])!!}
+<h4 id="fuente" class="text-center">Inicio de sesión</h4>  
+<div class="card border-secondary mb-3 col-sm-12 col-md-8 offset-md-2">
+  <div class="card-body">
+
+	{!! Form::open(['route'=>'admin.auth.login','method'=>'POST'])!!}
+	<div class="form-group">
+	    {!! Form::label('email','E-mail')!!}
+	    {!! Form::email('email',null,['class'=>'form-control','required', 'placeholder'=>'Ingresa tu email'])!!}
+	  </div>
+	  <div class="form-group">
+	    {!! Form::label('password','Contraseña')!!}
+	    {!! Form::password('password',['class'=>'form-control','required','placeholder'=>'*******'])!!}
+	  </div>
+	 <p>&nbsp</p>
+	 <div class="text-center">
+			{!!Form::submit('Ingresar',['class'=>'btn btn-outline-primary btn-block'])!!}
 		</div>
 		{!! Form::close() !!}
 	</div>
-	</div>
+	<img src="{{asset('recursos/images/logo_emco.jpg')}}" class="img-thumbnail" alt="Responsive image">
+</div>
+</div>
+</div>
 
 @endsection
+
 

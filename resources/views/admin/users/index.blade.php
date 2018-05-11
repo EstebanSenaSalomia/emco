@@ -12,7 +12,6 @@
 	  				<div class="col-sm-6">
 	  						<a href="{{route('users.create')}}" class="btn btn-outline-info btn-block">Crear usuario</a>
 	  				</div>
-
 	  				<div class="col-sm-6">
 				      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
 				      	<div class="input-group">
@@ -27,7 +26,7 @@
 	
 	    <p>&nbsp</p>
 		<div class="table-responsive">
-		  <table class="table table-hover">
+		  <table class="table table-hover ">
 		    <thead>
 		    	<th>ID</th>
 		    	<th>NOMBRE</th>

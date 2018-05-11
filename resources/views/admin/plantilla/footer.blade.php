@@ -1,4 +1,4 @@
-
+@if (Auth::check())
 <p>&nbsp</p>
 <footer>
       <div class="p-3 mb-3 bg-footer text-white">
@@ -26,3 +26,4 @@
         </div>
       </div>
     </footer>
+@endif    
