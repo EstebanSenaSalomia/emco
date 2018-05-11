@@ -1,34 +1,35 @@
 @extends('admin.plantilla.main')
-	@section('title','Crear Usuario')
+	@section('title','Crear Viabilidad')
 
 @section('content')
+	
 	<div class="card text-center">
 	  <div class="card-body">
-		{!! Form::open(['action'=>'UserController@store','method'=>'POST'])!!}
+		{!! Form::open(['action'=>'ViabilidadController@store','method'=>'POST'])!!}
 		
 		<div class="form-group row">
-			{!! Form::label('name','Nombre Completo',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('name','Numero VB',['class'=>'col-sm-2 col-form-label'])!!}
 			 <div class="col-sm-10">
 				{!! Form::text('name',null,['class'=>'form-control','required'])!!}
 			</div>
 		</div>	
 		
 		<div class="form-group row">
-			{!! Form::label('email','E-mail',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('email','Nombre',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::email('email',null,['class'=>'form-control','required'])!!}
 			</div>	
 		</div>
 		
 		<div class="form-group row">
-			{!! Form::label('password','Contraseña',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('password','Direccion',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::password('password',['class'=>'form-control','required'])!!}
 			</div>	
 		</div>
 
 		<div class="form-group row">
-			{!! Form::label('telefono','Celular',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('telefono','Usuario',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::text('telefono',null,['class'=>'form-control','required'])!!}
 			</div>	
@@ -46,4 +47,5 @@
 		{!! Form::close() !!}
 	</div>
 	</div>
+
 @endsection

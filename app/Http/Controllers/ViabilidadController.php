@@ -23,7 +23,7 @@ class ViabilidadController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.viabilidad.create');
     }
 
     /**

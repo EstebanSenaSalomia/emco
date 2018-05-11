@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
 		'as'=>'admin.users.destroy'
 	]);
 
-	Route::resource('viabilidades','ViabilidadController');
+	Route::resource('viabilidad','ViabilidadController');
 	/*Route::get('user/{id}/destroy',[
 		'uses'=>'UserController@destroy',
 		'as'=>'admin.users.destroy'
