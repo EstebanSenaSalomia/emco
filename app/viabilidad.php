@@ -16,9 +16,9 @@ class viabilidad extends Model
         return $this->hasMany('App\obsViabilidad');
     }
 
-       public function user()
+     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
 
      public function orden() {

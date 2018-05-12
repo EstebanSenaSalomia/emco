@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\viabilidad;
 use Illuminate\Http\Request;
+use App\Http\Requests\ViabilidadRequests;
+use laracasts\flash;
 
 class ViabilidadController extends Controller
 {
@@ -11,9 +14,11 @@ class ViabilidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         
+        $viabilidad = viabilidad::orderBy('id','DESC')->paginate(10);
+        return view('admin.viabilidad.index')->with('viabilidades',$viabilidad);
     }
 
     /**
@@ -23,7 +28,8 @@ class ViabilidadController extends Controller
      */
     public function create()
     {
-        return view('admin.viabilidad.create');
+
+        return view('admin.viabilidad.create');        
     }
 
     /**
@@ -32,9 +38,13 @@ class ViabilidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ViabilidadRequests $request)
     {
-        
+        $viabilidad = new viabilidad($request->all());//all sirve para traer los datos oragnizados
+        //dd($viabilidad);
+        $viabilidad->save();
+        flash('Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." creada correctamente")->success()->important();
+        return redirect('admin/viabilidad/');
     }
 
     /**
@@ -56,7 +66,8 @@ class ViabilidadController extends Controller
      */
     public function edit($id)
     {
-        
+         $viabilidad = viabilidad::find($id);
+         return view('admin.viabilidad.edit')->with('viabilidades',$viabilidad);
     }
 
     /**
@@ -68,7 +79,11 @@ class ViabilidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $viabilidad = viabilidad::find($id);
+        $viabilidad->fill($request->all());
+        $viabilidad->save();
+        flash('La Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
+         return redirect('admin/viabilidad');
     }
 
     /**
