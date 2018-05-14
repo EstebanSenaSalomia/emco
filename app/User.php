@@ -26,15 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-/*
+
     public function viabilidades(){
 
         return $this->hasMany('App\viabilidad');
-    }
-*/
-     public function viabilidad()
-    {
-        return $this->belongsToMany('App\viabilidad');
     }
 
     public function scopeSearch($query, $name)

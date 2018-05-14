@@ -20,10 +20,10 @@
               <img class="d-block w-100" src="{{asset('recursos/images/construccion.jpg')}}" alt="Third slide">
             </div>
             <div class="carousel-item" >
-              <img class="d-block w-100" src="{{asset('recursos/images/movistar-TV.jpg')}}" alt="fourth slide">
+              <img class="d-block w-100" src="{{asset('recursos/images/movistar-TV.jpg')}}" alt="Third slide">
             </div>
             <div class="carousel-item" >
-              <img class="d-block w-100" src="{{asset('recursos/images/slider1.jpg')}}" alt="fifth slide">
+              <img class="d-block w-100" src="{{asset('recursos/images/slider1.jpg')}}" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
