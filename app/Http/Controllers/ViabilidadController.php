@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\viabilidad;
 use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
+use App\Http\Requests\ViabilidadEditRequests;
 use laracasts\flash;
 
 class ViabilidadController extends Controller
@@ -77,11 +78,11 @@ class ViabilidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ViabilidadRequests $request, $id)
+    public function update(ViabilidadEditRequests $request, $id)
     {
         $viabilidad = viabilidad::find($id);
         $viabilidad->fill($request->all());
-        $viabilidad->save();
+        $viabilidad->update();
         flash('La Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/viabilidad');
     }
