@@ -81,9 +81,10 @@ class UserController extends Controller
      */
     public function update(UserEditRequests $request, $id)
     {
+       
         $user = User::find($id);
         $user->fill($request->all());
-        $user->save();
+        $user->update();
         flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/users');
     }

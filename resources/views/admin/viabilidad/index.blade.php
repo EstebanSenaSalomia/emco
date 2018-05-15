@@ -23,7 +23,6 @@
   				</div>
   			</div>	
   			{!! Form::close()!!}	
-	
 	    <p>&nbsp</p>
 		<div class="table-responsive">
 		  <table class="table table-hover ">
@@ -49,10 +48,8 @@
 					@endif
 					</td>
 					<td>
-						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
-					</td>
-					<td>	
-						<a href=""  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
+						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>	
+						<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
               		</td>
 				</tr>
 	          @endforeach

@@ -77,7 +77,7 @@ class ViabilidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ViabilidadRequests $request, $id)
     {
         $viabilidad = viabilidad::find($id);
         $viabilidad->fill($request->all());
@@ -94,6 +94,10 @@ class ViabilidadController extends Controller
      */
     public function destroy($id)
     {
-        
+        $viabilidad = viabilidad::find($id);
+        $viabilidad->delete();
+
+        flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha eliminado exitosamente")->info()->important();
+         return redirect('admin/viabilidad');
     }
 }
