@@ -17,8 +17,9 @@ class ViabilidadController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $viabilidad = viabilidad::orderBy('id','DESC')->paginate(10);
+    
+        $viabilidad = viabilidad::search($request->numero)->orderBy('id','DESC')->paginate(5);
+        //dd($viabilidad);
         return view('admin.viabilidad.index')->with('viabilidades',$viabilidad);
     }
 

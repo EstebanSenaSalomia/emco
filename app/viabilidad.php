@@ -25,4 +25,8 @@ class viabilidad extends Model
 
      	 return $this->hasOne('App\orden');
     }
+     public function scopeSearch($query, $numero)
+    {
+        return $query->where('numero','LIKE','%'.$numero.'%');
+    }
 }
