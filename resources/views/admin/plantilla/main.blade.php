@@ -11,6 +11,7 @@
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/bootstrap.css')}}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/bootstrap/css/main.css')}}"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="{{asset('recursos/fontawesome/web-fonts-with-css/css/fontawesome-all.css')}}"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{asset('recursos/chosen/chosen.css')}}"  media="screen,projection"/>
       <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,6 +46,7 @@
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/bootstrap.js')}}"></script>
+    <script type="text/javascript" src="{{asset('recursos/chosen/chosen.jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/main.js')}}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   </body>

@@ -1,15 +1,13 @@
-@if (Auth::check())
+  @if (Auth::check())
   {{-- expr --}}
 <nav class="navbar navbar-expand-md navbar-dark nav-color  justify-content-between">
     <a class="navbar-brand" href="{{url('/')}}">
     <img src="{{asset('recursos/images/marca2.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
     EMCOMUNITEL S.A.S.
   </a>
-  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-center">
       <li class="nav-item @yield('marca1')">
@@ -21,6 +19,9 @@
       <li class="nav-item @yield('marca3')">
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
+       <li class="nav-item @yield('marca4')">
+        <a class="nav-link" href="{{route('asignacion.index')}}"><i class="fa fa-hand-point-right"></i> Asignación VB</a>
+      </li>
     </ul>
     <div class="my-2 my-lg-0">
       <div class="nav-item dropdown ">
@@ -29,11 +30,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{route('admin.auth.logout')}}">Cerrar Sesión</a>
-          
         </div>
       </div>
     </div>
-    
   </div>
 </nav>
 @endif
