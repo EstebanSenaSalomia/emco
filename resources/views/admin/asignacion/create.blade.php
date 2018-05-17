@@ -6,13 +6,6 @@
 	<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['action'=>'AsignacionController@store','method'=>'POST'])!!}
-
-		{{-- <div class="form-group row">
-			{!! Form::label('user_id','Usuario',['class'=>'col-sm-2 col-form-label'])!!}
-			<div class="col-sm-10">
-				{!! Form::select('user_id',$users,null,['placeholder' => 'Selecciona un usuario...','required','class'=>'custom-select select-user']) !!}
-			</div>
-		</div> --}}
 		<div class="row">
 			<div class="col-sm-6">
 				{!! Form::label('user_id','Usuario',['class'=>'col-sm-2 col-form-label'])!!}
@@ -22,7 +15,7 @@
 
 			<div class="col-sm-6">
 				{!! Form::label('viabilidad_id','Seleccionar VB',['class'=>'col-form-label'])!!}
-				{!! Form::select('viabilidad_id',$viabilidades,null,['required','class'=>'form-control select-viabilidad','multiple','aria-describedby'=>"emailHelp"]) !!}
+				{!! Form::select('viabilidad_id[]',$viabilidades,null,['required','class'=>'form-control select-viabilidad','multiple','aria-describedby'=>"emailHelp"]) !!}
 			</div>
 		</div>	
 

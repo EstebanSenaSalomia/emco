@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\viabilidad;
+use App\asignarVb;
 use Illuminate\Http\Request;
+use Alert;
 
 class AsignacionController extends Controller
 {
@@ -25,12 +27,11 @@ class AsignacionController extends Controller
      */
     public function create()
     {   
-        $viabilidad = viabilidad::orderBy('numero','ASC')->pluck('numero','id');
+        $viabilidad = viabilidad::orderBy('id','ASC')->pluck('numero','id');
         $user = User::orderBy('name','ASC')->pluck('name','id');
         return view('admin.asignacion.create')
                     ->with('users',$user)
-                    ->with('viabilidades',$viabilidad);
-                    
+                    ->with('viabilidades',$viabilidad);  
     }
 
     /**
@@ -40,9 +41,17 @@ class AsignacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
-    }
+    // {
+   
+    //     $article = new Article($request->all());
+    //     $article->user_id = \Auth::user()->id;
+    //     $article->save();
+
+    //     $article->tags()->sync($request->tags);
+
+    //     Alert::success('Articulo Creado exitosamente', 'Felicitaciones')->persistent("cerrar");
+    //     return redirect('admin/articles/');
+    // }
 
     /**
      * Display the specified resource.
