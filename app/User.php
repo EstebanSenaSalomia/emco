@@ -32,10 +32,16 @@ class User extends Authenticatable
         return $this->hasMany('App\viabilidad');
     }
 */
-     public function viabilidad()
+    //  public function viabilidad()
+    // {
+    //     return $this->belongsToMany('App\viabilidad');
+    // }
+
+    public function asignarVb()
     {
-        return $this->belongsToMany('App\viabilidad');
+        return $this->belongsTo('App\asignarVb');
     }
+
 
     public function scopeSearch($query, $name)
     {

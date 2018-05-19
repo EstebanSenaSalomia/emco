@@ -41,7 +41,12 @@ class AsignacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    // {
+    {
+
+        $asignarVb = new asignarVb($request->all());
+        $asignarVb->
+        //$asignarVb->viabilidades($request->viabilidad_id);
+        $asignarVb->save();
    
     //     $article = new Article($request->all());
     //     $article->user_id = \Auth::user()->id;
@@ -51,7 +56,7 @@ class AsignacionController extends Controller
 
     //     Alert::success('Articulo Creado exitosamente', 'Felicitaciones')->persistent("cerrar");
     //     return redirect('admin/articles/');
-    // }
+    }
 
     /**
      * Display the specified resource.
