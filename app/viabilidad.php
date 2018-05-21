@@ -16,19 +16,15 @@ class viabilidad extends Model
         return $this->hasMany('App\obsViabilidad');
     }
 
-    //  public function user()
-    // {
-    //     return $this->belongsToMany('App\User')->withTimestamps();
-    // }
 
-
-     public function orden() {
-
-     	 return $this->hasOne('App\orden');
-    }
-     public function asignarVb()
+    public function asignarvb()
     {
-        return $this->belongsTo('App\asignarVb');
+      return $this->belongsToMany('App\asignarvb')->withTimestamps();
+    }
+
+     public function orden() 
+    {
+      return $this->hasOne('App\orden');
     }
      public function scopeSearch($query, $numero)
     {

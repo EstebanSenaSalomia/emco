@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\viabilidad;
-use App\asignarVb;
+use App\asignarvb;
 use Illuminate\Http\Request;
 use Alert;
 
@@ -43,10 +43,9 @@ class AsignacionController extends Controller
     public function store(Request $request)
     {
 
-        $asignarVb = new asignarVb($request->all());
-        $asignarVb->
-        //$asignarVb->viabilidades($request->viabilidad_id);
-        $asignarVb->save();
+        $asignarvb = new asignarvb($request->all());
+        $asignarvb->save();
+        $asignarvb->viabilidades()->sync($request->viabilidad_id);
    
     //     $article = new Article($request->all());
     //     $article->user_id = \Auth::user()->id;

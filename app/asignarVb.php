@@ -4,18 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class asignarVb extends Model
+class asignarvb extends Model
 {
-    protected $table = "asignacionVb";
+      protected $table = "asignacion_vb";
 
-    protected $fillable = ['viabilidad_id','user_id'];
+ 	  protected $fillable = ['user_id'];
 
-    public function users(){
 
-            return $this->hasMany('App\User');
-        }
-    public function viabilidades(){
+ public function viabilidades()
+    {
+    	return $this->belongsToMany('App\viabilidad')->withTimestamps();
+    }
 
-        return $this->hasMany('App\viabilidad');
-    }   
 }
+

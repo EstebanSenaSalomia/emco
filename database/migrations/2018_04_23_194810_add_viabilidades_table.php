@@ -21,6 +21,7 @@ class AddViabilidadesTable extends Migration
             $table->enum('red', ['fibra','cobre','television'])->default('television');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -32,5 +33,6 @@ class AddViabilidadesTable extends Migration
     {
         
         Schema::dropIfExists('viabilidades');
+      
     }
 }

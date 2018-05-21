@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAsignacionVbTable extends Migration
+class AddAsigvbTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,26 @@ class AddAsignacionVbTable extends Migration
      */
     public function up()
     {
-         Schema::create('asignacionVb', function (Blueprint $table) {
+        Schema::create('asignacion_vb', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('viabilidad_id')->unsigned();
 
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
+            ->onDelete('cascade');
+
+            $table->timestamps();
+        });
+
+        Schema::create('asignacionvb_viabilidades', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('asignacion_id')->unsigned();
+            $table->integer('viabilidad_id')->unsigned();
+
+            $table->foreign('asignacion_id')
+            ->references('id')
+            ->on('asignacion_vb')
             ->onDelete('cascade');
             
             $table->foreign('viabilidad_id')
@@ -39,6 +51,7 @@ class AddAsignacionVbTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignacionVb');
+        Schema::dropIfExists('asignacion_viabilidad');
+        Schema::dropIfExists('asignacion_vb');
     }
 }
