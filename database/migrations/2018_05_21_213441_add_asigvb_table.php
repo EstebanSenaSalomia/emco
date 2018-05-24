@@ -13,7 +13,7 @@ class AddAsigvbTable extends Migration
      */
     public function up()
     {
-        Schema::create('asignacion_vb', function (Blueprint $table) {
+        Schema::create('asignarvb', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
 
@@ -25,14 +25,14 @@ class AddAsigvbTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('asignacionvb_viabilidades', function (Blueprint $table) {
+        Schema::create('asignarvb_viabilidad', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('asignacion_id')->unsigned();
+            $table->integer('asignarvb_id')->unsigned();
             $table->integer('viabilidad_id')->unsigned();
 
-            $table->foreign('asignacion_id')
+            $table->foreign('asignarvb_id')
             ->references('id')
-            ->on('asignacion_vb')
+            ->on('asignarvb')
             ->onDelete('cascade');
             
             $table->foreign('viabilidad_id')
@@ -51,7 +51,7 @@ class AddAsigvbTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignacion_viabilidad');
-        Schema::dropIfExists('asignacion_vb');
+        Schema::dropIfExists('asignarvb_viabilidad');
+        Schema::dropIfExists('asignarvb');
     }
 }

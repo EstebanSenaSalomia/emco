@@ -19,7 +19,7 @@ class viabilidad extends Model
 
     public function asignarvb()
     {
-      return $this->belongsToMany('App\asignarvb')->withTimestamps();
+      return $this->belongsToMany('App\asignarvb');
     }
 
      public function orden() 

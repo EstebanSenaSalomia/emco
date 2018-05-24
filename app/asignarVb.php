@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class asignarvb extends Model
 {
-      protected $table = "asignacion_vb";
+      protected $table = "asignarvb";
 
  	  protected $fillable = ['user_id'];
 
