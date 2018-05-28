@@ -8,15 +8,14 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
-    protected $fillable = ['numero','nombre','red','localidad','direccion','user_id'];
+    protected $fillable = ['numero','nombre','red','localidad','direccion','user_id','estado'];
 
 
     public function obs_viabilidad(){
 
         return $this->hasMany('App\obsViabilidad');
     }
-
-
+    
     public function asignarvb()
     {
       return $this->belongsToMany('App\asignarvb');

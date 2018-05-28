@@ -27,11 +27,11 @@ class AsignacionController extends Controller
      */
     public function create()
     {   
-        $viabilidad = viabilidad::orderBy('id','ASC')->pluck('numero','id');
-        $user = User::orderBy('name','ASC')->pluck('name','id');
-        return view('admin.asignacion.create')
-                    ->with('users',$user)
-                    ->with('viabilidades',$viabilidad);  
+         $viabilidad = viabilidad::where('estado','0')->orderBy('id','ASC')->pluck('numero','id');
+         $user = User::orderBy('name','ASC')->pluck('name','id');
+         return view('admin.asignacion.create')
+                      ->with('users',$user)
+                      ->with('viabilidades',$viabilidad);  
     }
 
     /**
@@ -42,19 +42,16 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-
-        $asignarvb = new asignarvb($request->all());
+        $asignarvb = new asignarvb();
+        $asignarvb->user_id = $request->user_id;
+        $asignarvb->estado = 1;
         $asignarvb->save();
         $asignarvb->viabilidades()->sync($request->viabilidad_id);
-   
-    //     $article = new Article($request->all());
-    //     $article->user_id = \Auth::user()->id;
-    //     $article->save();
 
-    //     $article->tags()->sync($request->tags);
-
-    //     Alert::success('Articulo Creado exitosamente', 'Felicitaciones')->persistent("cerrar");
-    //     return redirect('admin/articles/');
+        $viabilidad = new viabilidad();
+        $viabilidad->estado=1;
+        $viabilidad->asignarvb()->associate($viabilidad);
+        $viabilidad->save();
     }
 
     /**

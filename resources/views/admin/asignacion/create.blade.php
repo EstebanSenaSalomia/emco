@@ -1,9 +1,9 @@
 @extends('admin.plantilla.main')
 	@section('title','Nueva asignación')
 	@section('marca4','active')
-
 @section('content')
-	<div class="card text-center">
+
+<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['action'=>'AsignacionController@store','method'=>'POST'])!!}
 		<div class="row">
@@ -25,5 +25,5 @@
 		</div>
 		{!! Form::close() !!}
 	</div>
-	</div>
+	</div>  
 @endsection

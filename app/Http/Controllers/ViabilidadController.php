@@ -42,7 +42,11 @@ class ViabilidadController extends Controller
      */
     public function store(ViabilidadRequests $request)
     {
-        $viabilidad = new viabilidad($request->all());//all sirve para traer los datos oragnizados
+        $viabilidad = new viabilidad();//all sirve para traer los datos oragnizados
+        $viabilidad->numero = $request->numero;
+        $viabilidad->nombre = $request->nombre;
+        $viabilidad->direccion = $request->direccion;
+        $viabilidad->red = $request->red;
         //dd($viabilidad);
         $viabilidad->save();
         flash('Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." creada correctamente")->success()->important();
