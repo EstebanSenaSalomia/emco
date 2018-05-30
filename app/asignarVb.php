@@ -15,6 +15,7 @@ class asignarvb extends Model
     {
     	return $this->belongsToMany('App\viabilidad')->withTimestamps();
     }
+    
 
 }
 

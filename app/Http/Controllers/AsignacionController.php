@@ -17,7 +17,8 @@ class AsignacionController extends Controller
      */
     public function index()
     {
-        
+       
+
     }
 
     /**
@@ -42,17 +43,18 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-        $asignarvb = new asignarvb();
-        $asignarvb->user_id = $request->user_id;
-        $asignarvb->estado = 1;
-        $asignarvb->save();
-        $asignarvb->viabilidades()->sync($request->viabilidad_id);
+         $asignarvb = new asignarvb();
+         $asignarvb->user_id = $request->user_id;
+         // dd($request->viabilidad_id);
+         $asignarvb->save();
+         $asignarvb->viabilidades()->sync($request->viabilidad_id);
 
-        $viabilidad = new viabilidad();
-        $viabilidad->estado=1;
-        $viabilidad->asignarvb()->associate($viabilidad);
-        $viabilidad->save();
-    }
+         foreach ($request->viabilidad_id as $via) {
+             $viabilidad = new viabilidad::find($via);
+             $viabilidad->estado =1;
+             $viabilidad->update(); 
+         }
+     }
 
     /**
      * Display the specified resource.
