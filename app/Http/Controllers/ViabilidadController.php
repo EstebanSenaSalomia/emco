@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\ViabilidadEditRequests;
 use laracasts\flash;
+use Carbon\Carbon;
 
 class ViabilidadController extends Controller
 {
@@ -15,6 +16,11 @@ class ViabilidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        
+    }
+
     public function index(Request $request)
     {
     

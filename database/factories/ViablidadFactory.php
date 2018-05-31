@@ -9,6 +9,7 @@ $factory->define(App\viabilidad::class, function (Faker $faker) {
         'nombre' => $faker->name,
         'direccion' => $faker->address,
         'red' => $faker->randomElement($array = array ('Fibra','Cobre','Televisión')),
+        'fecha_reque' => $faker->date($format = 'y-m-d',$max='now'),
        
     ];
 });

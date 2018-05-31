@@ -4,6 +4,7 @@
 
 @section('content')
 <p>&nbsp</p>
+
 	<div class="card">
 	  <div class="card-body">
 	 
@@ -25,6 +26,7 @@
 	  			{!! Form::close()!!}	
 	
 	    <p>&nbsp</p>
+	    
 		<div class="table-responsive">
 		  <table class="table table-hover ">
 		    <thead>

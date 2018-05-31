@@ -31,6 +31,7 @@
 		    	<th>NOMBRE</th>
 		    	<th>DIRECCION</th>
 		    	<th>RED</th>
+		    	<th>FECHA REQUERIDA</th>
 		    </thead>
 		    <tbody>
 		    	@foreach($viabilidades as $viabilidad)
@@ -38,6 +39,7 @@
 					<td>{{$viabilidad->numero}}</td>
 					<td>{{$viabilidad->nombre}}</td>
 					<td>{{$viabilidad->direccion}}</td>
+					<td>{{$viabilidad->fecha_reque}}</td>
 					<td>
 					@if($viabilidad->red == 'fibra')
 						<div class=""><i class="fa fa-wifi"></i>  {{$viabilidad->red}}</div>
