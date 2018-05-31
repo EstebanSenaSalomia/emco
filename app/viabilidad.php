@@ -8,7 +8,7 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
-    protected $fillable = ['numero','nombre','red','localidad','direccion','user_id','estado'];
+    protected $fillable = ['numero','nombre','red','localidad','direccion','fecha_reque','user_id','estado'];
 
 
     public function obs_viabilidad(){

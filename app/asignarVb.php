@@ -8,7 +8,7 @@ class asignarvb extends Model
 {
       protected $table = "asignarvb";
 
- 	  protected $fillable = ['user_id'];
+ 	  protected $fillable = ['user_id','fecha_reque','prioridad'];
 
 
  public function viabilidades()

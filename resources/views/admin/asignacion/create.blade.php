@@ -8,7 +8,7 @@
 		{!! Form::open(['action'=>'AsignacionController@store','method'=>'POST'])!!}
 		<div class="row">
 			<div class="col-sm-6">
-				{!! Form::label('user_id','Usuario',['class'=>'col-sm-2 col-form-label'])!!}
+				{!! Form::label('user_id','Usuario',['class'=>'col-form-label'])!!}
 				{!! Form::select('user_id',$users,null,['placeholder' => 'Selecciona un usuario...','required','class'=>'custom-select select-user']) !!}
 				<p>&nbsp</p>
 			</div>
@@ -21,7 +21,7 @@
 
 		<p>&nbsp</p>
 		<div class="text-center">
-			{!!Form::submit('Guardar',['class'=>'btn btn-outline-success'])!!}
+			{!!Form::submit('Asignar',['class'=>'btn btn-outline-success'])!!}
 		</div>
 		{!! Form::close() !!}
 	</div>

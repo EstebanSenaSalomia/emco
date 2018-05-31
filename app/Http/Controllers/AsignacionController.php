@@ -17,8 +17,14 @@ class AsignacionController extends Controller
      */
     public function index()
     {
-       
+       $articles = Article::Search($request->title)->orderBy('id','DESC')->paginate(5);
+       $articles->each(function($articles){
+           $articles->category;
+           $articles->user;
+           dd($articles);
+       });
 
+        return view('admin.asignacion.index');
     }
 
     /**
@@ -50,7 +56,7 @@ class AsignacionController extends Controller
          $asignarvb->viabilidades()->sync($request->viabilidad_id);
 
          foreach ($request->viabilidad_id as $via) {
-             $viabilidad = new viabilidad::find($via);
+             $viabilidad = viabilidad::find($via);
              $viabilidad->estado =1;
              $viabilidad->update(); 
          }
