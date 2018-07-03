@@ -17,14 +17,14 @@ class AsignacionController extends Controller
      */
     public function index()
     {
-       $articles = Article::Search($request->title)->orderBy('id','DESC')->paginate(5);
-       $articles->each(function($articles){
-           $articles->category;
-           $articles->user;
-           dd($articles);
-       });
+       // $articles = Article::Search($request->title)->orderBy('id','DESC')->paginate(5);
+       // $articles->each(function($articles){
+       //     $articles->category;
+       //     $articles->user;
+       //     dd($articles);
+       // });
 
-        return view('admin.asignacion.index');
+       //  return view('admin.asignacion.index');
     }
 
     /**
@@ -51,6 +51,7 @@ class AsignacionController extends Controller
     {
          $asignarvb = new asignarvb();
          $asignarvb->user_id = $request->user_id;
+         $asignarvb->prioridad = $request->radio;
          // dd($request->viabilidad_id);
          $asignarvb->save();
          $asignarvb->viabilidades()->sync($request->viabilidad_id);

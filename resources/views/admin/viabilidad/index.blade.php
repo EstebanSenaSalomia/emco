@@ -39,7 +39,6 @@
 					<td>{{$viabilidad->numero}}</td>
 					<td>{{$viabilidad->nombre}}</td>
 					<td>{{$viabilidad->direccion}}</td>
-					<td>{{$viabilidad->fecha_reque}}</td>
 					<td>
 					@if($viabilidad->red == 'fibra')
 						<div class=""><i class="fa fa-wifi"></i>  {{$viabilidad->red}}</div>
@@ -49,8 +48,11 @@
 						<div class=""><i class="fas fa-tv"></i>  {{$viabilidad->red}}</div>
 					@endif
 					</td>
+					<td>{{$viabilidad->fecha_reque}}</td>
 					<td>
 						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>	
+					</td>
+					<td>	
 						<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
               		</td>
 				</tr>
