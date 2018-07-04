@@ -17,14 +17,8 @@ class AsignacionController extends Controller
      */
     public function index()
     {
-       // $articles = Article::Search($request->title)->orderBy('id','DESC')->paginate(5);
-       // $articles->each(function($articles){
-       //     $articles->category;
-       //     $articles->user;
-       //     dd($articles);
-       // });
-
-       //  return view('admin.asignacion.index');
+      
+      return view('admin.asignacion.index');
     }
 
     /**

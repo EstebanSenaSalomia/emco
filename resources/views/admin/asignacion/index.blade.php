@@ -3,7 +3,7 @@
 	@section('marca4','active')
 @section('content')
 
-<div class="table-responsive">
+{{-- <div class="table-responsive">
 	<table class="table table-hover ">
 	    <thead>
 	    	<th>VIABILIDAD</th>
@@ -24,5 +24,13 @@
 	      @endforeach
 	    </tbody>
 	  </table>
-</div>	  
+</div> --}}	  
+
+<div>Este div se muestra.</div>
+<div class="d-block d-sm-none">
+	
+	
+
+</div>
+	
 @endsection

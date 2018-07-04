@@ -15,7 +15,7 @@
 
 			<div class="col-sm-6">
 				{!! Form::label('viabilidad_id','Seleccionar VB',['class'=>'col-form-label'])!!}
-				{!! Form::select('viabilidad_id[]',$viabilidades,null,['required','class'=>'form-control select-viabilidad','multiple','aria-describedby'=>"emailHelp"]) !!}
+				{!! Form::select('viabilidad_id[]',$viabilidades,null,['required','class'=>'form-control select-viabilidad','multiple']) !!}
 			</div>
 		</div>
 		<p>&nbsp</p>
