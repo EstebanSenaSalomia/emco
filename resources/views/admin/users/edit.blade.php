@@ -1,5 +1,5 @@
 @extends('admin.plantilla.main')
-	@section('title','Editar Usuario '.$user->name)
+	@section('title','Editar Usuario ')
 
 @section('content')
 	<div class="card text-center">
