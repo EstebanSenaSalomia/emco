@@ -24,7 +24,7 @@ class ViabilidadController extends Controller
     public function index(Request $request)
     {
     
-        $viabilidad = viabilidad::search($request->numero)->orderBy('id','DESC')->paginate(5);
+        $viabilidad = viabilidad::search($request->numero)->orderBy('id','DESC')->paginate(10);
         //dd($viabilidad);
         return view('admin.viabilidad.index')->with('viabilidades',$viabilidad);
     }
@@ -53,6 +53,7 @@ class ViabilidadController extends Controller
         $viabilidad->nombre = $request->nombre;
         $viabilidad->direccion = $request->direccion;
         $viabilidad->red = $request->red;
+        $viabilidad->fecha_reque = $request->fecha_reque;
         //dd($viabilidad);
         $viabilidad->save();
         flash('Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." creada correctamente")->success()->important();

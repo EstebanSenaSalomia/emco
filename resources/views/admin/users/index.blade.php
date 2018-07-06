@@ -62,8 +62,8 @@
 				</div>		
 		</div>
         <div class="d-block d-sm-none d-none d-sm-block d-md-none">	 
+       	   <div id="accordion"> 
        	    @foreach($users as $user)	
-	            <div id="accordion{{$user->id}}">
 		        	<div class="card">
 		        	    <div class="card-header" id="heading{{$user->id}}">
 		        	      <h5 class="mb-0">
@@ -73,20 +73,20 @@
 		        	      </h5>
 		        	    </div> 
 		        		{{-- el loop->index me devuelve el indice del ciclo en el que estoy --}}
-		        	     <div id="{{$user->id}}" class="collapse" aria-labelledby="heading{{$user->id}}" data-parent="#accordion{{$user->id}}">
+		        	     <div id="{{$user->id}}" class="collapse" aria-labelledby="heading{{$user->id}}" data-parent="#accordion">
 			        	    <div class="card-body">
 			        	        <ul class="list-group list-group-flush">
-			        	          <li class="list-group-item">id: {{$user->id}}</li>
-			        	          <li class="list-group-item">email: {{$user->email}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Nombre:</span> {{$user->name}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">E-mail:</span> {{$user->email}}</li>
 								  @if ($user->type == 'admin')
-								  	   <li class="list-group-item">Rol: {{$user->type}}  <i class="fa fa-user-secret"></i></li>
+								  	   <li class="list-group-item"><span class="font-weight-bold">Rol:</span> {{$user->type}}  <i class="fa fa-user-secret"></i></li>
 								  @elseif($user->type =='supervisor')
-								  	   <li class="list-group-item">Rol: {{$user->type}}  <i class="fa fa-binoculars"></i></li>
+								  	   <li class="list-group-item"><span class="font-weight-bold">Rol:</span> {{$user->type}}  <i class="fa fa-binoculars"></i></li>
 								  @else
-								  	   <li class="list-group-item">Rol: {{$user->type}}  <i class="fa fa-building"></i></li>	   
+								  	   <li class="list-group-item"><span class="font-weight-bold">Rol:</span> {{$user->type}}  <i class="fa fa-building"></i></li>	   
 								  @endif
-			        	          <li class="list-group-item">Rol: {{$user->type}}</li>
-			        	          <li class="list-group-item">Telefono: {{$user->telefono}}</li>
+			        	        
+			        	          <li class="list-group-item"><span class="font-weight-bold">Telefono:</span> {{$user->telefono}}</li>
 			        	          <li class="list-group-item">
 			        	          		<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
 			        	          		<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
@@ -95,8 +95,9 @@
 			        	    </div>
 		        	    </div>
 		        	</div>
-	        	</div> 
+	        	 
         	@endforeach
+        	</div>
         	<p>&nbsp</p>
         	<div class="mx-auto pagination justify-content-center" style="width: 200px";>
         		{{$users->render("pagination::simple-bootstrap-4")}}

@@ -24,12 +24,13 @@
   <body>
     
     @include('admin.plantilla.nav')
+    <p>&nbsp</p>
     @yield('welcome')
     <!-- Grey with black text -->
     <section>
       <div class="container">
         @if (Auth::check())
-           <h4 id="fuente" class="text-center">@yield('title')</h4>  
+           <h5 id="fuente" class="text-center">@yield('title')</h5>  
         @endif
       <!--flass -->
           @include('admin.plantilla.error')
@@ -38,10 +39,8 @@
       </div>
     </section>
     
-   
     @include('admin.plantilla.footer')
   
-    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/popper.min.js')}}"></script>

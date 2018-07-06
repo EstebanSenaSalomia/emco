@@ -5,7 +5,7 @@
 <div class="container ">
 
 <h4 id="fuente" class="text-center">Inicio de sesión</h4>  
-<div class="card border-secondary mb-3 col-sm-12 col-md-8 offset-md-2">
+<div class="card border-secondary mb-3 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
   <div class="card-body">
 
 	{!! Form::open(['route'=>'admin.auth.login','method'=>'POST'])!!}

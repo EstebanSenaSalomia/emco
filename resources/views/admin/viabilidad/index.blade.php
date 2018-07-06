@@ -64,13 +64,15 @@
 		</div>		
 		</div>
         <div class="d-block d-sm-none d-none d-sm-block d-md-none">	 
+       	    <div id="accordion">
        	    @foreach($viabilidades as $viabilidad)	
-	            <div id="accordion">
 		        	<div class="card">
-		        	    <div class="card-header" id="heading{{$viabilidad->id}}">
-		        	      <h5 class="mb-0">
-		        	        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#{{$viabilidad->id}}" aria-expanded="false" aria-controls="{{$viabilidad->id}}">
-		        	           {{$user->name}}
+		        	    <div class="card-header " id="heading{{$viabilidad->id}}">
+		        	      <h5 class="mb-0 text-truncate">
+		        	        <button class="btn btn-link collapsed " data-toggle="collapse" data-target="#{{$viabilidad->id}}" aria-expanded="false" aria-controls="{{$viabilidad->id}}">
+						        
+		        	          	 {{$viabilidad->numero."-".$viabilidad->nombre}}
+		        	          	
 		        	        </button>
 		        	      </h5>
 		        	    </div> 
@@ -78,30 +80,30 @@
 		        	     <div id="{{$viabilidad->id}}" class="collapse" aria-labelledby="heading{{$viabilidad->id}}" data-parent="#accordion">
 			        	    <div class="card-body">
 			        	        <ul class="list-group list-group-flush">
-			        	          <li class="list-group-item">id: {{$user->id}}</li>
-			        	          <li class="list-group-item">email: {{$user->email}}</li>
-								  @if ($user->type == 'admin')
-								  	   <li class="list-group-item">Rol: {{$user->type}}  <i class="fa fa-user-secret"></i></li>
-								  @elseif($user->type =='supervisor')
-								  	   <li class="list-group-item">Rol: {{$user->type}}  <i class="fa fa-binoculars"></i></li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Numero VB:</span> {{$viabilidad->numero}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Nombre:</span> {{$viabilidad->nombre}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Dirección:</span> {{$viabilidad->direccion}}</li>
+								  @if ($viabilidad->red == 'fibra')
+								  	   <li class="list-group-item"><span class="font-weight-bold">Red:</span> {{$viabilidad->red}}  <i class="fa fa-wifi"></i></li>
+								  @elseif($viabilidad->red =='cobre')
+								  	   <li class="list-group-item"><span class="font-weight-bold">Red:</span> {{$viabilidad->red}}  <i class="fas fa-phone"></i></li>
 								  @else
-								  	   <li class="list-group-item">Rol: {{$user->type}}  <i class="fa fa-building"></i></li>	   
+								  	   <li class="list-group-item"><span class="font-weight-bold">Red:</span> {{$viabilidad->red}}  <i class="fas fa-tv"></i></li>	   
 								  @endif
-			        	          <li class="list-group-item">Rol: {{$user->type}}</li>
-			        	          <li class="list-group-item">Telefono: {{$user->telefono}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Vencimiento:</span> {{$viabilidad->fecha_reque}}</li>
 			        	          <li class="list-group-item">
-			        	          		<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-			        	          		<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
+			        	          		<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
+			        	          		<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
 			        	          </li>
 			        	        </ul>
 			        	    </div>
 		        	    </div>
-		        	</div>
-	        	</div> 
+		        	</div> 
         	@endforeach
+        	</div>
         	<p>&nbsp</p>
         	<div class="mx-auto pagination justify-content-center" style="width: 200px";>
-        		{{$users->render("pagination::simple-bootstrap-4")}}
+        		{{$viabilidades->render("pagination::simple-bootstrap-4")}}
         	</div>
         </div>
     </div>
