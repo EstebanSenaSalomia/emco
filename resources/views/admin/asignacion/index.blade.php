@@ -3,7 +3,7 @@
 	@section('marca4','active')
 @section('content')
 
-{{-- <div class="table-responsive">
+ <div class="table-responsive">
 	<table class="table table-hover ">
 	    <thead>
 	    	<th>VIABILIDAD</th>
@@ -13,10 +13,10 @@
 	    	<th>PRIORIDAD</th>
 	    </thead>
 	    <tbody>
-	    	@foreach( as )
+	    	@foreach($asignarvb as $asignarv)
 			<tr>
-				<td></td>
-				<td></td>
+				<td>{{$asignarv->viabilidades->nombre}}</td>
+				<td>{{$asignarv->}}</td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -24,13 +24,7 @@
 	      @endforeach
 	    </tbody>
 	  </table>
-</div> --}}	  
+</div> 
 
-<div>Este div se muestra.</div>
-<div class="d-block d-sm-none">
-	
-	
-
-</div>
 	
 @endsection

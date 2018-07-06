@@ -18,7 +18,7 @@ class ViabilidadController extends Controller
      */
 
     public function __construct(){
-        
+        Carbon::setLocale('es');
     }
 
     public function index(Request $request)
