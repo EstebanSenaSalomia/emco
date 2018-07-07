@@ -16,6 +16,9 @@ class asignarvb extends Model
     	return $this->belongsToMany('App\viabilidad')->withTimestamps();
     }
     
-
+     public function user()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }
 

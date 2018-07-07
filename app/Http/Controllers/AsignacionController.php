@@ -17,13 +17,9 @@ class AsignacionController extends Controller
      */
     public function index()
     {
-        $asignarvb = asignarvb::orderBy('id','DESC');
-        $asignarvb->each(function($asignarvb){
-            $asignarvb->viabilidades;
-           
-        });
-       return view('admin.asignacion.index')->with('asignarvb',$asignarvb);
+        $asignarvb = asignarvb::orderBy('id','DESC')->paginate(5);
         
+        return view('admin.asignacion.index')->with('asignarvbs',$asignarvb);
     }
 
     /**

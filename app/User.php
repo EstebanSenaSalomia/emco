@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function asignarVb()
     {
-        return $this->belongsTo('App\asignarVb');
+        return $this->hasOne('App\asignarVb');
     }
 
 

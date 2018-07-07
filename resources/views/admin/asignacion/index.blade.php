@@ -13,13 +13,13 @@
 	    	<th>PRIORIDAD</th>
 	    </thead>
 	    <tbody>
-	    	@foreach($asignarvb as $asignarv)
+	    	@foreach($asignarvbs as $asignarv)
 			<tr>
-				<td>{{$asignarv->viabilidades->nombre}}</td>
-				<td>{{$asignarv->}}</td>
 				<td></td>
 				<td></td>
+				<td>{{$asignarv->created_at}}</td>
 				<td></td>
+				<td>{{$asignarv->prioridad}}</td>
 			</tr>
 	      @endforeach
 	    </tbody>
