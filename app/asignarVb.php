@@ -13,7 +13,7 @@ class asignarvb extends Model
 
  public function viabilidades()
     {
-    	return $this->belongsToMany('App\viabilidad')->withTimestamps();
+    	return $this->belongsToMany('App\viabilidad');
     }
     
      public function user()
