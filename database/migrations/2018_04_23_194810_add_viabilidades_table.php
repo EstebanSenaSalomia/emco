@@ -19,7 +19,7 @@ class AddViabilidadesTable extends Migration
             $table->string('nombre');
             $table->string('direccion');
             $table->enum('red', ['fibra','cobre','television'])->default('television');
-            $table->boolean('estado')->default(0);
+            $table->boolean('asignacion')->default(0);
             $table->date('fecha_reque');
             $table->timestamps();
         });

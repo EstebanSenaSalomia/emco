@@ -25,4 +25,12 @@ body{
 .style{
 	width: 100px; height: 100px;
 }
+.color-btn-link{
+	color: black;
+}
+.color-card-acordion{
+	color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
 

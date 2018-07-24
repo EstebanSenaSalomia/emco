@@ -7,6 +7,7 @@ use App\viabilidad;
 use App\asignarvb;
 use Illuminate\Http\Request;
 use Alert;
+use Carbon\Carbon;
 
 class AsignacionController extends Controller
 {
@@ -15,15 +16,23 @@ class AsignacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   
+
     public function index()
     {
-        $asignarvb = asignarvb::orderBy('id','ASC')->paginate(5);
+        $asignarvb = asignarvb::orderBy('id','ASC')->paginate(15);
         $asignarvb->each(function($asignarvb){
             $asignarvb->user;
         });
+
          // $asignarvb = asignarvb::orderBy('id','DESC')->paginate(5);
-        
-        return view('admin.asignacion.index')->with('asignarvbs',$asignarvb);
+        Carbon::setLocale('es');
+        $date = Carbon::now();
+        // $date = $date->format('l jS \\of F Y h:i:s A');
+
+        return view('admin.asignacion.index')
+        ->with('asignarvbs',$asignarvb)
+        ->with('carbon',$date);
     }
 
     /**
@@ -33,8 +42,8 @@ class AsignacionController extends Controller
      */
     public function create()
     {   
-         $viabilidad = viabilidad::where('estado','0')->orderBy('id','ASC')->pluck('numero','id');
-         $user = User::orderBy('name','ASC')->pluck('name','id');
+         $viabilidad = viabilidad::where('asignacion','0')->orderBy('id','ASC')->pluck('numero','id');
+         $user = User::where('asignacion','0')->orderBy('name','ASC')->pluck('name','id');
          return view('admin.asignacion.create')
                       ->with('users',$user)
                       ->with('viabilidades',$viabilidad);  
@@ -48,12 +57,20 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-         $asignarvb = new asignarvb();
-         $asignarvb->user_id = $request->user_id;
-         $asignarvb->prioridad = $request->radio;
-         // dd($request->viabilidad_id);
-         $asignarvb->save();
-         $asignarvb->viabilidades()->sync($request->viabilidad_id);
+         $asignarvb = new asignarvb($request->all());
+
+         
+         //-----------------Este codigo sirve para validar si existe un registro-------------//
+         // $asignarvb = asignarvb::where('user_id', '=', '$request->user_id');
+         // if(count($asignarvb) > 1){
+         //      echo "hay datos";
+         //      dd(count($asignarvb));
+         //     }
+         //      else echo "No data"; 
+          //-----------------Este codigo sirve para validar si existe un registro-------------//
+
+          $asignarvb->save();
+          $asignarvb->viabilidades()->sync($request->viabilidad_id);
 
          foreach ($request->viabilidad_id as $via) {
              $viabilidad = viabilidad::find($via);

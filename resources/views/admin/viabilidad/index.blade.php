@@ -47,9 +47,6 @@
 						<div class=""><i class="fas fa-tv"></i>  {{$viabilidad->red}}</div>
 					@endif
 					</td>
-					{{-- @php
-						$date = now()
-					@endphp --}}
 					<td>{{$viabilidad->fecha_reque}}</td>
 					<td>
 						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>	

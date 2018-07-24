@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('telefono');
             $table->enum('type', ['contratista', 'supervisor','admin'])->default('supervisor');
             $table->string('password');
+            $table->boolean('asignacion')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

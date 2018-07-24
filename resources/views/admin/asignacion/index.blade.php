@@ -4,35 +4,41 @@
 @section('content')
 
 <div id="accordion1">
+    <div id="accordion">
+
     @foreach ($asignarvbs as $asignarvb) 
+
         <div class="card">
             <div class="card-header" id="heading{{$asignarvb->id}}">
                 <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{$asignarvb->id}}" aria-expanded="true" aria-controls="collapse{{$asignarvb->id}}">
-                        Responsable: <span class="font-weight-bold">{{$asignarvb->user->name}}</span> 
+                    <button class="btn btn-link " data-toggle="collapse" data-target="#collapse{{$asignarvb->id}}" aria-expanded="true" aria-controls="collapse{{$asignarvb->id}}">
+                        Responsable: <span class="">{{$asignarvb->user->name}}</span> 
                     </button>
+                    <a href="{{-- {{route('admin.users.destroy',$user->id)}} --}}#" data-toggle="tooltip" data-placement="bottom" title="Agregar" class="btn btn-outline-success float-right"><i class="fa fa-plus"></i></a>
                 </h5>
             </div>
             <div id="collapse{{$asignarvb->id}}" class="collapse" aria-labelledby="heading{{$asignarvb->id}}" data-parent="#accordion1">
                 <div class="card-body">
-                    <div id="accordion{{}}">
+                    <div id="accordion">
                         @foreach ($asignarvb->viabilidades as $viabilidad)  
-                            <div class="card">
-                                <div class="card-header" id="head{{$viabilidad->id}}">
+                            <div class="card ">
+                                <div class="card-header color-card-acordion" id="head{{$viabilidad->id}}">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collap{{$viabilidad->id}}" aria-expanded="true" aria-controls="collap{{$viabilidad->id}}">
-                                            Viabilidad: <span class="font-weight-bold">{{$viabilidad->numero."  ".$viabilidad->nombre}}</span> 
+                                        <button class="btn btn-link color-btn-link" data-toggle="collapse" data-target="#collap{{$viabilidad->id}}" aria-expanded="true" aria-controls="collap{{$viabilidad->id}}">
+                                           <span class="">{{$viabilidad->numero." - ".$viabilidad->nombre}}</span>
                                         </button>
+
+                                        <a href="{{-- {{route('admin.users.destroy',$user->id)}} --}}#" data-toggle="tooltip" data-placement="bottom" title="Desvincular" onclick="return confirm('¿Estas seguro que quieres desvincular este usuario?')" class="btn btn-outline-danger float-right"><i class="fa fa-unlink"></i></a>
                                     </h5>
                                 </div>
-                                <div id="collap{{$viabilidad->id}}" class="collapse" aria-labelledby="head{{$viabilidad->id}}" data-parent="#accordion{{}}">
+                                <div id="collap{{$viabilidad->id}}" class="collapse" aria-labelledby="head{{$viabilidad->id}}" data-parent="#accordion">
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
-                                           <li class="list-group-item">Hola mundo</li>
-                                           <li class="list-group-item">Dapibus ac facilisis in</li>
-                                           <li class="list-group-item">Morbi leo risus</li>
-                                           <li class="list-group-item">Porta ac consectetur ac</li>
-                                           <li class="list-group-item">Vestibulum at eros</li>
+                                           <li class="list-group-item">Asignado: {{$asignarvb->created_at->toFormattedDateString()}}</li>
+                                           <li class="list-group-item">Numero: {{$viabilidad->numero}}</li>
+                                           <li class="list-group-item">Nombre: {{$viabilidad->nombre}}</li>
+                                           <li class="list-group-item">Dirección: {{$viabilidad->direccion}}</li>
+                                           <li class="list-group-item">Fecha Requerida: {{$viabilidad->fecha_reque}}</li>
                                         </ul>    
                                     </div>
                                 </div>
