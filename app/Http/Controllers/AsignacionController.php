@@ -74,7 +74,7 @@ class AsignacionController extends Controller
 
          foreach ($request->viabilidad_id as $via) {
              $viabilidad = viabilidad::find($via);
-             $viabilidad->estado =1;
+             $viabilidad->asignacion =1;
              $viabilidad->update(); 
          }
      }
