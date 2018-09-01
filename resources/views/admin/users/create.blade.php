@@ -19,6 +19,13 @@
 				{!! Form::email('email',null,['class'=>'form-control','required'])!!}
 			</div>	
 		</div>
+
+		<div class="form-group row">
+			{!! Form::label('cedula','Cedula',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::text('cedula',null,['class'=>'form-control','required'])!!}
+			</div>	
+		</div>
 		
 		<div class="form-group row">
 			{!! Form::label('password','Contraseña',['class'=>'col-sm-2 col-form-label'])!!}
@@ -40,6 +47,12 @@
 				{!! Form::select('type',['contratista'=>'Contratista','supervisor'=>'Supervisor','admin'=>'Administrador'],null,['placeholder' => 'Selecciona un tipo...','required','class'=>'custom-select']) !!}
 			</div>
 		</div>	
+		<div class="form-group row">
+			{!! Form::label('empresa','Empresa',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::select('empresa',['Emcomunitel'=>'Emcomunitel','HB'=>'HB','P Y P'=>'P Y P'],null,['placeholder' => 'Selecciona la empresa a la cual pertence el usuario','required','class'=>'custom-select']) !!}
+			</div>
+		</div>
 		<div class="text-center">
 			{!!Form::submit('Guardar',['class'=>'btn btn-outline-success'])!!}
 		</div>

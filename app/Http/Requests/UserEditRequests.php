@@ -32,18 +32,18 @@ class UserEditRequests extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'Min:4|Max:100|Required',
-            'telefono' => 'digits:10|Required',
-            'email'    => 'Min:4|Max:120|Required|unique:users,email,'.$this->route->parameter('user'),
-            'type'     => 'Required'
+            'name'     => 'Min:7|Max:100|Required',
+            'cedula'   => 'Required|unique:users,cedula,'.$this->route->parameter('user'),
+            'telefono' => 'Required',
+            'email'    => 'Min:4|Max:120|Required|unique:users,email,'.$this->route->parameter('user') 
         ];
     }
 
        public function messages()
     {
         return [
-            'name.required' => 'El campo Nombre no debe estar vacio',
-            'name.min' =>'El nombre del usuario no puede ser menor a  caracteres.'
+            
+            'name.min' =>'por favor escribe el nombre completo'
         ];
     }
 }

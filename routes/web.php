@@ -16,10 +16,10 @@ Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
 	]);
 
 	Route::resource('asignacion','AsignacionController');
-	/*Route::get('asignacion/{id}/destroy',[
+	Route::get('asignacion/{id}/destroy',[
 		'uses'=>'UserController@destroy',
 		'as'=>'admin.users.destroy'
-	]);*/
+	]);
 
 	Route::resource('viabilidad','ViabilidadController');
 	Route::get('viabilidad/{id}/destroy',[

@@ -18,7 +18,7 @@
 			       	<div class="input-group-prepend">
 			        	<div class="input-group-text"><i class="fa fa-search"></i></div>
 			        </div>
-			       	{!! Form::text('name',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
+			       	{!! Form::text('cedula',null,['class'=>'form-control mr-sm-2','placeholder'=>'Ingresar cedula','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
 			    </div>
 			</div>
 		</div>	
@@ -30,15 +30,27 @@
 			    	<th>ID</th>
 			    	<th>NOMBRE</th>
 			    	<th>E-MAIL</th>
+			    	<th>CEDULA</th>
 			    	<th>TIPO</th>
 			    	<th>TELEFONO</th>
+			    	<TH>EMPRESA</TH>
 			    </thead>
 				<tbody>
 			    	@foreach($users as $user)
-					<tr>
+			    	@if ($user->estado_usu==0)
+			    		@php
+			    			$estado="table-danger";
+			    		@endphp
+			    	@else
+						@php
+			    			$estado="";
+			    		@endphp
+			    	@endif
+					<tr class="{{$estado}}">
 						<td>{{$user->id}}</td>
 						<td>{{$user->name}}</td>
 						<td>{{$user->email}}</td>
+						<td>{{$user->cedula}}</td>
 						<td>
 						@if($user->type == 'admin')
 							<div class=""><i class="fa fa-user-secret"></i>  {{$user->type}}</div>
@@ -49,10 +61,18 @@
 						@endif
 						</td>
 						<td>{{$user->telefono}}</td>
-						<td>
-							<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-							<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
-	              		</td>
+						<td>{{$user->empresa}}</td>
+						@if ($user->estado_usu==0)
+							<td>
+								<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Activar" onclick="return confirm('¿Estas seguro de activar este usuario?')" class="btn btn-outline-primary"><i class="fa fa-check-circle"></i></a>
+							</td>
+						@else
+							<td>
+								<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
+								<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Bloquear" onclick="return confirm('¿Estas seguro de bloquear este usuario?')" class="btn btn-outline-danger"><i class="fa fa-ban"></i></a>
+		              		</td>
+						@endif
+						
 					</tr>
 		            @endforeach
 				</tbody>
@@ -63,11 +83,20 @@
 		</div>
         <div class="d-block d-sm-none d-none d-sm-block d-md-none">	 
        	   <div id="accordion"> 
-       	    @foreach($users as $user)	
+       	    @foreach($users as $user)
+       	        	@if ($user->estado_usu==0)
+       	        		@php
+       	        			$estado="color-card-acordion";//con esto llamo en nombre de una clase en main
+       	        		@endphp
+       	        	@else
+       	    			@php
+       	        			$estado="";
+       	        		@endphp
+       	        	@endif	
 		        	<div class="card">
-		        	    <div class="card-header" id="heading{{$user->id}}">
+		        	    <div class="card-header {{$estado}}" id="heading{{$user->id}}">
 		        	      <h5 class="mb-0">
-		        	        <button class="btn btn-link" data-toggle="collapse" data-target="#{{$user->id}}" aria-expanded="false" aria-controls="{{$user->id}}">
+		        	        <button class="btn btn-link " data-toggle="collapse" data-target="#{{$user->id}}" aria-expanded="false" aria-controls="{{$user->id}}">
 		        	           {{$user->name}}
 		        	        </button>
 		        	      </h5>
@@ -87,9 +116,10 @@
 								  @endif
 			        	        
 			        	          <li class="list-group-item"><span class="font-weight-bold">Telefono:</span> {{$user->telefono}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Empresa:</span> {{$user->empresa}}</li>
 			        	          <li class="list-group-item">
 			        	          		<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-			        	          		<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
+			        	          		<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Bloquear" onclick="return confirm('¿Estas seguro de eliminar este usuario? Se borraran tambien las asignaciones')" class="btn btn-outline-danger"><i class="fa fa-ban"></i></a>
 			        	          </li>
 			        	        </ul>
 			        	    </div>

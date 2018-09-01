@@ -121,6 +121,7 @@ class AsignacionController extends Controller
      */
     public function destroy($id)
     {
-        
+        // $asignarvb = asignarvb::find($id);
+        // $asignarvb->viabilidades()->detach();
     }
 }

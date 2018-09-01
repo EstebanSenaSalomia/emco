@@ -17,10 +17,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('cedula')->unique();
             $table->string('telefono');
-            $table->enum('type', ['contratista', 'supervisor','admin'])->default('supervisor');
+            $table->enum('type', ['contratista', 'supervisor','admin','tecnico'])->default('supervisor');
+            $table->enum('empresa', ['Emcomunitel', 'HB','P Y P'])->default('Emcomunitel');
             $table->string('password');
             $table->boolean('asignacion')->default(0);
+            $table->boolean('estado_usu')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

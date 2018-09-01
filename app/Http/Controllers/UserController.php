@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\asignarvb;
+use App\viabilidad;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequests;
 use App\Http\Requests\UserEditRequests;
@@ -17,7 +19,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        $users = User::search($request->name)->orderBy('id','DESC')->paginate(10);
+        $users = User::search($request->cedula)->orderBy('id','DESC')->paginate(10);
         return view('admin.users.index')->with('users',$users);
     }
 
@@ -42,6 +44,7 @@ class UserController extends Controller
     {
     //dd($request->all());
         $user = new User($request->all());//all sirve para traer los datos oragnizados
+        $user->name = strtoupper($request->name);
         $user->password = bcrypt($request->password);
         //dd($user);
         $user->save();
@@ -84,6 +87,7 @@ class UserController extends Controller
        
         $user = User::find($id);
         $user->fill($request->all());
+        $user->name = strtoupper($request->name);
         $user->update();
         flash('Felicidades el usuario '.'<strong>'.$user->name.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/users');
@@ -97,10 +101,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        
         $user = User::find($id);
-        $user->delete();
+        $user->estado_usu =0;
+        $user->update();
+        
 
-        flash('El usuario '.'<strong>'.$user->name.'</strong>'." se ha eliminado exitosamente")->info()->important();
+        flash('El usuario '.'<strong>'.$user->name.'</strong>'." esta inactivo")->info()->important();
          return redirect('admin/users');
     }
 }

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','type','telefono'
+        'name','email','cedula','password','type','telefono','empresa'
     ];
 
     /**
@@ -43,8 +43,8 @@ class User extends Authenticatable
     }
 
 
-    public function scopeSearch($query, $name)
+    public function scopeSearch($query, $cedula)
     {
-        return $query->where('name','LIKE','%'.$name.'%');
+        return $query->where('cedula','LIKE','%'.$cedula.'%');
     }
 }
