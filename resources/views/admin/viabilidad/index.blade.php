@@ -1,5 +1,5 @@
 @extends('admin.plantilla.main')
-@section('title','lista de viabilidades')
+@section('title','Revisiones en terreno')
 @section('marca2','active')
 
 @section('content')
@@ -9,7 +9,7 @@
   			{!! Form::open(['route'=>'viabilidad.index','method'=>'GET','class'=>''])!!}
   			<div class="form-row align-items-right">
   				<div class="col-sm-6">
-  						<a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear Viabilidad</a>
+  						<a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
   				</div>
   				<div class="col-sm-6">
 			      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>

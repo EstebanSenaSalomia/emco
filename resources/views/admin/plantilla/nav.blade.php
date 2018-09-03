@@ -10,11 +10,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-center">
-      <li class="nav-item @yield('marca1')">
+      {{-- <li class="nav-item @yield('marca1')">
         <a class="nav-link " href="#"><i class="fa fa-database"></i> Ordenes</a>
-      </li>
+      </li> --}}
       <li class="nav-item @yield('marca2')">
-        <a class="nav-link" href="{{route('viabilidad.index')}}"> <i class="fa fa-eye"></i> Viabilidades</a>
+        <a class="nav-link" href="{{route('viabilidad.index')}}"> <i class="fa fa-eye"></i> Terreno</a>
       </li>
       <li class="nav-item @yield('marca3')">
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>

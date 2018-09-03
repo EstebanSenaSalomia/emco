@@ -39,7 +39,7 @@
 			    	@foreach($users as $user)
 			    	@if ($user->estado_usu==0)
 			    		@php
-			    			$estado="table-danger";
+			    			$estado="table-secondary";
 			    		@endphp
 			    	@else
 						@php
@@ -64,7 +64,7 @@
 						<td>{{$user->empresa}}</td>
 						@if ($user->estado_usu==0)
 							<td>
-								<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Activar" onclick="return confirm('¿Estas seguro de activar este usuario?')" class="btn btn-outline-primary"><i class="fa fa-check-circle"></i></a>
+								<a href="{{route('admin.users.active',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Activar" onclick="return confirm('¿Estas seguro de activar este usuario?')" class="btn btn-outline-primary"><i class="fa fa-check-circle"></i></a>
 							</td>
 						@else
 							<td>

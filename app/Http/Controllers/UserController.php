@@ -84,7 +84,6 @@ class UserController extends Controller
      */
     public function update(UserEditRequests $request, $id)
     {
-       
         $user = User::find($id);
         $user->fill($request->all());
         $user->name = strtoupper($request->name);
@@ -108,6 +107,16 @@ class UserController extends Controller
         
 
         flash('El usuario '.'<strong>'.$user->name.'</strong>'." esta inactivo")->info()->important();
+         return redirect('admin/users');
+    }
+
+    public function active($id)
+    {
+        $user = User::find($id);
+        $user->estado_usu=1;
+        $user->update();
+
+        flash('El usuario '.'<strong>'.$user->name.'</strong>'." esta activo")->info()->important();
          return redirect('admin/users');
     }
 }

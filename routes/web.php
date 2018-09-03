@@ -14,6 +14,10 @@ Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
 		'uses'=>'UserController@destroy',
 		'as'=>'admin.users.destroy'
 	]);
+	Route::get('user/{id}/active',[
+		'uses'=>'UserController@active',
+		'as'=>'admin.users.active'
+	]);
 
 	Route::resource('asignacion','AsignacionController');
 	Route::get('asignacion/{id}/destroy',[
