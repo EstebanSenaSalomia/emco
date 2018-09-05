@@ -3,9 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
-class AuthenticatedMiddleware
+
+
+class admin
 {
     /**
      * Handle an incoming request.
@@ -14,12 +16,19 @@ class AuthenticatedMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && $request->user()->admin()) {
-            return $next($request);
+        if($request->user()->admin()){
+
+          return $next($request);
         }else{
-            return redirect('/');
+            
+            abort(401);
         }
+        //llamamos a la funcion admin que se encuentra en el modelo
+        //continua tu camino
+    
+    
     }
 }

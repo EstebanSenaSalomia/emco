@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $query->where('cedula','LIKE','%'.$cedula.'%');
     }
+
+    public function admin()
+    {
+        return $this->type === 'admin';
+    }
 }

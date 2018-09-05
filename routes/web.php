@@ -3,7 +3,7 @@ Route::get('/', function () {
 	    return view('admin.auth.login');
 	})->middleware('guest');//si el usuario esta autnticado redirijir a otra ruta
 
-Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
+Route::group(['prefix' => 'admin','middleware'=>['auth','admin']], function(){
 
 	Route::get('home', function () {
 	    return view('welcome');
