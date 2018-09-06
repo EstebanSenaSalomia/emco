@@ -16,9 +16,12 @@
       <li class="nav-item @yield('marca2')">
         <a class="nav-link" href="{{route('viabilidad.index')}}"> <i class="fa fa-eye"></i> Terreno</a>
       </li>
-      <li class="nav-item @yield('marca3')">
+      @if (Auth::user()->admin())
+        <li class="nav-item @yield('marca3')">
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
+      @endif
+      
        <li class="nav-item @yield('marca4')">
         <a class="nav-link" href="{{route('asignacion.index')}}"><i class="fa fa-hand-point-right"></i> Asignación VB</a>
       </li>

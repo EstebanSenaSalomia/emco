@@ -118,8 +118,17 @@
 			        	          <li class="list-group-item"><span class="font-weight-bold">Telefono:</span> {{$user->telefono}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">Empresa:</span> {{$user->empresa}}</li>
 			        	          <li class="list-group-item">
-			        	          		<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-			        	          		<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Bloquear" onclick="return confirm('¿Estas seguro de eliminar este usuario? Se borraran tambien las asignaciones')" class="btn btn-outline-danger"><i class="fa fa-ban"></i></a>
+	    	          				@if ($user->estado_usu==0)
+	    	          					<td>
+	    	          						<a href="{{route('admin.users.active',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Activar" onclick="return confirm('¿Estas seguro de activar este usuario?')" class="btn btn-outline-primary"><i class="fa fa-check-circle"></i></a>
+	    	          					</td>
+	    	          				@else
+	    	          					<td>
+	    	          						<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
+	    	          						<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Bloquear" onclick="return confirm('¿Estas seguro de bloquear este usuario?')" class="btn btn-outline-danger"><i class="fa fa-ban"></i></a>
+	    	                        		</td>
+	    	          				@endif
+			   
 			        	          </li>
 			        	        </ul>
 			        	    </div>

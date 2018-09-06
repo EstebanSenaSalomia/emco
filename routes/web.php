@@ -3,12 +3,12 @@ Route::get('/', function () {
 	    return view('admin.auth.login');
 	})->middleware('guest');//si el usuario esta autnticado redirijir a otra ruta
 
-Route::group(['prefix' => 'admin','middleware'=>['auth','admin']], function(){
+Route::group(['prefix' => 'admin','middleware'=>'auth'], function(){
 
 	Route::get('home', function () {
 	    return view('welcome');
 	});		
-
+Route::group(['middleware'=>'admin'],function(){
 	Route::resource('users','UserController');
 	Route::get('user/{id}/destroy',[
 		'uses'=>'UserController@destroy',
@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','admin']], function(){
 		'uses'=>'UserController@active',
 		'as'=>'admin.users.active'
 	]);
-
+});
 	Route::resource('asignacion','AsignacionController');
 	Route::get('asignacion/{id}/destroy',[
 		'uses'=>'UserController@destroy',
