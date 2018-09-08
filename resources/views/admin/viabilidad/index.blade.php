@@ -9,7 +9,7 @@
   			{!! Form::open(['route'=>'viabilidad.index','method'=>'GET','class'=>''])!!}
   			<div class="form-row align-items-right">
   				<div class="col-sm-6">
-  					<a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
+  						<a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
   				</div>
   				<div class="col-sm-6">
 			      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
@@ -17,7 +17,7 @@
 			       		<div class="input-group-prepend">
 			          		<div class="input-group-text"><i class="fa fa-search"></i></div>
 			        	</div>
-			       		 {!! Form::text('numero_vb',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar numero de VB','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
+			       		 {!! Form::text('numero',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar numero de VB','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
 			      	</div>
   				</div>
   			</div>	
@@ -31,12 +31,11 @@
 		    	<th>DIRECCION</th>
 		    	<th>RED</th>
 		    	<th>FECHA REQUERIDA</th>
-		    	<th>LINK</th>		
 		    </thead>
 		    <tbody>
 		    	@foreach($viabilidades as $viabilidad)
 				<tr>
-					<td>{{$viabilidad->numero_vb}}</td>
+					<td>{{$viabilidad->numero}}</td>
 					<td>{{$viabilidad->nombre}}</td>
 					<td>{{$viabilidad->direccion}}</td>
 					<td>
@@ -49,7 +48,6 @@
 					@endif
 					</td>
 					<td>{{$viabilidad->fecha_reque}}</td>
-					<td><a href="">Ver más</a></td>
 					<td>
 						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>	
 					</td>
@@ -73,7 +71,7 @@
 		        	      <h5 class="mb-0 text-truncate">
 		        	        <button class="btn btn-link collapsed " data-toggle="collapse" data-target="#{{$viabilidad->id}}" aria-expanded="false" aria-controls="{{$viabilidad->id}}">
 						        
-		        	          	 {{$viabilidad->numero_vb."-".$viabilidad->nombre}}
+		        	          	 {{$viabilidad->numero."-".$viabilidad->nombre}}
 		        	          	
 		        	        </button>
 		        	      </h5>
@@ -82,7 +80,7 @@
 		        	     <div id="{{$viabilidad->id}}" class="collapse" aria-labelledby="heading{{$viabilidad->id}}" data-parent="#accordion">
 			        	    <div class="card-body">
 			        	        <ul class="list-group list-group-flush">
-			        	          <li class="list-group-item"><span class="font-weight-bold">Numero VB:</span> {{$viabilidad->numero_vb}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Numero VB:</span> {{$viabilidad->numero}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">Nombre:</span> {{$viabilidad->nombre}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">Dirección:</span> {{$viabilidad->direccion}}</li>
 								  @if ($viabilidad->red == 'fibra')

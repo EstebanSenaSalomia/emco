@@ -21,6 +21,7 @@
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
       @endif
+      
        <li class="nav-item @yield('marca4')">
         <a class="nav-link" href="{{route('asignacion.index')}}"><i class="fa fa-hand-point-right"></i> Asignación VB</a>
       </li>
