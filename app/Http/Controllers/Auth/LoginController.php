@@ -19,6 +19,7 @@ class LoginController extends Controller
     |
     */
 
+   
     use AuthenticatesUsers;
 
     /**
@@ -30,6 +31,7 @@ class LoginController extends Controller
     {
         return 'admin/auth/login';
     }
+
    // protected $redirectTo = 'admin/home';
 
     /**

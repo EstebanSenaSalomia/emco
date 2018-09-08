@@ -16,7 +16,7 @@ class AuthenticatedMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && $request->user()->admin()) {
+        if (Auth::check()) {
             return $next($request);
         }else{
             return redirect('/');
