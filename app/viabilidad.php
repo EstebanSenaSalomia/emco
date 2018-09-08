@@ -8,7 +8,7 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
-    protected $fillable = ['numero','nombre','red','localidad','direccion','fecha_reque','user_id','estado'];
+    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo'];
 
 
     public function obs_viabilidad(){
@@ -25,8 +25,8 @@ class viabilidad extends Model
     {
       return $this->hasOne('App\orden');
     }
-     public function scopeSearch($query, $numero)
+     public function scopeSearch($query, $numero_vb)
     {
-        return $query->where('numero','LIKE','%'.$numero.'%');
+        return $query->where('numero_vb','LIKE','%'.$numero_vb.'%');
     }
 }

@@ -11,7 +11,9 @@
     <title>error 401</title>
   </head>
   <body>
-   <div class="container"> 
+   <div class="container">
+
+      
    <div class="card text-center">
      <div class="card-header">
        Error 401
@@ -19,6 +21,7 @@
      <div class="card-body">
        <h5 class="card-title">Acceso restringido</h5>
        <p class="card-text">No tienes acceso a esta zona</p>
+       
        <a href="{{URL('/')}}" class="btn btn-primary">Volver</a>
      </div>
      
