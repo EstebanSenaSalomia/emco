@@ -113,4 +113,5 @@ class ViabilidadController extends Controller
         flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha eliminado exitosamente")->info()->important();
          return redirect('admin/viabilidad');
     }
+   
 }

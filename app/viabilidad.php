@@ -25,6 +25,12 @@ class viabilidad extends Model
     {
       return $this->hasOne('App\orden');
     }
+
+     public function images()//nombre de la tabla que se va a relacionar en plural 
+    {
+        return $this->hasMany('App\image');
+    }
+
      public function scopeSearch($query, $numero_vb)
     {
         return $query->where('numero_vb','LIKE','%'.$numero_vb.'%');

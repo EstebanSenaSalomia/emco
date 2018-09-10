@@ -49,7 +49,7 @@
 					@endif
 					</td>
 					<td>{{$viabilidad->fecha_reque}}</td>
-					<td><a href="">Ver más</a></td>
+					<td><a href="{{route('front.terreno',$viabilidad->id)}}">Ver más</a></td>
 					<td>
 						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>	
 					</td>

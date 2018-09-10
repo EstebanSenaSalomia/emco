@@ -23,7 +23,7 @@
 			</div>
 			{!! Form::close() !!}
 		</div>
-		<img src="{{asset('recursos/images/logo_emco.jpg')}}" class="img-thumbnail" alt="Cargando">
+		<img src="{{asset('recursos/images/logo.png')}}" class="rounded mx-auto d-block" alt="Cargando">
 	</div>
 	</div>
 	</div>

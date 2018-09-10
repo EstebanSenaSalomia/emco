@@ -32,6 +32,11 @@ Route::group(['middleware'=>'admin'],function(){
 	]);
 });
 
+Route::get('terreno/{id}',[
+	'uses' => 'FrontController@verTerreno',
+	'as' => 'front.terreno'
+]);
+
 Route::get('admin/auth/login',[
 	'uses'=>'Auth\LoginController@showLoginForm',
 	'as'  =>'admin.auth.login'

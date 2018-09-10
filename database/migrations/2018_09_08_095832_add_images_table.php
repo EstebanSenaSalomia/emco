@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddObsOrdenTable extends Migration
+class AddImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class AddObsOrdenTable extends Migration
      */
     public function up()
     {
-         Schema::create('obs_ordenes', function (Blueprint $table) {
+         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('contenido');
-            $table->integer('orden_id')->unsigned();
+            $table->string('name');
+            $table->integer('viabilidad_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('orden_id')
+            $table->foreign('viabilidad_id')
             ->references('id')
-            ->on('ordenes')
+            ->on('viabilidades')
             ->onDelete('cascade');
         });    
-     }
+    }
 
     /**
      * Reverse the migrations.
@@ -33,6 +33,6 @@ class AddObsOrdenTable extends Migration
      */
     public function down()
     {
-         Schema::dropIfExists('obs_ordenes');
+        Schema::dropIfExists('images');
     }
 }
