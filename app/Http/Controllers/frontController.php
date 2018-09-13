@@ -12,7 +12,8 @@ class FrontController extends Controller
     {
     	$terreno = viabilidad::find($id);
     	
-    	return view('front.terreno')->with('terreno'.$terreno);
+  
+    	return view('front.terreno')->with('terreno',$terreno);
     }
 	
 }
