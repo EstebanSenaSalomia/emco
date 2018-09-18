@@ -10,7 +10,7 @@
 		<div class="form-group row">
 			{!! Form::label('numero','Numero VB',['class'=>'col-sm-2 col-form-label'])!!}
 			 <div class="col-sm-10">
-				{!! Form::text('numero','VB-',['class'=>'form-control','required'])!!}
+				{!! Form::text('numero',null,['class'=>'form-control','required'])!!}
 			</div>
 		</div>	
 		

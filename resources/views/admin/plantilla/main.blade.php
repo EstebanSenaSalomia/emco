@@ -47,6 +47,7 @@
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/bootstrap.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/chosen/chosen.jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/main.js')}}"></script>
+    <script id="dsq-count-scr" src="//sov-1.disqus.com/count.js" async></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   </body>
 </html>

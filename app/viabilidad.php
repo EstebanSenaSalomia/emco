@@ -30,6 +30,11 @@ class viabilidad extends Model
     {
         return $this->hasMany('App\image');
     }
+    
+     public function comentarios()//nombre de la tabla que se va a relacionar en plural 
+    {
+        return $this->hasMany('App\Comentario');
+    }
 
      public function scopeSearch($query, $numero_vb)
     {

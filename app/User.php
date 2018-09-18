@@ -41,6 +41,11 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\asignarVb');
     }
+    
+    public function comentarios()
+    {
+        return $this->hasMany('App\comentario');
+    }
 
 
     public function scopeSearch($query, $cedula)

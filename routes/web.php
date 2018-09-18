@@ -36,6 +36,17 @@ Route::get('terreno/{id}',[
 	'uses' => 'FrontController@verTerreno',
 	'as' => 'front.terreno'
 ]);
+Route::group(['prefix'=>'terreno'],function(){
+
+	Route::get('index/{id}',[
+		'uses'=>'FrontController@verTerreno',
+		'as'  =>'terreno.index'
+	]);
+	Route::post('comentario',[
+		'uses'=>'FrontController@storeComentario',
+		'as'  =>'terreno.comentario'
+	]);
+});
 
 Route::get('admin/auth/login',[
 	'uses'=>'Auth\LoginController@showLoginForm',

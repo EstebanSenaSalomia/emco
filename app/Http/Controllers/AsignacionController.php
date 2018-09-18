@@ -24,7 +24,6 @@ class AsignacionController extends Controller
         $asignarvb->each(function($asignarvb){
             $asignarvb->user;
         });
-
          // $asignarvb = asignarvb::orderBy('id','DESC')->paginate(5);
         Carbon::setLocale('es');
         $date = Carbon::now();
