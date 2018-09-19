@@ -11,10 +11,12 @@ class FrontController extends Controller
 {
     public function verTerreno($id)
     {
+
     	$terreno = viabilidad::find($id);
-        $comentario = Comentario::where('viabilidad_id',$id);
-        dd($comentario);
-    	return view('front.terreno')->with('terreno',$terreno);
+        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->paginate(15);
+    	return view('front.terreno')
+        ->with('terreno',$terreno)
+        ->with('comentario',$comentario);
     }
 
 

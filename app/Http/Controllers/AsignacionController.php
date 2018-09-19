@@ -41,7 +41,7 @@ class AsignacionController extends Controller
      */
     public function create()
     {   
-         $viabilidad = viabilidad::where('asignacion','0')->orderBy('id','ASC')->pluck('numero','id');
+         $viabilidad = viabilidad::where('asignacion','0')->orderBy('id','ASC')->pluck('numero_vb','id');
          $user = User::where('asignacion','0')->orderBy('name','ASC')->pluck('name','id');
          return view('admin.asignacion.create')
                       ->with('users',$user)

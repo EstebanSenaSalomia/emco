@@ -1,6 +1,10 @@
-@foreach ($comentario as $come)
-	
-@endforeach
+
+	@foreach ($comentario as $com)
+		<ul>
+			<li>{{$com->contenido}}</li>
+		</ul>
+	@endforeach
+
 {!! Form::open(['action'=>'FrontController@storeComentario','METHOD'=>'POST'])!!}
 	   <div class="card text-center">
 	     <div class="card-header">
