@@ -11,3 +11,8 @@ $('.select-viabilidad').chosen({
 	no_results_text: "Oops, no hay resultados!",
 	width: "95%"
 });
+
+function formReset()
+{
+document.getElementById("myForm").reset();
+}

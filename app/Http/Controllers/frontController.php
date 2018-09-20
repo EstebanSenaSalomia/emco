@@ -4,19 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\viabilidad;
+use App\User;
 use App\Comentario;
 use laracasts\flash;
+use Carbon\Carbon;
 
 class FrontController extends Controller
 {
     public function verTerreno($id)
     {
-
+        Carbon::setLocale('es');
+        $date = Carbon::now();
     	$terreno = viabilidad::find($id);
-        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->paginate(15);
+        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->paginate(25);
+        $comentario->each(function($comentario){
+            $comentario->user;
+        });
+        
     	return view('front.terreno')
         ->with('terreno',$terreno)
-        ->with('comentario',$comentario);
+        ->with('comentario',$comentario)
+        ->with('date',$date);
     }
 
 

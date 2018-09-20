@@ -15,8 +15,9 @@ class Comentario extends Model
     {
         return $this->belongsTo('App\user');
     }
+
        public function viabilidad()
     {
-        return $this->belongsTo('App\viabilidad');
+         return $this->belongsTo('App\viabilidad');
     }
 }
