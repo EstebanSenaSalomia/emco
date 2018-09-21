@@ -15,7 +15,7 @@ class viabilidad extends Model
 
         return $this->hasMany('App\obsViabilidad');
     }
-
+    
     public function asignarvb()
     {
       return $this->belongsToMany('App\asignarvb');

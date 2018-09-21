@@ -7,7 +7,7 @@
 <div class="card">
 	<div class="card-body">
 		
-  			{!! Form::open(['route'=>'viabilidad.index','method'=>'GET','class'=>''])!!}
+  			{!! Form::open(['route'=>'admin.viabilidad.index','method'=>'GET','class'=>''])!!}
   			<div class="form-row align-items-right">
   				<div class="col-sm-6">
   					@if (Auth::User()->admin())
