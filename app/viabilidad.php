@@ -36,8 +36,8 @@ class viabilidad extends Model
         return $this->hasMany('App\Comentario');
     }
 
-     public function scopeSearch($query, $numero_vb)
+     public function scopeSearch($query, $nombre)
     {
-        return $query->where('numero_vb','LIKE','%'.$numero_vb.'%');
+        return $query->where('nombre','LIKE','%'.$nombre.'%');
     }
 }

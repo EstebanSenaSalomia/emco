@@ -25,18 +25,19 @@ Route::group(['middleware'=>'admin'],function(){
 		'as'=>'admin.users.destroy'
 	]);
 
+Route::group(['middleware'=>'admin'],function(){
 	Route::resource('viabilidad','ViabilidadController');
 	Route::get('viabilidad/{id}/destroy',[
 		'uses'=>'ViabilidadController@destroy',
 		'as'=>'admin.viabilidad.destroy'
 	]);
 });
-
-Route::get('terreno/{id}',[
-	'uses' => 'FrontController@verTerreno',
-	'as' => 'front.terreno'
-]);
+});
 Route::group(['prefix'=>'terreno'],function(){
+
+	Route::get('index',[
+		'uses'=>'ViabilidadController@index',
+		'as'=>'admin.viabilidad.index']);
 
 	Route::get('index/{id}',[
 		'uses'=>'FrontController@verTerreno',

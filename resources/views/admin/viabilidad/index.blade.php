@@ -6,10 +6,14 @@
 <p>&nbsp</p>
 <div class="card">
 	<div class="card-body">
+		
   			{!! Form::open(['route'=>'viabilidad.index','method'=>'GET','class'=>''])!!}
   			<div class="form-row align-items-right">
   				<div class="col-sm-6">
-  					<a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
+  					@if (Auth::User()->admin())
+  					   <a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
+  					
+  					@endif
   				</div>
   				<div class="col-sm-6">
 			      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
@@ -17,7 +21,7 @@
 			       		<div class="input-group-prepend">
 			          		<div class="input-group-text"><i class="fa fa-search"></i></div>
 			        	</div>
-			       		 {!! Form::text('numero_vb',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar numero de VB','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
+			       		 {!! Form::text('nombre',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
 			      	</div>
   				</div>
   			</div>	
@@ -26,17 +30,21 @@
 		<div class="table-responsive d-none d-md-block">
 		  <table class="table table-hover ">
 		    <thead>
-		    	<th>NUMERO</th>
+		    	<th>NUMERO_VB</th>
+		    	<th>NUMERO_PRE</th>
+		    	<th>NUMERO_OT</th>
 		    	<th>NOMBRE</th>
 		    	<th>DIRECCION</th>
 		    	<th>RED</th>
 		    	<th>FECHA REQUERIDA</th>
-		    	<th>LINK</th>		
+		    	<th>VER</th>		
 		    </thead>
 		    <tbody>
 		    	@foreach($viabilidades as $viabilidad)
 				<tr>
 					<td>{{$viabilidad->numero_vb}}</td>
+					<td>{{$viabilidad->numero_pre}}</td>
+					<td>{{$viabilidad->numero_ot}}</td>
 					<td>{{$viabilidad->nombre}}</td>
 					<td>{{$viabilidad->direccion}}</td>
 					<td>
@@ -50,12 +58,14 @@
 					</td>
 					<td>{{$viabilidad->fecha_reque}}</td>
 					<td><a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></td>
+					@if (Auth::User()->admin())
 					<td>
-						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>	
+						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
 					</td>
 					<td>	
 						<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
               		</td>
+              		@endif
 				</tr>
 	          @endforeach
 		    </tbody>

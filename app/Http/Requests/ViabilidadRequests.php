@@ -25,9 +25,9 @@ class ViabilidadRequests extends FormRequest
     {
         return [
             'nombre'   => 'Min:10|Max:100|Required',
-            'numero'   => 'Min:10|Max:20|Required|unique:viabilidades',
             'direccion'=> 'Required',
-            'red'      => 'Required'
+            'red'      => 'Required',
+            'localidad'=> 'Required'
         ];
     }
 }
