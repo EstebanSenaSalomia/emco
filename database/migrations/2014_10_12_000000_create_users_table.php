@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('cedula')->unique();
             $table->string('telefono');
-            $table->enum('type', ['contratista', 'supervisor','admin','tecnico'])->default('supervisor');
-            $table->enum('empresa', ['Emcomunitel', 'HB','P Y P'])->default('Emcomunitel');
+            $table->enum('type', ['admin', 'gestor','supervisor'])->default('supervisor');
+            $table->enum('empresa', ['Emcomunitel','HB','P Y P'])->default('Emcomunitel');
             $table->string('password');
             $table->boolean('asignacion')->default(0);
             $table->boolean('estado_usu')->default(1);

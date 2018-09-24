@@ -5,9 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-
-
-class admin
+class gestor
 {
     /**
      * Handle an incoming request.
@@ -16,18 +14,13 @@ class admin
      * @param  \Closure  $next
      * @return mixed
      */
-
     public function handle($request, Closure $next)
     {
-        if($request->user()->admin()){
-
+       if($request->user()->gestor()){
           return $next($request);
         }else{
+            dd('false');
             abort(401);
         }
-        //llamamos a la funcion admin que se encuentra en el modelo
-        //continua tu camino
-    
-    
     }
 }

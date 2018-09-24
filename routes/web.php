@@ -25,14 +25,14 @@ Route::group(['middleware'=>'admin'],function(){
 		'as'=>'admin.users.destroy'
 	]);
 
-Route::group(['middleware'=>'admin'],function(){
+Route::group(['middleware'=>'gestor'],function(){
 	Route::resource('viabilidad','ViabilidadController');
 	Route::get('viabilidad/{id}/destroy',[
 		'uses'=>'ViabilidadController@destroy',
 		'as'=>'admin.viabilidad.destroy'
 	]);
 });
-});
+
 Route::group(['prefix'=>'terreno'],function(){
 
 	Route::get('index',[
@@ -48,6 +48,9 @@ Route::group(['prefix'=>'terreno'],function(){
 		'as'  =>'terreno.comentario'
 	]);
 });
+
+});
+
 
 Route::get('admin/auth/login',[
 	'uses'=>'Auth\LoginController@showLoginForm',

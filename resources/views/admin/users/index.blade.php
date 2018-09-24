@@ -46,6 +46,9 @@
 			    			$estado="";
 			    		@endphp
 			    	@endif
+			    	@if (Auth::user()->id != $user->id)
+			    		{{-- expr --}}
+			    	
 					<tr class="{{$estado}}">
 						<td>{{$user->id}}</td>
 						<td>{{$user->name}}</td>
@@ -57,7 +60,7 @@
 						@elseif($user->type =='supervisor')
 							<div class=""><i class="fa fa-binoculars"></i>  {{$user->type}}</div>
 						@else
-							<div class=""><i class="fa fa-building"></i>  {{$user->type}}</div>
+							<div class=""><i class="fa fa-hand-point-left"></i>  {{$user->type}}</div>
 						@endif
 						</td>
 						<td>{{$user->telefono}}</td>
@@ -69,11 +72,13 @@
 						@else
 							<td>
 								<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
+
 								<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Bloquear" onclick="return confirm('¿Estas seguro de bloquear este usuario?')" class="btn btn-outline-danger"><i class="fa fa-ban"></i></a>
 		              		</td>
 						@endif
 						
 					</tr>
+					@endif
 		            @endforeach
 				</tbody>
 		    </table>

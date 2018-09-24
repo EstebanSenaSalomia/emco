@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->type === 'admin';
     }
+    
+    public function gestor()
+    {
+        return $this->type === 'admin' or $this->type === 'gestor';
+    }
 }

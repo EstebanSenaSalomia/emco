@@ -10,9 +10,8 @@
   			{!! Form::open(['route'=>'admin.viabilidad.index','method'=>'GET','class'=>''])!!}
   			<div class="form-row align-items-right">
   				<div class="col-sm-6">
-  					@if (Auth::User()->admin())
+  					@if (Auth::User()->admin() or Auth::User()->gestor())
   					   <a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
-  					
   					@endif
   				</div>
   				<div class="col-sm-6">
@@ -58,12 +57,12 @@
 					</td>
 					<td>{{$viabilidad->fecha_reque}}</td>
 					<td><a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></td>
-					@if (Auth::User()->admin())
+					@if (Auth::User()->admin() or Auth::User()->gestor())
 					<td>
-						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
+						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
 					</td>
 					<td>	
-						<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}"  onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
+						<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
               		</td>
               		@endif
 				</tr>
@@ -93,6 +92,8 @@
 			        	    <div class="card-body">
 			        	        <ul class="list-group list-group-flush">
 			        	          <li class="list-group-item"><span class="font-weight-bold">Numero VB:</span> {{$viabilidad->numero_vb}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Numero PRE:</span> {{$viabilidad->numero_vb}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Numero OT:</span> {{$viabilidad->numero_vb}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">Nombre:</span> {{$viabilidad->nombre}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">Dirección:</span> {{$viabilidad->direccion}}</li>
 								  @if ($viabilidad->red == 'fibra')
@@ -102,10 +103,15 @@
 								  @else
 								  	   <li class="list-group-item"><span class="font-weight-bold">Red:</span> {{$viabilidad->red}}  <i class="fas fa-tv"></i></li>	   
 								  @endif
-			        	          <li class="list-group-item"><span class="font-weight-bold">Vencimiento:</span> {{$viabilidad->fecha_reque}}</li>
+			        	          <li class="list-group-item"><span class="font-weight-bold">Fecha requerida:</span> {{$viabilidad->fecha_reque}}</li>
+
+			        	          <li class="list-group-item"><span class="font-weight-bold"></span> <a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></li>
+								@if (Auth::User()->admin() or Auth::User()->gestor())
 			        	          <li class="list-group-item">
 			        	          		<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-			        	          		<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
+
+			        	          		<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
+			        	         @endif 		
 			        	          </li>
 			        	        </ul>
 			        	    </div>

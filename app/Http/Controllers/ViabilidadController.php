@@ -8,6 +8,8 @@ use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\ViabilidadEditRequests;
 use laracasts\flash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class ViabilidadController extends Controller
 {
@@ -26,6 +28,7 @@ class ViabilidadController extends Controller
     
         $viabilidad = viabilidad::search($request->nombre)->orderBy('id','DESC')->paginate(10);
         //dd($viabilidad);
+        //dd(Auth::User()->admin() or Auth::User()->gestor());
         return view('admin.viabilidad.index')->with('viabilidades',$viabilidad);
     }
 

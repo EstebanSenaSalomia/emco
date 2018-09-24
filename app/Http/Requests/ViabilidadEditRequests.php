@@ -33,15 +33,10 @@ class ViabilidadEditRequests extends FormRequest
     public function rules()
     {
         return [
-            'nombre'   => 'Min:10|Max:100|Required',
+            'nombre'   => 'Min:5|Max:100|Required',
+            'localidad'=> 'Required',
 
-           //'numero'   => 'Min:10|Max:20|Required|unique:viabilidades,numero,'.$this->route->parameter('viabilidad'),
-
-            'numero'   =>  ['Min:10',
-                            'Max:20',
-                            'required',
-                             Rule::unique('viabilidades')->ignore($this->route->parameter('viabilidad'))
-                         ],              
+           //'numero'   => 'Min:10|Max:20|Required|unique:viabilidades,numero,'.$this->route->parameter('viabilidad'),             
             'direccion'=> 'Required',
             'red'      => 'Required'
         ];

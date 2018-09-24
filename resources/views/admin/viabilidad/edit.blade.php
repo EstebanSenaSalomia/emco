@@ -1,5 +1,5 @@
 @extends('admin.plantilla.main')
-	@section('title','Editar Viabilidad')
+	@section('title','Editar')
 
 @section('content')
 	
@@ -67,7 +67,7 @@
 		<div class="form-group row">
 			{!! Form::label('tipo_trabajo','tipo_trabajo',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
-				{!! Form::select('tipo_trabajo',['mantenimiento'=>'Mantenimiento','construccion'=>'Construcción','Viabilidad'=>'Viabilidad'],$viabilidades->tipo_trabajo,['placeholder' => 'Selecciona tipo de red...','required','class'=>'custom-select']) !!}
+				{!! Form::select('tipo_trabajo',['Mantenimiento'=>'Mantenimiento','Construccion'=>'Construcción','Viabilidad'=>'Viabilidad'],$viabilidades->tipo_trabajo,['placeholder' => 'Selecciona tipo de trabajo','required','class'=>'custom-select']) !!}
 			</div>
 		</div>
 
