@@ -31,6 +31,10 @@ Route::group(['middleware'=>'gestor'],function(){
 		'uses'=>'ViabilidadController@destroy',
 		'as'=>'admin.viabilidad.destroy'
 	]);
+	Route::get('viabilidad/{id}/active',[
+		'uses'=>'viabilidadController@active',
+		'as' => 'admin.viabilidad.active'
+	]);
 });
 
 Route::group(['prefix'=>'terreno'],function(){

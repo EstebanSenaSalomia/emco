@@ -100,6 +100,15 @@ class ViabilidadController extends Controller
         flash('La Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/viabilidad');
     }
+    public function active($id){
+
+        $viabilidad = viabilidad::find($id);
+        $viabilidad->estado='Activa';
+        $viabilidad->update();
+
+        flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha reinyectado correctamente")->info()->important();
+        return redirect('admin/viabilidad');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -110,9 +119,10 @@ class ViabilidadController extends Controller
     public function destroy($id)
     {
         $viabilidad = viabilidad::find($id);
-        $viabilidad->delete();
+        $viabilidad->estado = "Terminada";
+        $viabilidad->update();
 
-        flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha eliminado exitosamente")->info()->important();
+        flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha cerrado correctamente")->info()->important();
          return redirect('admin/viabilidad');
     }
    

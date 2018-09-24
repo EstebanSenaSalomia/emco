@@ -6,25 +6,24 @@
 <p>&nbsp</p>
 <div class="card">
 	<div class="card-body">
-		
-  			{!! Form::open(['route'=>'admin.viabilidad.index','method'=>'GET','class'=>''])!!}
+		{!! Form::open(['route'=>'admin.viabilidad.index','method'=>'GET','class'=>''])!!}
   			<div class="form-row align-items-right">
   				<div class="col-sm-6">
   					@if (Auth::User()->admin() or Auth::User()->gestor())
-  					   <a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
+  					    <a href="{{route('viabilidad.create')}}" class="btn btn-outline-info btn-block">Crear proyecto</a>
   					@endif
   				</div>
   				<div class="col-sm-6">
-			      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+			        <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
 			      	<div class="input-group">
 			       		<div class="input-group-prepend">
 			          		<div class="input-group-text"><i class="fa fa-search"></i></div>
 			        	</div>
-			       		 {!! Form::text('nombre',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
+			       		{!! Form::text('nombre',null,['class'=>'form-control mr-sm-2','placeholder'=>'Igresar nombre','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
 			      	</div>
   				</div>
   			</div>	
-  			{!! Form::close()!!}	
+  		{!! Form::close()!!}	
 	    <p>&nbsp</p>
 		<div class="table-responsive d-none d-md-block">
 		  <table class="table table-hover ">
@@ -40,7 +39,19 @@
 		    </thead>
 		    <tbody>
 		    	@foreach($viabilidades as $viabilidad)
-				<tr>
+    	    	@if ($viabilidad->estado=='Terminada')
+    	    		@php
+    	    			$estado="table-secondary";
+    	    		@endphp
+    	    	@else
+    				@php
+    	    			$estado="";
+    	    		@endphp
+    	    	@endif
+
+    	    	@if ($viabilidad->estado=='Activa' or (Auth::User()->type != 'supervisor'))
+    	    	
+				<tr class="{{$estado}}">
 					<td>{{$viabilidad->numero_vb}}</td>
 					<td>{{$viabilidad->numero_pre}}</td>
 					<td>{{$viabilidad->numero_ot}}</td>
@@ -58,14 +69,22 @@
 					<td>{{$viabilidad->fecha_reque}}</td>
 					<td><a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></td>
 					@if (Auth::User()->admin() or Auth::User()->gestor())
-					<td>
-						<a href="{{route('viabilidad.edit',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
-					</td>
-					<td>	
-						<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
-              		</td>
+					@if ($viabilidad->estado=='Terminada')
+						<td>
+							<a href="{{route('admin.viabilidad.active',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Reinyectar" class="btn btn-outline-primary"><i class="fa fa-chevron-circle-up"></i></a>
+						</td>
+					@else
+						<td>
+							<a href="{{route('viabilidad.edit',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
+						</td>
+						<td>	
+							<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de terminar este proyecto?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
+	              		</td>			
+					@endif
               		@endif
 				</tr>
+				
+				@endif
 	          @endforeach
 		    </tbody>
 		  </table>
@@ -76,9 +95,19 @@
 		</div>
         <div class="d-block d-sm-none d-none d-sm-block d-md-none">	 
        	    <div id="accordion">
-       	    @foreach($viabilidades as $viabilidad)	
+       	    @foreach($viabilidades as $viabilidad)
+   	        	@if ($viabilidad->estado=='Terminada')
+   	        		@php
+   	        			$estado="table-secondary";
+   	        		@endphp
+   	        	@else
+   	    			@php
+   	        			$estado="";
+   	        		@endphp
+   	        	@endif
+   	        	@if ($viabilidad->estado=='Activa' or (Auth::User()->type != 'supervisor'))
 		        	<div class="card">
-		        	    <div class="card-header " id="heading{{$viabilidad->id}}">
+		        	    <div class="card-header {{$estado}}" id="heading{{$viabilidad->id}}">
 		        	      <h5 class="mb-0 text-truncate">
 		        	        <button class="btn btn-link collapsed " data-toggle="collapse" data-target="#{{$viabilidad->id}}" aria-expanded="false" aria-controls="{{$viabilidad->id}}">
 						        
@@ -108,15 +137,24 @@
 			        	          <li class="list-group-item"><span class="font-weight-bold"></span> <a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></li>
 								@if (Auth::User()->admin() or Auth::User()->gestor())
 			        	          <li class="list-group-item">
-			        	          		<a href="{{route('viabilidad.edit',$viabilidad->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-
-			        	          		<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de liminar este usuario?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
+			        	          	@if ($viabilidad->estado=='Terminada')
+          								
+  									<a href="{{route('admin.viabilidad.active',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Reinyectar" class="btn btn-outline-primary"><i class="fa fa-chevron-circle-up"></i></a>
+          								
+          							@else
+          								
+      									<a href="{{route('viabilidad.edit',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
+      						
+      									<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de terminar este proyecto?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
+          			              				
+          							@endif
 			        	         @endif 		
 			        	          </li>
 			        	        </ul>
 			        	    </div>
 		        	    </div>
-		        	</div> 
+		        	</div>
+		        	@endif 
         	@endforeach
         	</div>
         	<p>&nbsp</p>
