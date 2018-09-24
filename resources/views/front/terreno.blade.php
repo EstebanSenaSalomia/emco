@@ -47,13 +47,14 @@
 	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
 	  	</div>
 	  	</div>
-	  	<div class="form-group">
-	  	    <label for="exampleFormControlFile1">Ingresar imagen</label>
-	  	    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-	  	</div>
-	  </div>
-	</div>
-	
+	  {!!Form::open(['route'=>'frontController.store','method'=>'POST','files'=>true])!!}
+		  	<div class="form-group">
+		  	    <label for="exampleFormControlFile1">Ingresar imagen</label>
+		  	    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+		  	</div>
+		  </div>
+		</div>
+	  {!!Form::close()!!}
 	<div class="row">
 		<div class="col-sm-12">
 			@include('front.comentarios')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\viabilidad;
 use App\User;
+use App\Image;
 use App\Comentario;
 use laracasts\flash;
 use Carbon\Carbon;
@@ -15,16 +16,25 @@ class FrontController extends Controller
     {
         Carbon::setLocale('es');
         $date = Carbon::now();
+
     	$terreno = viabilidad::find($id);
+
         $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->paginate(25);
         $comentario->each(function($comentario){
             $comentario->user;
         });
+
+         $images = Image::all();
+         $images->each(function($images){
+            $images->viabilidad;
+        });
+
         
     	return view('front.terreno')
         ->with('terreno',$terreno)
         ->with('comentario',$comentario)
-        ->with('date',$date);
+        ->with('date',$date)
+        ->with('images',$images);
     }
 
 
