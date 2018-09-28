@@ -51,6 +51,12 @@ Route::group(['prefix'=>'terreno'],function(){
 		'uses'=>'FrontController@storeComentario',
 		'as'  =>'terreno.comentario'
 	]);
+
+	Route::resource('images','ImageController');
+	Route::get('image/{id}/destroy',[
+		'uses' => 'ImageController@destroy',
+		'as'   => 'terreno.images.destroy'
+	]);
 });
 
 });

@@ -47,14 +47,16 @@
 	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
 	  	</div>
 	  	</div>
-	  {!!Form::open(['route'=>'frontController.store','method'=>'POST','files'=>true])!!}
-		  	<div class="form-group">
-		  	    <label for="exampleFormControlFile1">Ingresar imagen</label>
-		  	    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-		  	</div>
-		  </div>
+	   {!!Form::open(['action'=>'ImageController@store','method'=>'POST','files'=>true,'class'=>'form-inline'])!!} 
+		  
+		    <div class="form-group mx-sm-3 mb-2">
+		     <label for="exampleFormControlFile1">Ingresar imagen</label>
+		      {!!Form::file('image',['class'=>'form-control-file','id' => 'exampleFormControlFile1'])!!}
+		      {!!Form::number('viabilidad_id',$terreno->id,['class'=>'form-control','form-control','hidden'])!!}
+		    </div>
+		     {!!Form::submit('Subir',['class'=>'btn btn-outline-success'])!!}
 		</div>
-	  {!!Form::close()!!}
+	   {!!Form::close()!!} 
 	<div class="row">
 		<div class="col-sm-12">
 			@include('front.comentarios')

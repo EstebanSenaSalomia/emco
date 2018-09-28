@@ -24,19 +24,18 @@ class FrontController extends Controller
             $comentario->user;
         });
 
-         $images = Image::all();
-         $images->each(function($images){
-            $images->viabilidad;
-        });
+        //  $images = Image::all();
+        //  $images->each(function($images){
+        //     $images->viabilidad;
+        // });
 
         
     	return view('front.terreno')
         ->with('terreno',$terreno)
         ->with('comentario',$comentario)
-        ->with('date',$date)
-        ->with('images',$images);
+        ->with('date',$date);
+        
     }
-
 
     public function storeComentario(Request $request)
     {
@@ -51,11 +50,4 @@ class FrontController extends Controller
         return redirect()->route('terreno.index',['id'=>$request->viabilidad_id]);
     }
 
-    public function verComentarios()
-    {
-        // $comentario = Comentario::orderBy('id','DESC');
-        // dd($comentario);
-        // return view('front.terreno')->with('comentario',$comentario);
-    }
-	
 }
