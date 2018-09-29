@@ -18,17 +18,14 @@ class FrontController extends Controller
         $date = Carbon::now();
 
     	$terreno = viabilidad::find($id);
+        $terreno->each(function($terreno){
+            $terreno->images;
+        });
 
         $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->paginate(25);
         $comentario->each(function($comentario){
             $comentario->user;
         });
-
-        //  $images = Image::all();
-        //  $images->each(function($images){
-        //     $images->viabilidad;
-        // });
-
         
     	return view('front.terreno')
         ->with('terreno',$terreno)

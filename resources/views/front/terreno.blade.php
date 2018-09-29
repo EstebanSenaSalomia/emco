@@ -31,27 +31,20 @@
 	  </div>
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 	  	<div class="row">
-	  	<div class="col-sm-6 col-md-3">
-	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
+	  	
+	  		@foreach ($terreno->images as $image)
+	  		<div class="col-sm-6 col-md-3">
+	  			<img style="width: 300px;  height: 200px;" src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
+	  		</div>	
+	  		@endforeach
+	  		
 	  	</div>
-	  	<div class="col-sm-6 col-md-3"">
-	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
-	  	</div>
-	  	<div class="col-sm-6 col-md-3"">
-	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
-	  	</div>
-	  	<div class="col-sm-6 col-md-3"">
-	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
-	  	</div>
-	  	<div class="col-sm-6 col-md-3"">
-	  		<img src="{{asset('recursos/images/logo.png')}}" alt="..." class="img-thumbnail">
-	  	</div>
-	  	</div>
+	  	<hr>
 	   {!!Form::open(['action'=>'ImageController@store','method'=>'POST','files'=>true,'class'=>'form-inline'])!!} 
 		  
 		    <div class="form-group mx-sm-3 mb-2">
-		     <label for="exampleFormControlFile1">Ingresar imagen</label>
-		      {!!Form::file('image',['class'=>'form-control-file','id' => 'exampleFormControlFile1'])!!}
+		     
+		      {!!Form::file('image[]',['class'=>'form-control-file','multiple','id' => 'exampleFormControlFile1'])!!}
 		      {!!Form::number('viabilidad_id',$terreno->id,['class'=>'form-control','form-control','hidden'])!!}
 		    </div>
 		     {!!Form::submit('Subir',['class'=>'btn btn-outline-success'])!!}
