@@ -1,8 +1,13 @@
 @extends('admin.plantilla.main')
 @section('title',$terreno->nombre)
 @section('marca2','active')
-
 @section('content')
+<div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+   Imagen eliminada correctamente
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <hr>
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	  <li class="nav-item">
@@ -33,8 +38,14 @@
 	  	<div class="row">
 	  	
 	  		@foreach ($terreno->images as $image)
-	  		<div class="col-sm-6 col-md-3">
+	  		<div class="col-sm-6 col-md-3 img">
+	  			<span>
 	  			<img style="width: 300px;  height: 200px;" src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
+
+	  			{!! Form::open(['route'=>['images.destroy',$image->id],'method'=>'DELETE']) !!}
+					<a href=""><div class="btn btn-outline-danger btn-lg btn_eliminar"><i class="fa fa-trash"></i></div></a>
+	  			{!!Form::close()!!} 
+				</span>
 	  		</div>	
 	  		@endforeach
 	  		

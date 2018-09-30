@@ -17,3 +17,27 @@ function formReset()
 {
 document.getElementById("myForm").reset();
 }
+$(document).ready(function(){
+	$('#alert').hide();
+	$('.btn_eliminar').click(function(e){
+		e.preventDefault();
+		if(! confirm("¿Estas seguro de eliminar la imagen?")){
+			return false;
+		}
+
+		var img = $(this).parents('span');
+		var form = $(this).parents('form');
+		var url = form.attr('action');
+
+		$('#alert').show();
+
+		$.post(url,form.serialize(),function(result){
+
+			img.fadeOut();
+			$('#alert').html(result,message);
+
+		}).fail(function(){
+			$('#alert').html('Algo salio mal');
+		});
+	});
+});

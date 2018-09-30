@@ -100,8 +100,17 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        
+        if ($request->ajax()) {
+            $image = Image::find($id);
+            $image->delete();
+        }
+
+        return response()->json([
+
+            'message' => 'La imagen fue elimanda correctamente'
+
+        ]);
     }
 }

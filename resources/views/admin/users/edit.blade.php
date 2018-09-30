@@ -37,7 +37,7 @@
 		<div class="form-group row">
 			{!! Form::label('type','tipo',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
-				{!! Form::select('type',['contratista'=>'Contratista','supervisor'=>'Supervisor','admin'=>'Administrador'],$user->type,['placeholder' => 'Selecciona un tipo...','required','class'=>'custom-select']) !!}
+				{!! Form::select('type',['gestor'=>'Gestor','supervisor'=>'Supervisor','admin'=>'Administrador'],$user->type,['placeholder' => 'Selecciona un tipo...','required','class'=>'custom-select']) !!}
 			</div>
 		</div>	
 		<div class="form-group row">
