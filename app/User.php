@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasMany('App\comentario');
     }
 
+     public function users()
+    {
+        return $this->hasMany('App\Image');
+    }
+
 
     public function scopeSearch($query, $cedula)
     {

@@ -36,7 +36,7 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {   
 
         // $validator = Validator::make($request->all(), [
@@ -53,6 +53,8 @@ class ImageController extends Controller
             $image = new Image();
             $image->name=$name;
             $image->viabilidad_id = $request->viabilidad_id;
+            $image->user_id = \Auth::user()->id;
+            dd($image);
             $image->save();
         }  
         

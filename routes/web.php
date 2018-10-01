@@ -53,10 +53,6 @@ Route::group(['prefix'=>'terreno'],function(){
 	]);
 
 	Route::resource('images','ImageController');
-	// Route::get('image/{id}/destroy',[
-	// 	'uses' => 'ImageController@destroy',
-	// 	'as'   => 'terreno.images.destroy'
-	// ]);
 });
 
 });

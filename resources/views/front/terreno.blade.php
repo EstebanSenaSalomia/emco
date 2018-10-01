@@ -2,7 +2,7 @@
 @section('title',$terreno->nombre)
 @section('marca2','active')
 @section('content')
-<div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+<div class="alert alert-info alert-dismissible fade show" id="alert" role="alert">
    Imagen eliminada correctamente
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -43,9 +43,31 @@
 	  			<img style="width: 300px;  height: 200px;" src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
 
 	  			{!! Form::open(['route'=>['images.destroy',$image->id],'method'=>'DELETE']) !!}
+					@if (Auth::User()->gestor() or Auth::User()->id == $image->user->id)
 					<a href=""><div class="btn btn-outline-danger btn-lg btn_eliminar"><i class="fa fa-trash"></i></div></a>
-	  			{!!Form::close()!!} 
+					@endif
+					<a class="btn btn-outline-dark btn-lg" data-toggle="modal" data-target="#exampleModalCenter{{$loop->index}}" data-toggle="tooltip" data-placement="bottom" title="zoom"><i class="fa fa-search-plus"></i></a> 
+	  			{!!Form::close()!!}
 				</span>
+	  		</div>
+	  		<div class="modal fade" id="exampleModalCenter{{$loop->index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  		  <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
+	  		    <div class="modal-content">
+	  		      <div class="modal-header">
+	  		      	<h4 class="modal-title" id="exampleModalLongTitle">Cargado por: {{$image->user->name}}</h4>
+	  		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  		          <span aria-hidden="true">&times;</span>
+	  		        </button>
+	  		      </div>
+	  		      <div class="modal-body">
+	  		      	{{$image->created_at->diffForHumans()}}
+	  		        <img src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
+	  		      </div>
+	  		      <div class="modal-footer">
+	  		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	  		      </div>
+	  		    </div>
+	  		  </div>
 	  		</div>	
 	  		@endforeach
 	  		
