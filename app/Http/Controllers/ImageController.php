@@ -37,11 +37,20 @@ class ImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ImageRequest $request)
+
     {   
 
-        // $validator = Validator::make($request->all(), [
-        //     'image.*' => 'required|image',
-        // ]);
+
+        $reglas = array('image.*' => 'mimes:jpeg,png|required');//aqui capturamos las reglas de validacion
+        $messages = [//personalizacion el mensaje
+            'image.*.mimes' => 'Has seleccionado un archivo que no es una imagen',//el * captura todos los valores de la matriz
+        ];
+        $validacion = Validator::make($request->all(),$reglas,$messages);
+        if ($validacion->fails())
+        {
+            return redirect()->route('terreno.index',['id'=>$request->viabilidad_id])
+            ->withErrors($validacion);
+        }
 
         $files = $request->file('image');
         $con = 1;
@@ -54,7 +63,6 @@ class ImageController extends Controller
             $image->name=$name;
             $image->viabilidad_id = $request->viabilidad_id;
             $image->user_id = \Auth::user()->id;
-            dd($image);
             $image->save();
         }  
         

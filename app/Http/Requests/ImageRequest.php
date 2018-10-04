@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ImageRequest extends FormRequest
 {
@@ -23,8 +24,17 @@ class ImageRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-             'image' => 'required|image',
+             'image' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            
+            'image.required' =>'Primero selecciona una imagen'
         ];
     }
 }
