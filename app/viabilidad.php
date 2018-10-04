@@ -10,6 +10,10 @@ class viabilidad extends Model
 
     protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo'];
 
+    protected $dates = [
+      'fecha_reque'
+    ];
+
     
     public function asignarvb()
     {

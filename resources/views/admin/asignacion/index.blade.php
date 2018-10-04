@@ -7,7 +7,8 @@
     <div id="accordion">
 
     @foreach ($asignarvbs as $asignarvb) 
-
+    @if (Auth::User()->gestor() or Auth::User()->id == $asignarvb->user->id)
+        
         <div class="card">
             <div class="card-header" id="heading{{$asignarvb->id}}">
                 <h5 class="mb-0">
@@ -20,34 +21,20 @@
             <div id="collapse{{$asignarvb->id}}" class="collapse" aria-labelledby="heading{{$asignarvb->id}}" data-parent="#accordion1">
                 <div class="card-body">
                     <div id="accordion">
-                        @foreach ($asignarvb->viabilidades as $viabilidad)  
-                            <div class="card ">
-                                <div class="card-header color-card-acordion" id="head{{$viabilidad->id}}">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link color-btn-link" data-toggle="collapse" data-target="#collap{{$viabilidad->id}}" aria-expanded="true" aria-controls="collap{{$viabilidad->id}}">
-                                           <span class="">{{$viabilidad->numero." - ".$viabilidad->nombre}}</span>
-                                        </button>
-
-                                        <a href="{{-- {{route('admin.users.destroy',$user->id)}} --}}#" data-toggle="tooltip" data-placement="bottom" title="Desvincular" onclick="return confirm('¿Estas seguro que quieres desvincular este usuario?')" class="btn btn-outline-danger float-right"><i class="fa fa-unlink"></i></a>
-                                    </h5>
-                                </div>
-                                <div id="collap{{$viabilidad->id}}" class="collapse" aria-labelledby="head{{$viabilidad->id}}" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                           <li class="list-group-item">Asignado: {{$asignarvb->created_at->toFormattedDateString()}}</li>
-                                           <li class="list-group-item">Numero: {{$viabilidad->numero}}</li>
-                                           <li class="list-group-item">Nombre: {{$viabilidad->nombre}}</li>
-                                           <li class="list-group-item">Dirección: {{$viabilidad->direccion}}</li>
-                                           <li class="list-group-item">Fecha Requerida: {{$viabilidad->fecha_reque}}</li>
-                                        </ul>    
-                                    </div>
-                                </div>
-                            </div>
+                        @foreach ($asignarvb->viabilidades as $viabilidad)
+                         @if ($viabilidad->estado=='Activa' or (Auth::User()->type != 'supervisor'))
+                         
+                            <ul class="list-group">
+                              <li class="list-group-item"><a href="{{route('terreno.index',['id'=>$viabilidad->id])}}"><h5>{{$viabilidad->nombre}}</h5></a> <h6>{{$viabilidad->direccion}}</h6></h5></li>
+                            </ul>
+                        @endif
+                        
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
+       @endif
     @endforeach  
 </div>
   {{--  <div id="accordion"> 

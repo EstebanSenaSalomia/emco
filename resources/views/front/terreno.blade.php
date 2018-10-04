@@ -23,6 +23,7 @@
 	  	<div>
 	  	<ul class="list-group">
 	  	  <li class="list-group-item disabled">Datos del proyecto</li>
+	  	  <li class="list-group-item"><h5>Fecha requerida: <b>{{$terreno->fecha_reque->toFormattedDateString()}}</b></h5></li>
 	  	  <li class="list-group-item"><h5>Numero de Viabilidad: <b>{{$terreno->numero_vb}}</b></h5></li>
 	  	  <li class="list-group-item"><h5>Numero de Presupuesto: <b>{{$terreno->numero_pre}}</b></h5></li>
 	  	  <li class="list-group-item"><h5>Numero de Orden: <b>{{$terreno->numero_ot}}</b></h5></li>

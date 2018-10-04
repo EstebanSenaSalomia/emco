@@ -17,7 +17,6 @@ class AsignacionController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-
     public function index()
     {
         $asignarvb = asignarvb::orderBy('id','ASC')->paginate(15);

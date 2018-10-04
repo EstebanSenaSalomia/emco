@@ -22,7 +22,7 @@
       </li>
       @endif
        <li class="nav-item @yield('marca4')">
-        <a class="nav-link" href="{{route('asignacion.index')}}"><i class="fa fa-hand-point-right"></i> Asignación VB</a>
+        <a class="nav-link" href="{{route('asignacion.index')}}"><i class="fa fa-hand-point-right"></i> Asignaciones</a>
       </li>
     </ul>
     <div class="my-2 my-lg-0">

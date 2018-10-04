@@ -116,6 +116,8 @@ class ImageController extends Controller
             $image = Image::find($id);
             $image->delete();
         }
+         $ruta =  public_path().'/images/viabilidades/'.$image->name;
+         \File::delete($ruta); //borrar imagen del Sov
 
         return response()->json([
 
