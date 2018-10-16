@@ -81,7 +81,7 @@
 		      {!!Form::file('image[]',['class'=>'form-control-file','multiple','id' => 'exampleFormControlFile1'])!!}
 		      {!!Form::number('viabilidad_id',$terreno->id,['class'=>'form-control','form-control','hidden'])!!}
 		    </div>
-		     {!!Form::submit('Subir',['class'=>'btn btn-outline-success'])!!}
+		     {!!Form::submit('Subir',['class'=>'btn btn-outline-primary'])!!}
 		</div>
 	   {!!Form::close()!!} 
 	<div class="row">

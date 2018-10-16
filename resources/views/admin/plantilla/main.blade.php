@@ -30,7 +30,7 @@
     <section>
       <div class="container">
         @if (Auth::check())
-           <h5 id="fuente" class="text-center">@yield('title')</h5>  
+           <h4 id="fuente" class="text-center">@yield('title')</h4>  
         @endif
       <!--flass -->
           @include('admin.plantilla.error')
@@ -47,7 +47,7 @@
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/bootstrap.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/chosen/chosen.jquery.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/main.js')}}"></script>
-    <script id="dsq-count-scr" src="//sov-1.disqus.com/count.js" async></script>
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
   </body>
 </html>

@@ -3,7 +3,7 @@
 	@section('marca4','active')
 @section('content')
 
-<div class="card text-center">
+<div class="card">
 	  <div class="card-body">
 		{!! Form::open(['action'=>'AsignacionController@store','method'=>'POST'])!!}
 		<div class="row">
@@ -18,8 +18,8 @@
 				{!! Form::select('viabilidad_id[]',$viabilidades,null,['required','class'=>'form-control select-viabilidad','multiple']) !!}
 			</div>
 		</div>
-		<p>&nbsp</p>
-		<div class="row">
+		{{-- <p>&nbsp</p> --}}
+	{{-- 	<div class="row">
 			<div class="col-sm-12 col-md-6 offset-md-3">
 				<h6>Selecciona una prioridad (opcional)</h6>
 				
@@ -39,10 +39,10 @@
 			  {!! Form::label('radio','3',['class'=>'form-check-label', 'for'=>'inlineRadio3'])!!}
 			</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<p>&nbsp</p>
-		<div class="text-center">
+		<div class="">
 			{!!Form::submit('Asignar',['class'=>'btn btn-outline-success'])!!}
 		</div>
 		{!! Form::close() !!}

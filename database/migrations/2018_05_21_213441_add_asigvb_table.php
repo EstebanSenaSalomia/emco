@@ -16,7 +16,7 @@ class AddAsigvbTable extends Migration
         Schema::create('asignarvb', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->enum('prioridad',['1','2','3'])->default('1');
+            // $table->enum('prioridad',['1','2','3'])->default('1');
             
             $table->foreign('user_id')
             ->references('id')

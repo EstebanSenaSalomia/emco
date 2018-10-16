@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'cedula' => $faker->randomNumber($nbDigits = NULL, $strict = false),
         'telefono' => $faker->tollFreePhoneNumber,
-        'type' => $faker->randomElement($array = array ('supervisor','gestor','admin')),
+        'type' => $faker->randomElement($array = array ('supervisor','gestor')),
         'empresa' => $faker->randomElement($array = array ('Emcomunitel','HB','P y P')),
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),

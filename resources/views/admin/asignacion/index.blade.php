@@ -22,11 +22,13 @@
                 <div class="card-body">
                     <div id="accordion">
                         @foreach ($asignarvb->viabilidades as $viabilidad)
+
                          @if ($viabilidad->estado=='Activa' or (Auth::User()->type != 'supervisor'))
-                         
-                            <ul class="list-group">
+                       
+                              <ul class="list-group">
                               <li class="list-group-item"><a href="{{route('terreno.index',['id'=>$viabilidad->id])}}"><h5>{{$viabilidad->nombre}}</h5></a> <h6>{{$viabilidad->direccion}}</h6></h5></li>
-                            </ul>
+                              </ul>
+                        
                         @endif
                         
                         @endforeach
