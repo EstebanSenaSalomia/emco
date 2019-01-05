@@ -15,9 +15,10 @@
 	@endforeach
 
 {!! Form::open(['action'=>'FrontController@storeComentario','METHOD'=>'POST','id'=>'myForm'])!!}
+{{ csrf_field() }}
 	   <div class="card">
 	     <div class="card-header text-center">
-	       {{$terreno->nombre}}
+	       Observaciones - {{$viabilidades->nombre}}
 	     </div>
 	     <div class="card-body">
 	      
@@ -25,7 +26,7 @@
        		    {!! Form::label('comentario','Seguimiento',[])!!}
        		    {!! Form::textarea('comentario',null,['class'=>'textarea-content form-control'])!!}
 	       	</div>
-	       	{!! Form::number('viabilidad_id',$terreno->id,['class'=>'form-control','form-control','hidden'])!!}
+	       	{!! Form::number('viabilidad_id',$viabilidades->id,['class'=>'form-control','form-control','hidden'])!!}
 	       {!!Form::submit('Guardar',['class'=>'btn btn-outline-success'])!!}
 	       <a type="reset" onclick="formReset()" class="btn btn-outline-dark">limpiar</a>
 	     </div>

@@ -33,4 +33,9 @@ body{
     background-color: #d6d8db;
     border-color: #bee5eb;
 }
-
+#color{
+	color: blue;
+}
+#color2{
+	color: green;
+}

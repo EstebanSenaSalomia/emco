@@ -14,25 +14,32 @@ class FrontController extends Controller
 {
     public function verTerreno($id)
     {
+        
         Carbon::setLocale('es');
-        $date = Carbon::now();
+        $date = Carbon::today();//solo trae la fecha
+        $ultimo = new Carbon("last day of this month");
+        // $first = Carbon::create(1995, 10, 6,0,0,0);
+      
         //$date = $date->format('l jS \\of F Y h:i:s A');
-
-    	$terreno = viabilidad::find($id);
-        $terreno->each(function($terreno){
-            $terreno->images;
+        $users = User::orderBy('name','ASC')->pluck('name','id');
+        $viabilidad = viabilidad::find($id);
+        // dd($first,$viabilidad->fecha_reque);
+        // dd($viabilidad->fecha_reque->greaterThan($date));
+        $viabilidad->each(function($viabilidad){
+            $viabilidad->images;
+            $viabilidad->user;
         });
-
-
-        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->paginate(25);
+        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->get();
         $comentario->each(function($comentario){
             $comentario->user;
         });
         
     	return view('front.terreno')
-        ->with('terreno',$terreno)
+        ->with('viabilidades',$viabilidad)
         ->with('comentario',$comentario)
-        ->with('date',$date);
+        ->with('users',$users)
+        ->with('date',$date)
+        ->with('ultimo',$ultimo);
         
     }
 

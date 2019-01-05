@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        $users = User::search($request->cedula)->orderBy('id','DESC')->paginate(10);
+        $users = User::search($request->buscar)->orderBy('id','DESC')->paginate(20);
         return view('admin.users.index')->with('users',$users);
     }
 
@@ -30,7 +30,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        
         return view('admin.users.create');
     }
 

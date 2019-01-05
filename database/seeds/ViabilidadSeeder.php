@@ -11,6 +11,6 @@ class ViabilidadSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\viabilidad::class,10)->create();
+        factory(App\viabilidad::class,500)->create();
     }
 }

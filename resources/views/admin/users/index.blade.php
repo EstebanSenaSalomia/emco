@@ -8,26 +8,28 @@
 <div class="card">
 	<div class="card-body">
 		{!! Form::open(['route'=>'users.index','method'=>'GET','class'=>''])!!}
+		{{ csrf_field() }}
 		<div class="form-row align-items-right">
 			<div class="col-sm-6">
-				<a href="{{route('users.create')}}" class="btn btn-outline-info btn-block">Crear usuario</a>
+				<a href="{{route('users.create')}}" class="btn btn-outline-primary btn-block">Crear usuario</a>
 			</div>
 			<div class="col-sm-6">
-		    	<label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
-		      	<div class="input-group">
-			       	<div class="input-group-prepend">
-			        	<div class="input-group-text"><i class="fa fa-search"></i></div>
-			        </div>
-			       	{!! Form::text('cedula',null,['class'=>'form-control mr-sm-2','placeholder'=>'Ingresar cedula','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
-			    </div>
-			</div>
-		</div>	
+					<label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+							<div class="input-group-text"><i class="fa fa-search"></i></div>
+						</div>
+							{!! Form::text('buscar',null,['class'=>'form-control mr-sm-2','placeholder'=>'puedes buscar por nombre ,cedula ,tipo o empresa','aria-label'=>'Search','id'=>"inlineFormInputGroupUsername"])!!}
+						</div>
+				</div>
+		</div>
+		
 		{!! Form::close()!!}	
 	    <p>&nbsp</p>
 	    <div class="table-responsive d-none d-md-block">
 			<table class="table table-hover ">
 			    <thead>
-			    	<th>ID</th>
+			    	
 			    	<th>NOMBRE</th>
 			    	<th>E-MAIL</th>
 			    	<th>CEDULA</th>
@@ -49,7 +51,7 @@
 			    	@if (Auth::user()->id != $user->id)
 			    		
 					<tr class="{{$estado}}">
-						<td>{{$user->id}}</td>
+						
 						<td>{{$user->name}}</td>
 						<td>{{$user->email}}</td>
 						<td>{{$user->cedula}}</td>
@@ -82,7 +84,7 @@
 				</tbody>
 		    </table>
 				<div class="mx-auto">
-					{{$users->render("pagination::bootstrap-4")}}
+					{{$users->appends(Request::all())->render("pagination::bootstrap-4")}}
 				</div>		
 		</div>
         <div class="d-block d-sm-none d-none d-sm-block d-md-none">	 
@@ -113,11 +115,11 @@
 			        	          <li class="list-group-item"><span class="font-weight-bold">Nombre:</span> {{$user->name}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">E-mail:</span> {{$user->email}}</li>
 								  @if ($user->type == 'admin')
-								  	   <li class="list-group-item"><span class="font-weight-bold">Rol:</span> {{$user->type}}  <i class="fa fa-user-secret"></i></li>
+								  	   <li class="list-group-item"><span class="font-weight-bold">tipo:</span> {{$user->type}}  <i class="fa fa-user-secret"></i></li>
 								  @elseif($user->type =='supervisor')
-								  	   <li class="list-group-item"><span class="font-weight-bold">Rol:</span> {{$user->type}}  <i class="fa fa-binoculars"></i></li>
+								  	   <li class="list-group-item"><span class="font-weight-bold">tipo:</span> {{$user->type}}  <i class="fa fa-binoculars"></i></li>
 								  @else
-								  	   <li class="list-group-item"><span class="font-weight-bold">Rol:</span> {{$user->type}}  <i class="fa fa-building"></i></li>	   
+								  	   <li class="list-group-item"><span class="font-weight-bold">tipo:</span> {{$user->type}}  <i class="fa fa-building"></i></li>	   
 								  @endif
 			        	        
 			        	          <li class="list-group-item"><span class="font-weight-bold">Telefono:</span> {{$user->telefono}}</li>
@@ -143,7 +145,7 @@
         	</div>
         	<p>&nbsp</p>
         	<div class="mx-auto pagination justify-content-center" style="width: 200px";>
-        		{{$users->render("pagination::simple-bootstrap-4")}}
+        		{{$users->appends(Request::all())->render("pagination::simple-bootstrap-4")}}
         	</div>
         </div>	
 	</div>

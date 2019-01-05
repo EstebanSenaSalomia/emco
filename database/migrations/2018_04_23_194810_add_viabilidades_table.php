@@ -15,6 +15,7 @@ class AddViabilidadesTable extends Migration
     {
          Schema::create('viabilidades', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('numero_vb')->nullable();
             $table->string('numero_pre')->nullable();
             $table->string('numero_ot')->nullable();
@@ -27,6 +28,11 @@ class AddViabilidadesTable extends Migration
             $table->enum('localidad', ['Alcala','Andalucia','Ansermanuevo','Argelia','Bolivar','Buenaventura','Buga','Bugalagrande','Caicedonia','Cali','Calima','Candelaria','Cartago','Dagua','El_Aguila','El_Cairo','El_Cerrito','El_Dovio','Florida','Ginebra','Guacari','Jamundi','La_Cumbre','La_Union','La_Victoria','Obando','Palmira','Pradera','Restrepo','Riofrío','Roldanillo','San_Pedro','Sevilla','Toro','Trujillo','Tulua','Ulloa','Versalles','Vijes',"Yotoco","Yumbo","Zarzal"])->default('cali');
             $table->enum('tipo_trabajo',['Construccion','Mantenimiento','Viabilidad'])->default('Viabilidad');
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
         });
 
     }

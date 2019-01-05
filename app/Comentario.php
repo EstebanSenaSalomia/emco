@@ -13,7 +13,7 @@ class Comentario extends Model
 
       public function user()
     {
-        return $this->belongsTo('App\user');
+        return $this->belongsToMany('App\user');
     }
 
        public function viabilidad()

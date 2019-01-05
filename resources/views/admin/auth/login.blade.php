@@ -9,9 +9,10 @@
 	  <div class="card-body">
 
 		{!! Form::open(['route'=>'admin.auth.login','method'=>'POST'])!!}
+		{{ csrf_field() }}
 		<div class="form-group">
-		    {!! Form::label('email','E-mail')!!}
-		    {!! Form::email('email',null,['class'=>'form-control','required', 'placeholder'=>'Ingresa tu email'])!!}
+		    {!! Form::label('cedula','Usuario')!!}
+		    {!! Form::text('cedula',null,['class'=>'form-control','required', 'placeholder'=>'Ingresa tu cedula'])!!}
 		  </div>
 		  <div class="form-group">
 		    {!! Form::label('password','Contraseña')!!}
@@ -23,10 +24,11 @@
 			</div>
 			{!! Form::close() !!}
 		</div>
+	<a class="dropdown-item" href="{{route('password.cambio')}}">¿Olvidaste la contraseña?</a>
 		<img src="{{asset('recursos/images/logo.png')}}" class="rounded mx-auto d-block" alt="Cargando">
 	</div>
+	
 	</div>
 	</div>
 @endsection
-
 

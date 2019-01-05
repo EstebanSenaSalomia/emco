@@ -2,105 +2,84 @@
 	@section('title','Asignaciones')
 	@section('marca4','active')
 @section('content')
-
-<div id="accordion1">
-    <div id="accordion">
-
-    @foreach ($asignarvbs as $asignarvb) 
-    @if (Auth::User()->gestor() or Auth::User()->id == $asignarvb->user->id)
-        
-        <div class="card">
-            <div class="card-header" id="heading{{$asignarvb->id}}">
-                <h5 class="mb-0">
-                    <button class="btn btn-link " data-toggle="collapse" data-target="#collapse{{$asignarvb->id}}" aria-expanded="true" aria-controls="collapse{{$asignarvb->id}}">
-                        Responsable: <span class="">{{$asignarvb->user->name}}</span> 
-                    </button>
-                    <a href="{{-- {{route('admin.users.destroy',$user->id)}} --}}#" data-toggle="tooltip" data-placement="bottom" title="Agregar" class="btn btn-outline-success float-right"><i class="fa fa-plus"></i></a>
-                </h5>
+@if (Auth::User()->admin() or Auth::User()->gestor())
+    {!! Form::open(['route'=>'asignacion.index','method'=>'GET'])!!}
+    {{ csrf_field() }}
+    <div class="card">
+            <div class="card-header">
+              Filtra por responsable de proyecto
             </div>
-            <div id="collapse{{$asignarvb->id}}" class="collapse" aria-labelledby="heading{{$asignarvb->id}}" data-parent="#accordion1">
-                <div class="card-body">
-                    <div id="accordion">
-                        @foreach ($asignarvb->viabilidades as $viabilidad)
-
-                         @if ($viabilidad->estado=='Activa' or (Auth::User()->type != 'supervisor'))
-                       
-                              <ul class="list-group">
-                              <li class="list-group-item"><a href="{{route('terreno.index',['id'=>$viabilidad->id])}}"><h5>{{$viabilidad->nombre}}</h5></a> <h6>{{$viabilidad->direccion}}</h6></h5></li>
-                              </ul>
-                        
-                        @endif
-                        
-                        @endforeach
-                    </div>
-                </div>
+            <div class="card-body">
+              {!! Form::select('user_id',$user,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create card-text']) !!}
+              {!!Form::submit('buscar',['class'=>'btn btn-outline-primary'])!!}
             </div>
+          </div>
+    {!!Form::close()!!} 
+@endif
+@foreach($viabilidades as $viabilidad)
+    {{-- {{$loop->iteration}} --}}
+     <div class="list-group">
+      <a href="{{route('terreno.index',['id'=>$viabilidad->id])}}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{$viabilidad->nombre}}</h5>
+          <small>Asignado {{$viabilidad->created_at->diffForHumans()}}<br>
+            @if ($viabilidad->estado=="Terminada")
+                <span id="color">Estado {{$viabilidad->estado}}</span></small>
+            @else
+                <span id="color2">Estado {{$viabilidad->estado}}</span></small>
+            @endif
         </div>
-       @endif
-    @endforeach  
+        @php
+            $year = $date->year;
+            $month = $date->month;
+            $day = $date->day;
+            $fr_year = $viabilidad->fecha_reque->year;
+            $fr_month = $viabilidad->fecha_reque->month;
+            $fr_day = $viabilidad->fecha_reque->day;
+            $restaday = $fr_day-$day;
+            $restamonth = $fr_month-$month;
+            $restayear = $fr_year-$year;
+            $ultimodia = $ultimo->day;
+            $lastDay = $ultimodia-$day;
+            if($restayear>=1){
+                $fr_month = $fr_month + $month;
+                $restamonth = $fr_month-$month;
+            }
+            
+            if($restamonth>=1){
+                $fr_day = $fr_day + $day;
+                $fr_day = $fr_day + $lastDay;
+                $restaday = $fr_day-$day;
+            }
+            if($restaday>=1 and $restaday<3 and $restamonth<=1){
+                $restantes = true;
+            }else{
+                $restantes = false;
+            }
+        @endphp
+        @if($viabilidad->fecha_reque->lessThan($date) and $viabilidad->estado=="Activa")
+            <p class="p-3 mb-1 bg-danger text-white">Requerida {{$viabilidad->fecha_reque->toFormattedDateString()}}</p>
+            
+        @elseif($viabilidad->fecha_reque->greaterThan($date) and $viabilidad->estado=="Activa" and !$restantes)
+             <p class="p-3 mb-1 bg-success text-white">Requerida {{$viabilidad->fecha_reque->toFormattedDateString()}}</p>
+             
+        @elseif( ($viabilidad->estado=="Activa") or $viabilidad->fecha_reque->equalTo($date) and $restantes)
+              <p class="p-3 mb-1 bg-warning text-white">Requerida {{$viabilidad->fecha_reque->toFormattedDateString()}}</p>   
+        @else
+             <p class="p-3 mb-1 bg-info text-white">Requerida {{$viabilidad->fecha_reque->toFormattedDateString()}}</p>
+        @endif
+      </a>
+    </div>
+
+      
+
+
+
+@endforeach
+
+<p>&nbsp</p>
+<div class="mx-auto pagination justify-content-center" style="width: 200px";>
+    {{$viabilidades->appends(Request::all())->render("pagination::simple-bootstrap-4")}}
 </div>
-  {{--  <div id="accordion"> 
-    @foreach($asignarvbs as $asignarvb)	
-    	<div class="card">
-    	    <div class="card-header" id="heading{{$asignarvb->id}}">
-    	      <h5 class="mb-0">
-    	        <button class="btn btn-link" data-toggle="collapse" data-target="#{{$asignarvb->id}}" aria-expanded="false" aria-controls="{{$asignarvb->id}}">
-    	         Responsable: <span class="font-weight-bold">{{$asignarvb->user->name}}</span> 
-    	        </button>
-    	      </h5>
-    	    </div> 
-    		el loop->index me devuelve el indice del ciclo en el que estoy 
-    	     <div id="{{$asignarvb->id}}" class="collapse" aria-labelledby="heading{{$asignarvb->id}}" data-parent="#accordion">
-        	    <div class="card-body">
-                    <div class="accordion">
-                        @foreach ($asignarvb->viabilidades as $viabilidad)
-                            <div class="card">
-                                <div class="card-header" id="headin{{$asignarvb->id}}">
-                                  <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#h{{$asignarvb->id}}" aria-expanded="false" aria-controls="{{$asignarvb->id}}">
-                                     Responsable: <span class="font-weight-bold">{{$asignarvb->user->name}}</span> 
-                                    </button>
-                                  </h5>
-                                </div>
-                                <div id="h{{$asignarvb->id}}" class="collapse" aria-labelledby="headin{{$asignarvb->id}}" data-parent="#accordion">
-                            </div>
-                            <div class="card-body">
-                                
-                            </div>
-                        @endforeach
-                    </div>
-        	        <ul class="list-group list-group-flush">
-        	          
-						@foreach ($asignarvb->viabilidades as $viabilidad)
-                            <li class="list-group-item"><span class="font-weight-bold">Numero:  </span>
-							<td>{{$viabilidad->numero}}</td><br>
-                            <li class="list-group-item"><span class="font-weight-bold">Nombre:  </span>
-                            <td>{{$viabilidad->nombre}}</td><br>
-                            <li class="list-group-item"><span class="font-weight-bold">Fecha Requerida:  </span>
-                            <td>{{$viabilidad->fecha_reque}}</td><br>
-                            <li class="list-group-item"><span class="font-weight-bold">Dirección:  </span>
-                            <td>{{$viabilidad->direccion}}</td><br>		
-						@endforeach
-        	          </li>
-        	             <li class="list-group-item">
-        	          		<a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-dark" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-edit"></i></a>
-        	          		<a href="{{route('admin.users.destroy',$user->id)}}" data-toggle="tooltip" data-placement="bottom" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')" class="btn btn-outline-danger"><i class="fa fa-trash-alt"></i></a>
-        	          </li> 
-        	        </ul> 
-        	    </div>
-    	    </div>
-    	</div>
-    @endforeach
-</div> --}}
-	    	{{-- @foreach($asignarvbs as $asignarv)
-			<tr>
-				
-					@foreach ($asignarv->viabilidades as $element)
-						<td>{{$element->numero}}</td>			
-					@endforeach
-			
-				
-			</tr>
-	      @endforeach --}}
 	
 @endsection

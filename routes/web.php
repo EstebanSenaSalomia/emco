@@ -2,6 +2,7 @@
 Route::get('/', function () {
 	    return view('admin.auth.login');
 	})->middleware('guest');//si el usuario esta autnticado redirijir a otra ruta
+	
 
 Route::group(['prefix' => 'admin','middleware'=>'authenticate'], function(){
 
@@ -19,22 +20,41 @@ Route::group(['middleware'=>'admin'],function(){
 		'as'=>'admin.users.active'
 	]);
 });
-	Route::resource('asignacion','AsignacionController');
-	Route::get('asignacion/{id}/destroy',[
-		'uses'=>'UserController@destroy',
-		'as'=>'admin.users.destroy'
+	Route::get('asignacion/index',[
+		'uses'=>'ViabilidadController@showindex',
+		'as'  =>'asignacion.index'
 	]);
-
+	
 Route::group(['middleware'=>'gestor'],function(){
 	Route::resource('viabilidad','ViabilidadController');
 	Route::get('viabilidad/{id}/destroy',[
 		'uses'=>'ViabilidadController@destroy',
 		'as'=>'admin.viabilidad.destroy'
 	]);
+	Route::get('viabilidad/{id}/eliminar',[
+		'uses'=>'ViabilidadController@eliminar',
+		'as'=>'admin.viabilidad.eliminar'
+	]);
+	
 	Route::get('viabilidad/{id}/active',[
 		'uses'=>'viabilidadController@active',
 		'as' => 'admin.viabilidad.active'
 	]);
+	Route::get('export','ViabilidadController@exportar')
+	->name('admin.exportar');
+
+	Route::post('import',[
+		'uses' => 'ViabilidadController@importar',
+		'as'=>'admin.importar'
+	]);
+
+	Route::get('alert',[
+		'uses' => 'AlertController@index',
+		'as'=>'admin.alert'
+	]);
+
+
+	
 });
 
 Route::group(['prefix'=>'terreno'],function(){
@@ -72,3 +92,11 @@ Route::get('admin/auth/logout',[
 	'uses'=>'Auth\LoginController@logout',
 	'as'  =>'admin.auth.logout'
 ]);
+
+Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('password.cambio');
+
+Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail')
+->name('password.email');
+
+Route::get('password/reset/{token}','Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset','Auth\ResetPasswordController@reset')->name('password.send');

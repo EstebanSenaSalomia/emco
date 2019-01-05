@@ -30,6 +30,25 @@ class CreateComentariosTable extends Migration
             ->on('users')
             ->onDelete('cascade');
         });
+        schema::create('comentario_user',function(Blueprint $table){
+
+            $table->increments('id');
+            $table->integer('comentario_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+
+             $table->foreign('comentario_id')
+            ->references('id')
+            ->on('comentarios')
+            ->onDelete('cascade');
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+
+            $table->timestamps();
+
+        });
     }
 
     /**
@@ -40,5 +59,6 @@ class CreateComentariosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('comentario_user');
     }
 }

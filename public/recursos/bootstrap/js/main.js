@@ -7,11 +7,17 @@ $('.select-user').chosen({
 	width: '100%',
 	no_results_text: "Oops, no hay resultados!"
 });
+$('.select-create').chosen({
+	disable_search_threshold: 10,
+	width: '50%',
+	no_results_text: "Oops, no hay resultados!"
+});
 $('.select-viabilidad').chosen({
 	placeholder_text_multiple:"Asigna las viabilidades",
 	no_results_text: "Oops, no hay resultados!",
 	width: "95%"
 });
+
 
 function formReset()
 {
@@ -41,5 +47,6 @@ $(document).ready(function(){
 		});
 	});
 });
+
 
 

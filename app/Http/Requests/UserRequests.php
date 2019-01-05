@@ -27,7 +27,7 @@ class UserRequests extends FormRequest
             'name'     => 'Min:4|Max:100|Required',
             'cedula'   => 'Min:10|Max:13|Required|unique:users',
             'email'    => 'Min:4|Max:120|Required|unique:users',
-            'password' => 'Min:6|Max:100|Required',
+            'password' => 'Min:6|Max:100|Required|confirmed',
             'telefono' => 'digits:10|Required'
         ];
     }

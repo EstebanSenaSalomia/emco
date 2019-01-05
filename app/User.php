@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -26,36 +27,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-/*
-    public function viabilidades(){
 
-        return $this->hasMany('App\viabilidad');
-    }
-*/
-    //  public function viabilidad()
-    // {
-    //     return $this->belongsToMany('App\viabilidad');
-    // }
-
-    public function asignarVb()
+    public function viabilidad()
     {
-        return $this->hasOne('App\asignarVb');
+        return $this->hasOne('App\viabilidad');
     }
     
     public function comentarios()
     {
-        return $this->hasMany('App\comentario');
+        return $this->belongsToMany('App\comentario');
     }
 
-     public function users()
+     public function images()
     {
         return $this->hasMany('App\Image');
     }
 
-
-    public function scopeSearch($query, $cedula)
+    public function scopeSearch($query, $buscar)
     {
-        return $query->where('cedula','LIKE','%'.$cedula.'%');
+        return $query->where('name','LIKE','%'.$buscar.'%')
+        ->orWhere('cedula','LIKE','%'.$buscar.'%')
+        ->orWhere('type','LIKE','%'.$buscar.'%')
+        ->orWhere('empresa','LIKE','%'.$buscar.'%')
+        ;
     }
 
     public function admin()
@@ -66,5 +60,16 @@ class User extends Authenticatable
     public function gestor()
     {
         return $this->type === 'admin' or $this->type === 'gestor';
+    }
+
+      /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
