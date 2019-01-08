@@ -8,6 +8,7 @@ use App\User;
 use App\Image;
 use App\Comentario;
 use laracasts\flash;
+use App\Alert;
 use Carbon\Carbon;
 
 class FrontController extends Controller
@@ -51,6 +52,11 @@ class FrontController extends Controller
         $comentario->user_id = \Auth::user()->id;
         $comentario->viabilidad_id = $request->viabilidad_id;
         $comentario->save();
+        $alert = new Alert();
+        $alert->user_id = \Auth::user()->id;
+        $alert->viabilidad_id = $request->viabilidad_id;
+        $alert->comentario_id = $comentario->id;
+        $alert->save();
 
         flash('Comentario registrado correctamente')->success()->important();
         return redirect()->route('terreno.index',['id'=>$request->viabilidad_id]);

@@ -17,6 +17,8 @@ $factory->define(App\viabilidad::class, function (Faker $faker) {
         'estado' => $faker->randomElement($array = array('Activa','Terminada')),
         'localidad' => $faker->randomElement($array = array('Cali','Jamundi','Pradera','Vijes')),
         'tipo_trabajo' => $faker->randomElement($array = array('Mantenimiento','Viabilidad','Construccion')),
+        'contacto' => $faker->name,
+        'contacto_num' => $faker->tollFreePhoneNumber,
     ];
 });
 	

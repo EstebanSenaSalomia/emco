@@ -10,9 +10,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto text-center">
-      {{-- <li class="nav-item @yield('marca1')">
-        <a class="nav-link " href="#"><i class="fa fa-database"></i> Ordenes</a>
-      </li> --}}
+
       <li class="nav-item @yield('marca2')">
         <a class="nav-link" href="{{route('admin.viabilidad.index')}}"> <i class="fa fa-eye"></i> Terreno</a>
       </li>
@@ -21,18 +19,18 @@
           <a class="nav-link @yield('marca4')"  href="{{route('asignacion.index')}}"><i class="fa fa-hand-point-right"></i> Asignaciones</a>
       </li>
 
+      @if(Auth::user()->gestor())
+      <li class="nav-item">
+          <a class="nav-link @yield('marca5') "  href="{{route('admin.alert')}}"><i class="fa fa-comment"></i> Avances
+            <span class="badge badge-light"></span>
+          </a>
+      </li>   
+      @endif
+
       @if (Auth::user()->admin()) {{-- admin es una funcion de el modelo user --}}
       <li class="nav-item @yield('marca3')">
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
-
-     {{--  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-comments"> </i> Alertas</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#"></a>
-            <div class="dropdown-divider"></div>
-          </div>
-        </li> --}}
       @endif
 
 

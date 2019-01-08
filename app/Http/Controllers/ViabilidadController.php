@@ -180,7 +180,7 @@ class ViabilidadController extends Controller
 
     public function exportar(){
         $viabilidad = viabilidad::join('users','users.id', '=','viabilidades.user_id')
-        ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','estado')->get();
+        ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','estado','contacto','contacto_num')->get();
         return Excel::create('Proyectos',function($excel) use ($viabilidad){
             $excel->sheet('mysheet',function($sheet) use ($viabilidad){
                 $sheet->fromArray($viabilidad);
@@ -190,15 +190,17 @@ class ViabilidadController extends Controller
 
     public function importar(UploadRequests $request){
         $exten = $request->importar->extension();
+       
         
-        if($exten == 'xlsx' or $exten == 'xls'){
+        if($exten="xls"  or $exten="xlsx"){
 
         
         if($request->hasFile('importar')){
             
             $path = $request->file('importar')->getRealPath(); 
             $data = Excel::load($path,function($reader){})->get();
-              
+
+           
             if(!empty($data) && $data->count()){ 
                 foreach($data as $key => $value){
                     $viabilidad = new viabilidad();
@@ -212,6 +214,8 @@ class ViabilidadController extends Controller
                     $viabilidad->red = $value->red;
                     $viabilidad->fecha_reque = $value->fecha_reque;
                     $viabilidad->tipo_trabajo = $value->tipo_trabajo;
+                    $viabilidad->contacto = $value->contacto;
+                    $viabilidad->contacto_num = $value->contacto_num;
                     $viabilidad->save();                    
                 }
                 flash('Los datos se cargaron con exito')->success()->important();

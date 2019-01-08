@@ -52,9 +52,12 @@ Route::group(['middleware'=>'gestor'],function(){
 		'uses' => 'AlertController@index',
 		'as'=>'admin.alert'
 	]);
-
-
 	
+	Route::get('alert/{id}/eliminar',[
+		'uses'=>'AlertController@destroy',
+		'as'=>'admin.alert.eliminar'
+	]);
+
 });
 
 Route::group(['prefix'=>'terreno'],function(){

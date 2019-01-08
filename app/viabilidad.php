@@ -8,7 +8,7 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
-    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','user_id'];
+    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','contacto','contacto_num','user_id'];
 
     protected $dates = [
       'fecha_reque'

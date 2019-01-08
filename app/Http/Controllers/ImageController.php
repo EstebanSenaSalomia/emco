@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageRequest;
 use App\Image;
+use App\Alert;
 use laracasts\flash;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,8 +27,6 @@ class ImageController extends Controller
     public function store(ImageRequest $request)
 
     {   
-
-
         $reglas = array('image.*' => 'mimes:jpeg,png|required');//aqui capturamos las reglas de validacion
         $messages = [//personalizacion el mensaje
             'image.*.mimes' => 'Has seleccionado un archivo que no es una imagen',//el * captura todos los valores de la matriz
@@ -51,7 +50,13 @@ class ImageController extends Controller
             $image->viabilidad_id = $request->viabilidad_id;
             $image->user_id = \Auth::user()->id;
             $image->save();
-        }  
+        }
+
+        $alert = new Alert();
+        $alert->user_id = \Auth::user()->id;
+        $alert->viabilidad_id = $request->viabilidad_id;
+        $alert->comentario_id = null;
+        $alert->save();  
         
         flash('Imagenes cargadas correctamente')->success()->important();
         return redirect()->route('terreno.index',['id'=>$request->viabilidad_id]);

@@ -35,7 +35,7 @@ class User extends Authenticatable
     
     public function comentarios()
     {
-        return $this->belongsToMany('App\comentario');
+        return $this->hasMany('App\comentario');
     }
 
      public function images()

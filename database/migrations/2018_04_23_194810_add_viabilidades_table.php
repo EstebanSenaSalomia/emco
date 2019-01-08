@@ -20,6 +20,8 @@ class AddViabilidadesTable extends Migration
             $table->string('numero_pre')->nullable();
             $table->string('numero_ot')->nullable();
             $table->string('nombre');
+            $table->string('contacto')->nullable();
+            $table->string('contacto_num')->nullable();
             $table->string('direccion');
             $table->enum('estado',['Activa','Terminada'])->default('Activa');
             $table->enum('red', ['fibra','cobre','television'])->default('television');
