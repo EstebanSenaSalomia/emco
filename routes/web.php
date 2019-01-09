@@ -19,6 +19,13 @@ Route::group(['middleware'=>'admin'],function(){
 		'uses'=>'UserController@active',
 		'as'=>'admin.users.active'
 	]);
+
+	Route::get('user/export','UserController@exportar')->name('admin.user.export');
+	// Route::get('user/export',function(){
+	// 	 $pdf = App::make('dompdf.wrapper');
+ //        $pdf->loadHTML('<h1>Test</h1>');
+ //        return $pdf->stream();
+	// })->name('admin.user.export');
 });
 	Route::get('asignacion/index',[
 		'uses'=>'ViabilidadController@showindex',

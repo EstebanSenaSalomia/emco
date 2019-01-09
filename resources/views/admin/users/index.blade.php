@@ -26,6 +26,7 @@
 		
 		{!! Form::close()!!}	
 	    <p>&nbsp</p>
+	    <a type="button" class="btn btn-outline-info" href="{{route('admin.user.export')}}">exportar</a>
 	    <div class="table-responsive d-none d-md-block">
 			<table class="table table-hover ">
 			    <thead>
@@ -38,6 +39,7 @@
 			    	<TH>EMPRESA</TH>
 			    </thead>
 				<tbody>
+					
 			    	@foreach($users as $user)
 			    	@if ($user->estado_usu==0)
 			    		@php
@@ -83,6 +85,8 @@
 		            @endforeach
 				</tbody>
 		    </table>
+
+		    
 				<div class="mx-auto">
 					{{$users->appends(Request::all())->render("pagination::bootstrap-4")}}
 				</div>		

@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        $users = User::search($request->buscar)->orderBy('id','DESC')->paginate(20);
+        $users = User::search($request->buscar)->orderBy('id','DESC')->paginate(30);
         return view('admin.users.index')->with('users',$users);
     }
 
@@ -117,5 +117,14 @@ class UserController extends Controller
 
         flash('El usuario '.'<strong>'.$user->name.'</strong>'." esta activo")->info()->important();
          return redirect('admin/users');
+    }
+
+    public function exportar(){
+
+        $pdf = \App::make('dompdf.wrapper');
+        $users = User::all();
+
+        $pdf->loadView('admin.users.pdf',['users' => $users]);
+        return $pdf->stream();
     }
 }
