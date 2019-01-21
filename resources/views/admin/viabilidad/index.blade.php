@@ -161,11 +161,11 @@
 							<td>	
 								<a href="{{route('admin.viabilidad.destroy',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Terminar" onclick="return confirm('¿Estas seguro de terminar este proyecto?')" class="btn btn-outline-success"><i class="fa fa-calendar-check"></i></a>
 							</td>
-							@if(Auth::user()->admin())
+							
 							<td>	
 								<a href="{{route('admin.viabilidad.eliminar',$viabilidad->id)}}" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="return confirm('¿Estas seguro de eliminar este proyecto?')" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
 							</td>
-							@endif			
+									
 						@endif
 						@endif
 					</tr>

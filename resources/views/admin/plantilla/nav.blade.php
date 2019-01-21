@@ -38,7 +38,7 @@
     <div class="my-2 my-lg-0">
       <div class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user"></i>  {{Auth::user()->name}}
+          <i class="fa fa-user"></i>  {{Auth::user()->name}} - <small>{{Auth::user()->type}}</small>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{route('admin.auth.logout')}}">Cerrar Sesión</a>
@@ -49,3 +49,5 @@
 </nav>
 @endif
 <p>&nbsp</p>
+
+

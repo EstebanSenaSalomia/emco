@@ -12,7 +12,7 @@ class AlertController extends Controller
 {
     public function index(){
 
-    	$alert = Alert::orderBy('id','ASC')->paginate(10);
+    	$alert = Alert::orderBy('id','DESC')->get();
     	return view('admin.alertas.index')->with('alerts',$alert);
 
     }

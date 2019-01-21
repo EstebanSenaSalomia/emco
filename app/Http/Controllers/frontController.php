@@ -30,7 +30,7 @@ class FrontController extends Controller
             $viabilidad->images;
             $viabilidad->user;
         });
-        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','ASC')->get();
+        $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','DESC')->get();
         $comentario->each(function($comentario){
             $comentario->user;
         });

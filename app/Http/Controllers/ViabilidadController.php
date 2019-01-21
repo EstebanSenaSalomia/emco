@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\viabilidad;
 use App\User;
+use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\UploadRequests;
@@ -169,9 +170,18 @@ class ViabilidadController extends Controller
         flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha cerrado correctamente")->info()->important();
          return redirect('admin/viabilidad');
     }
+
+
     public function eliminar($id)
     {
         $viabilidad = viabilidad::find($id);
+        $imagess = Image::where('viabilidad_id',$id)->get();//con get aplicamos elocuent el cual me permite iterar con el foreach
+        foreach ($imagess as $image) {
+            $ruta =  public_path().'/images/viabilidades/'.$image->name;
+            \File::delete($ruta);
+        }
+        $images = Image::where('viabilidad_id',$id);//volvemos hacer una instancia para poder eliminar la imagen en la base de datos
+        $images->delete();
         $viabilidad->delete();
         flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha eliminado correctamente")->success()->important();
         return redirect('admin/viabilidad');
@@ -190,16 +200,13 @@ class ViabilidadController extends Controller
 
     public function importar(UploadRequests $request){
         $exten = $request->importar->extension();
-       
         
         if($exten="xls"  or $exten="xlsx"){
 
-        
         if($request->hasFile('importar')){
             
             $path = $request->file('importar')->getRealPath(); 
             $data = Excel::load($path,function($reader){})->get();
-
            
             if(!empty($data) && $data->count()){ 
                 foreach($data as $key => $value){

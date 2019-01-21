@@ -1,6 +1,4 @@
-$('.carousel').carousel({
-  interval: 4000
-})
+$('.carousel').carousel()
 
 $('.select-user').chosen({
 	disable_search_threshold: 10,
