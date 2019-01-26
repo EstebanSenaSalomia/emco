@@ -8,14 +8,17 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+<hr>
 
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	  <li class="nav-item">
 	    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos del proyecto</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Fotos</a>
-	  </li>	  
+	    <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Archivos</a>
+	  </li>
+	 
+	  	  
 	</ul>
 	<div class="tab-content" id="myTabContent">
 	
@@ -87,7 +90,7 @@
 
 				</div>
 	 <p>&nbsp</p>
-			@if (Auth::User()->admin() or Auth::User()->gestor())
+			@if (Auth::User()->gestor())
 			<div class="row mx-auto">
 				<div class="card col-sm-4 col-md-1">
 					<a href="{{route('viabilidad.edit',$viabilidades->id)}}" data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-outline-dark"><i class="fa fa-edit"></i></a>
@@ -107,7 +110,7 @@
 	  	<div class="row">
 	  	
 	  		@foreach ($viabilidades->images as $image)
-	  		<div class="col-sm-6 col-md-2 img">
+	  		<div class="col-sm-12 col-md-2 img">
 	  			<span>
 	  			<img style="width: 200px;  height: 100px;" src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
 
@@ -117,20 +120,27 @@
 					<a href=""><div class="btn btn-outline-danger btn-sm btn_eliminar"><i class="fa fa-trash"></i></div></a>
 					@endif
 					<a class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{$loop->index}}" data-toggle="tooltip" data-placement="bottom" title="zoom"><i class="fa fa-search-plus"></i></a> 
+					<small><strong>{{$image->created_at->toDateString()}}</strong></small>
 	  			{!!Form::close()!!}
 				</span>
 	  		</div>
+
 	  		<div class="modal fade" id="exampleModalCenter{{$loop->index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	  		  <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg" role="document">
 	  		    <div class="modal-content">
 	  		      <div class="modal-header">
-	  		      	<h4 class="modal-title" id="exampleModalLongTitle">Cargado por: {{$image->user->name}}</h4>
+	  		      	<h4 class="modal-title" id="exampleModalLongTitle">{{$image->viabilidad->nombre}}</h4>
 	  		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	  		          <span aria-hidden="true">&times;</span>
 	  		        </button>
 	  		      </div>
 	  		      <div class="modal-body">
-	  		      	{{$image->created_at->diffForHumans()}}
+	  		      	<ul>
+	  		      		<li>Cargado: {{$image->user->name}}</li>
+	  		      		<li>Fecha: {{$image->created_at->toDateString()}}</li>
+	  		      		<li>Hora:  {{$image->created_at->toTimeString()}}</li>
+	  		      	</ul>
+	  		      	
 	  		        <img src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
 	  		      </div>
 	  		      <div class="modal-footer">
@@ -152,8 +162,10 @@
 		      {!!Form::number('viabilidad_id',$viabilidades->id,['class'=>'form-control','form-control','hidden'])!!}
 		    </div>
 		     {!!Form::submit('Subir',['class'=>'btn btn-outline-primary'])!!}
+		     {!!Form::close()!!}
 		</div>
-		 {!!Form::close()!!} 
+
+		 
 		 
 	<div class="row">
 		<div class="col-sm-12">

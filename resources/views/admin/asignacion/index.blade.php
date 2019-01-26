@@ -10,22 +10,32 @@
               Filtra por responsable de proyecto
             </div>
             <div class="card-body">
-              {!! Form::select('user_id',$user,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create card-text']) !!}
-              {!!Form::submit('buscar',['class'=>'btn btn-outline-primary'])!!}
+                <div class="row">
+                    <div class="col-sm-10">
+                        {!! Form::select('user_id',$user,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create card-text']) !!}
+                        {!!Form::submit('buscar',['class'=>'btn btn-outline-primary'])!!}
+                    </div>
+                    {{-- <div class="col-sm-2">
+                        <a type="button" class="btn btn-outline-info" href="{{route('viabilidad.asignacion.export','$user->id')}}">exportar</a>
+                    </div> --}}
+                      
+               </div>       
             </div>
-          </div>
+    </div>
     {!!Form::close()!!} 
 @endif
+
 @foreach($viabilidades as $viabilidad)
     {{-- {{$loop->iteration}} --}}
      <div class="list-group">
       <a href="{{route('terreno.index',['id'=>$viabilidad->id])}}" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{$viabilidad->nombre}}</h5>
-          <small>Asignado {{$viabilidad->created_at->diffForHumans()}}<br>
+          
             @if ($viabilidad->estado=="Terminada")
                 <span id="color">Estado {{$viabilidad->estado}}</span></small>
             @else
+                <small>Asignado {{$viabilidad->created_at->diffForHumans()}}<br>
                 <span id="color2">Estado {{$viabilidad->estado}}</span></small>
             @endif
         </div>

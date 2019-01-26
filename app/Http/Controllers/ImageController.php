@@ -27,9 +27,9 @@ class ImageController extends Controller
     public function store(ImageRequest $request)
 
     {   
-        $reglas = array('image.*' => 'mimes:jpeg,png|required');//aqui capturamos las reglas de validacion
+        $reglas = array('image.*' => 'required');//aqui capturamos las reglas de validacion
         $messages = [//personalizacion el mensaje
-            'image.*.mimes' => 'Has seleccionado un archivo que no es una imagen',//el * captura todos los valores de la matriz
+            'image.*.mimes' => 'Has seleccionado un archivo con extension no valida',//el * captura todos los valores de la matriz
         ];
         $validacion = Validator::make($request->all(),$reglas,$messages);
         if ($validacion->fails())
@@ -42,7 +42,7 @@ class ImageController extends Controller
         $con = 1;
 
       foreach ($files as $file) {
-            $name = 'sov_' . time() .$con++.'.'.$file->getClientOriginalExtension();
+            $name = 'stc_' . time() .$con++.'.'.$file->getClientOriginalExtension();
             $path =  public_path().'/images/viabilidades/';
             $file->move($path,$name);
             $image = new Image();
@@ -58,7 +58,7 @@ class ImageController extends Controller
         $alert->comentario_id = null;
         $alert->save();  
         
-        flash('Imagenes cargadas correctamente')->success()->important();
+        flash('Archivos cargados correctamente')->success()->important();
         return redirect()->route('terreno.index',['id'=>$request->viabilidad_id]);
     }
 

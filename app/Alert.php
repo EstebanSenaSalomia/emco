@@ -26,4 +26,10 @@ class Alert extends Model
          return $this->belongsTo('App\Comentario');
     }
 
+      public function scopeSearch($query, $buscar)
+    {
+      return $query->whereHas('viabilidad' , function ($query)use($buscar) {
+          $query->where('nombre', 'like','%'.$buscar.'%');
+      });
+    }
 }

@@ -2,8 +2,8 @@
   {{-- expr --}}
 <nav class="navbar navbar-expand-md navbar-dark nav-color justify-content-between fixed-top">
     <a class="navbar-brand" href="{{url('/')}}">
-    <img src="{{asset('recursos/images/marca2.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
-    S.O.V.
+    <img src="{{asset('recursos/images/logo2.png')}}" width="50" height="30" class="d-inline-block align-top" alt="">
+    
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

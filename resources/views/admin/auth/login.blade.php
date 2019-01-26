@@ -25,7 +25,7 @@
 			{!! Form::close() !!}
 		</div>
 	<a class="dropdown-item" href="{{route('password.cambio')}}">¿Olvidaste la contraseña?</a>
-		<img src="{{asset('recursos/images/logo.png')}}" class="rounded mx-auto d-block" alt="Cargando">
+		<img src="{{asset('recursos/images/logo.png')}}" width="190" height="200" class="rounded mx-auto d-block" alt="Cargando">
 	</div>
 	
 	</div>

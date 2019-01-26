@@ -32,7 +32,6 @@
         @if (Auth::check())
            <h4 id="fuente" class="text-center">@yield('title')</h4>  
         @endif
-        
       <!--flass -->
           @include('admin.plantilla.error')
           @include('flash::message')

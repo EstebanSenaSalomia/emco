@@ -233,5 +233,17 @@ class ViabilidadController extends Controller
         flash('Solo se permiten archivos con extensión xls o xlsx ')->warning()->important();
         return redirect('admin/viabilidad'); 
     }
+
+    // public function exportarAsignacion(){
+
+    //      $viabilidad = viabilidad::join('users','users.id', '=','viabilidades.user_id')
+    //     ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','estado','contacto','contacto_num')->get();
+    //     return Excel::create('Asignaciones',function($excel) use ($viabilidad){
+    //         $excel->sheet('mysheet',function($sheet) use ($viabilidad){
+    //             $sheet->fromArray($viabilidad);
+    //         });
+    //     })->download('xls');
+
+    // }
    
 }

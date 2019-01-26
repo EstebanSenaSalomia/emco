@@ -21,11 +21,6 @@ Route::group(['middleware'=>'admin'],function(){
 	]);
 
 	Route::get('user/export','UserController@exportar')->name('admin.user.export');
-	// Route::get('user/export',function(){
-	// 	 $pdf = App::make('dompdf.wrapper');
- //        $pdf->loadHTML('<h1>Test</h1>');
- //        return $pdf->stream();
-	// })->name('admin.user.export');
 });
 	Route::get('asignacion/index',[
 		'uses'=>'ViabilidadController@showindex',
@@ -65,6 +60,7 @@ Route::group(['middleware'=>'gestor'],function(){
 		'as'=>'admin.alert.eliminar'
 	]);
 
+	// Route::get('asignacion/{id}/export','ViabilidadController@exportarAsignacion')->name('viabilidad.asignacion.export');
 });
 
 Route::group(['prefix'=>'terreno'],function(){

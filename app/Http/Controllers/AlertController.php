@@ -10,9 +10,9 @@ use App\Alert;
 
 class AlertController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-    	$alert = Alert::orderBy('id','DESC')->get();
+    	$alert = Alert::search($request->buscar)->orderBy('id','DESC')->get();
     	return view('admin.alertas.index')->with('alerts',$alert);
 
     }
