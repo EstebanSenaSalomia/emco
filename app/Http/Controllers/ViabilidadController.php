@@ -33,6 +33,7 @@ class ViabilidadController extends Controller
         $date = Carbon::today();//solo trae la fecha
         $ultimo = new Carbon("last day of this month");
         $viabilidad = viabilidad::search($request->search)->orderBy('id','DESC')->paginate(70);
+        
 
         //dd($viabilidad);
         //dd(Auth::User()->admin() or Auth::User()->gestor());
@@ -55,11 +56,13 @@ class ViabilidadController extends Controller
               $viabilidad = viabilidad::asignacion($request->user_id)->orderBy('id','DESC')->paginate(50);
         }
         else{
-            $viabilidad = viabilidad::where([
-                ['estado','Activa'],
-                ['user_id',Auth::user()->id]
-            ])
-            ->orderBy('id','DESC')->paginate(30);
+                $viabilidad = viabilidad::whereHas('user' , function ($query) {
+                $query->where([
+                    ['estado','Activa'],
+                    ['user_id',Auth::user()->id]
+                ]);
+                })->orderBy('id','DESC')->paginate(30);
+                //WhereHas permite llamar la tabla a la cual esta relacionada (many to many)
         } 
         $users = User::orderBy('name','ASC')->pluck('name','id');
 
@@ -67,7 +70,8 @@ class ViabilidadController extends Controller
         ->with('viabilidades',$viabilidad)
         ->with('date',$date)
         ->with('ultimo',$ultimo)
-        ->with('user',$users);
+        ->with('users',$users);
+        
     }
 
     /**
@@ -92,12 +96,8 @@ class ViabilidadController extends Controller
     {
     
         $viabilidad = new viabilidad($request->all());//all sirve para traer los datos oragnizados
-        // $viabilidad->numero = $request->numero;
-        // $viabilidad->nombre = $request->nombre;
-        // $viabilidad->direccion = $request->direccion;
-        // $viabilidad->red = $request->red;
-        // $viabilidad->fecha_reque = $request->fecha_reque;
         $viabilidad->save();
+        $viabilidad->user()->sync($request->users);
         flash('Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." creada correctamente")->success()->important();
         return redirect('admin/viabilidad/');
     }
@@ -121,12 +121,16 @@ class ViabilidadController extends Controller
      */
     public function edit($id)
     {
-         $users = User::orderBy('name','ASC')->pluck('name','id');
+
          $viabilidad = viabilidad::find($id);
-         $viabilidad->user;
+         $my_users = $viabilidad->user->pluck('id')->ToArray();
+         $users = User::orderBy('name','ASC')->pluck('name','id');
+         
          return view('admin.viabilidad.edit')
          ->with('viabilidades',$viabilidad)
-         ->with('users',$users);
+         ->with('users',$users)
+         ->with('my_users',$my_users);
+         
     }
 
     /**
@@ -141,6 +145,7 @@ class ViabilidadController extends Controller
         $viabilidad = viabilidad::find($id);
         $viabilidad->fill($request->all());
         $viabilidad->update();
+        $viabilidad->user()->sync($request->users);
         flash('La Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/viabilidad');
     }
@@ -189,7 +194,8 @@ class ViabilidadController extends Controller
     }
 
     public function exportar(){
-        $viabilidad = viabilidad::join('users','users.id', '=','viabilidades.user_id')
+        $viabilidad = viabilidad::join('user_viabilidad','user_viabilidad.viabilidad_id', '=','viabilidades.id')
+        ->join('users','users.id','=','user_viabilidad.user_id')
         ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','estado','contacto','contacto_num')->get();
         return Excel::create('Proyectos',function($excel) use ($viabilidad){
             $excel->sheet('mysheet',function($sheet) use ($viabilidad){
@@ -211,7 +217,6 @@ class ViabilidadController extends Controller
             if(!empty($data) && $data->count()){ 
                 foreach($data as $key => $value){
                     $viabilidad = new viabilidad();
-                    $viabilidad->user_id = $value->user_id;
                     $viabilidad->numero_vb = $value->numero_vb;
                     $viabilidad->numero_pre = $value->numero_pre;
                     $viabilidad->numero_ot = $value->numero_ot;
@@ -234,16 +239,5 @@ class ViabilidadController extends Controller
         return redirect('admin/viabilidad'); 
     }
 
-    // public function exportarAsignacion(){
-
-    //      $viabilidad = viabilidad::join('users','users.id', '=','viabilidades.user_id')
-    //     ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','estado','contacto','contacto_num')->get();
-    //     return Excel::create('Asignaciones',function($excel) use ($viabilidad){
-    //         $excel->sheet('mysheet',function($sheet) use ($viabilidad){
-    //             $sheet->fromArray($viabilidad);
-    //         });
-    //     })->download('xls');
-
-    // }
    
 }

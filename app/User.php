@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     public function viabilidad()
     {
-        return $this->hasOne('App\viabilidad');
+        return $this->belongsToMany('App\viabilidad');
     }
     
     public function comentarios()

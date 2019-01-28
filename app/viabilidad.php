@@ -8,7 +8,7 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
-    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','contacto','contacto_num','user_id'];
+    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','contacto','contacto_num'];
 
     protected $dates = [
       'fecha_reque'
@@ -17,7 +17,7 @@ class viabilidad extends Model
     
     public function user()
     {
-      return $this->belongsTo('App\User');
+      return $this->belongsToMany('App\User');
     }
     
      public function images()//nombre de la tabla que se va a relacionar en plural 
@@ -41,9 +41,13 @@ class viabilidad extends Model
         ->orWhere('red','LIKE','%'.$search.'%')
         ->orWhere('estado','LIKE','%'.$search.'%');
     }
+
     public function scopeAsignacion($query, $buscar)
     {
-        return $query->where('user_id','LIKE',$buscar);
+        return $query->whereHas('user' , function ($query)use($buscar) {
+
+          $query->where('user_id', '=' ,$buscar);
+      });
 
     }
 }

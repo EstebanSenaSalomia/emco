@@ -8,9 +8,9 @@
 		{!! Form::open(['route'=>['viabilidad.update',$viabilidades],'method'=>'PUT'])!!}
 		{{ csrf_field() }}
 		<div class="form-group row">
-			{!! Form::label('user_id','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('users','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
-				{!! Form::select('user_id',$users,$viabilidades->user->id,['placeholder' => 'Selecciona una opción','required','class'=>'select-user']) !!}
+				{!! Form::select('users[]',$users,$my_users,['required','class'=>'select-create2','multiple']) !!}
 			</div>
 		</div>
 		

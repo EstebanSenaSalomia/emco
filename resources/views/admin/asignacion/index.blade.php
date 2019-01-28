@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-10">
-                        {!! Form::select('user_id',$user,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create card-text']) !!}
+                        {!! Form::select('user_id',$users,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create card-text']) !!}
                         {!!Form::submit('buscar',['class'=>'btn btn-outline-primary'])!!}
                     </div>
                     {{-- <div class="col-sm-2">

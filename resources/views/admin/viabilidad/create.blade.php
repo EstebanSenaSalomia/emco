@@ -8,9 +8,9 @@
 		{!! Form::open(['action'=>'ViabilidadController@store','method'=>'POST'])!!}
 		{{ csrf_field() }}
 		<div class="form-group row">
-			{!! Form::label('user_id','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('users','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
-				{!! Form::select('user_id',$user,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create']) !!}
+				{!! Form::select('users[]',$user,null,['required','class'=>'select-create','multiple']) !!}
 			</div>
 		</div>
 		
@@ -103,9 +103,10 @@
 @section('js')
 	<script>
 		$('.select-create').chosen({
-			disable_search_threshold: 10,
-			width: '100%',
-			no_results_text: "Oops, no hay resultados!"
+			max_selected_options:3,
+			placeholder_text_multiple:"Seleccione Un maximo de 2 responsables",
+		    no_results_text: "Oops, no hay resultados!",
+		    width: "100%"
 		});
 	</script>
 @endsection

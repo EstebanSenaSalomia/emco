@@ -22,14 +22,14 @@ class FrontController extends Controller
         // $first = Carbon::create(1995, 10, 6,0,0,0);
       
         //$date = $date->format('l jS \\of F Y h:i:s A');
-        $users = User::orderBy('name','ASC')->pluck('name','id');
+        
         $viabilidad = viabilidad::find($id);
         // dd($first,$viabilidad->fecha_reque);
         // dd($viabilidad->fecha_reque->greaterThan($date));
         $viabilidad->each(function($viabilidad){
             $viabilidad->images;
-            $viabilidad->user;
         });
+        $users = $viabilidad->user->pluck('name')->ToArray();
         $comentario = Comentario::where('viabilidad_id',$id)->orderBy('id','DESC')->get();
         $comentario->each(function($comentario){
             $comentario->user;

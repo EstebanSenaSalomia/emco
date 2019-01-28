@@ -78,12 +78,14 @@
 					</div>
 					<div class="col-md-6">
 						<ul class="list-group">
-							
 							<li class="list-group-item"><h5>Red: <b>{{$viabilidades->red}}</b></h5></li>
 							<li class="list-group-item"><h5>Tipo de trabajo: <b>{{$viabilidades->tipo_trabajo}}</b></h5></li>
 							<li class="list-group-item"><h5>Contacto: <b>{{$viabilidades->contacto}}</b></h5></li>
 							<li class="list-group-item"><h5>Numero contacto: <b>{{$viabilidades->contacto_num}}</b></h5></li>
-							<li class="list-group-item"><h5>Responable: <b>{{$viabilidades->user->name}}</b></h5></li>
+							@foreach($users as $user)
+								<li class="list-group-item"><h5>Responable {{$loop->iteration}}: <b>{{$user}}</b></h5></li>
+							@endforeach
+							
 						</ul>	
 
 					</div>

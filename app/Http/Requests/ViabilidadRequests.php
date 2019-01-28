@@ -28,6 +28,7 @@ class ViabilidadRequests extends FormRequest
             'direccion'=> 'Required',
             'red'      => 'Required',
             'localidad'=> 'Required'
+            
         ];
     }
 }

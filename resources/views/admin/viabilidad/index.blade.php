@@ -69,7 +69,7 @@
 		<div class="table-responsive d-none d-md-block">
 		  	<table class="table table-hover ">
 				<thead>
-					<th>RESPONSABLE</th>
+					{{-- <th>RESPONSABLE</th> --}}
 					<th>VIABILIDAD</th>
 					<th>PRESUPUESTO</th>
 					<th>ORDEN</th>
@@ -121,7 +121,7 @@
 					}
 					@endphp
 					<tr class="{{$estado}}">
-						<td>{{$viabilidad->user->name}}</td>
+						{{-- <td>{{$viabilidad->user->name}}</td> --}}
 						<td>{{$viabilidad->numero_vb}}</td>
 						<td>{{$viabilidad->numero_pre}}</td>
 						<td>{{$viabilidad->numero_ot}}</td>
@@ -232,7 +232,7 @@
 		        	     <div id="{{$viabilidad->id}}" class="collapse" aria-labelledby="heading{{$viabilidad->id}}" data-parent="#accordion">
 			        	    <div class="card-body">
 			        	        <ul class="list-group list-group-flush"> 
-								  <li class="list-group-item"><span class="font-weight-bold">Responsable</span> {{$viabilidad->user->name}}</li>	
+								  {{-- <li class="list-group-item"><span class="font-weight-bold">Responsable</span> {{$viabilidad->user->name}}</li> --}}	
 									
 			        	          <li class="list-group-item"><span class="font-weight-bold">Numero VB:</span> {{$viabilidad->numero_vb}}</li>
 			        	          <li class="list-group-item"><span class="font-weight-bold">Numero PRE:</span> {{$viabilidad->numero_vb}}</li>

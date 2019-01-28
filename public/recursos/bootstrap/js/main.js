@@ -10,6 +10,12 @@ $('.select-create').chosen({
 	width: '50%',
 	no_results_text: "Oops, no hay resultados!"
 });
+$('.select-create2').chosen({
+	max_selected_options:3,
+	disable_search_threshold: 10,
+	width: '100%',
+	no_results_text: "Oops, no hay resultados!"
+});
 $('.select-viabilidad').chosen({
 	placeholder_text_multiple:"Asigna las viabilidades",
 	no_results_text: "Oops, no hay resultados!",

@@ -6,7 +6,7 @@ $factory->define(App\viabilidad::class, function (Faker $faker) {
 	
     return [
         
-        'user_id' => $faker->numberBetween($min = 1, $max = 20),    
+        // 'user_id' => $faker->numberBetween($min = 1, $max = 20),    
         'numero_vb' => $faker->numberBetween($min = 1000, $max = 9000),
         'numero_pre' => $faker->numberBetween($min = 1000, $max = 9000),
         'numero_ot' => $faker->numberBetween($min = 1000, $max = 9000),
