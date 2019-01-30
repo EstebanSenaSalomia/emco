@@ -59,8 +59,6 @@ Route::group(['middleware'=>'gestor'],function(){
 		'uses'=>'AlertController@destroy',
 		'as'=>'admin.alert.eliminar'
 	]);
-
-	// Route::get('asignacion/{id}/export','ViabilidadController@exportarAsignacion')->name('viabilidad.asignacion.export');
 });
 
 Route::group(['prefix'=>'terreno'],function(){
@@ -79,6 +77,8 @@ Route::group(['prefix'=>'terreno'],function(){
 	]);
 
 	Route::resource('images','ImageController');
+
+	Route::get('download/{id}','ImageController@download')->name('image.download');
 });
 
 });

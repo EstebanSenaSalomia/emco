@@ -110,17 +110,38 @@
 		</div> 
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 	  	<div class="row">
+
 	  	
 	  		@foreach ($viabilidades->images as $image)
 	  		<div class="col-sm-12 col-md-2 img">
 	  			<span>
-	  			<img style="width: 200px;  height: 100px;" src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
+	  			@if(strcmp($image->extension, "xlsx") === 0 or strcmp($image->extension, "xls") === 0)
 
+	  				<img style="width: 100px;  height: 100px;" src="/images/viabilidades/xcel.png" alt="..." class="img-thumbnail">
+
+	  			@elseif(strcmp($image->extension, "pdf") === 0)	
+
+	  				<img style="width: 100px;  height: 100px;" src="/images/viabilidades/pdf.png" alt="..." class="img-thumbnail">
+
+	  			@elseif(strcmp($image->extension, "docx") === 0 or strcmp($image->extension, "doc") === 0)	
+
+	  				<img style="width: 100px;  height: 100px;" src="/images/viabilidades/word.png" alt="..." class="img-thumbnail">	
+
+	  			@elseif(strcmp($image->extension, "rar") === 0 or strcmp($image->extension, "zip") === 0)	
+
+	  				<img style="width: 100px;  height: 100px;" src="/images/viabilidades/zip.jpg" alt="..." class="img-thumbnail">	
+
+	  			@else 
+	  				<img style="width: 100px;  height: 100px;" src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">			
+
+	  			@endif	
+	  			
 					{!! Form::open(['route'=>['images.destroy',$image->id],'method'=>'DELETE']) !!}
 					{{ csrf_field() }}
 					@if (Auth::User()->gestor() or Auth::User()->id == $image->user->id)
 					<a href=""><div class="btn btn-outline-danger btn-sm btn_eliminar"><i class="fa fa-trash"></i></div></a>
 					@endif
+					<a href=" {{route('image.download',$image->id)}} "><div class="btn btn-outline-primary btn-sm"><i class="fa fa-download"></i></div></a>
 					<a class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{$loop->index}}" data-toggle="tooltip" data-placement="bottom" title="zoom"><i class="fa fa-search-plus"></i></a> 
 					<small><strong>{{$image->created_at->toDateString()}}</strong></small>
 	  			{!!Form::close()!!}
@@ -141,17 +162,41 @@
 	  		      		<li>Cargado: {{$image->user->name}}</li>
 	  		      		<li>Fecha: {{$image->created_at->toDateString()}}</li>
 	  		      		<li>Hora:  {{$image->created_at->toTimeString()}}</li>
+	  		      		<li>Nombre Archivo:  {{$image->name}}</li>
 	  		      	</ul>
-	  		      	
-	  		        <img src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
+	  		      	<div class="text-center">
+	  		        @if(strcmp($image->extension, "xlsx") === 0 or strcmp($image->extension, "xls") === 0)
+
+    	  				<img style="width: 200px;  height: 200px;" src="/images/viabilidades/xcel.png" alt="..." class="img-thumbnail">
+
+    	  			@elseif(strcmp($image->extension, "pdf") === 0)	
+
+    	  				<img style="width: 200px;  height: 200px;" src="/images/viabilidades/pdf.png" alt="..." class="img-thumbnail">
+
+    	  			@elseif(strcmp($image->extension, "docx") === 0 or strcmp($image->extension, "doc") === 0)	
+
+    	  				<img style="width: 200px;  height: 200px;" src="/images/viabilidades/word.png" alt="..." class="img-thumbnail">	
+
+    	  			@elseif(strcmp($image->extension, "rar") === 0 or strcmp($image->extension, "zip") === 0)	
+
+    	  				<img style="width: 200px;  height: 200px;" src="/images/viabilidades/zip.jpg" alt="..." class="img-thumbnail">		
+
+    	  			@else 
+
+    	  				<img  src="/images/viabilidades/{{$image->name}}" alt="..." class="img-thumbnail">
+
+    	  			@endif
+    	  			</div>	
 	  		      </div>
 	  		      <div class="modal-footer">
-	  		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	  		      	<a href=" {{route('image.download',$image->id)}} "><div class="btn btn-outline-primary btn-sm" ><i class="fa fa-download"></i></div></a>
+	  		        
 	  		      </div>
 	  		    </div>
 	  		  </div>
 	  		</div>	
 	  		@endforeach
+	  		
 	  		
 			</div>
 			
@@ -166,7 +211,7 @@
 		     {!!Form::submit('Subir',['class'=>'btn btn-outline-primary'])!!}
 		     {!!Form::close()!!}
 		</div>
-
+<small>Tamaño maximo de archivo 5mb</small>
 		 
 		 
 	<div class="row">

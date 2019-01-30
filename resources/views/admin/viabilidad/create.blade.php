@@ -104,7 +104,7 @@
 	<script>
 		$('.select-create').chosen({
 			max_selected_options:3,
-			placeholder_text_multiple:"Seleccione Un maximo de 2 responsables",
+			placeholder_text_multiple:"Seleccione Un maximo de 3 responsables",
 		    no_results_text: "Oops, no hay resultados!",
 		    width: "100%"
 		});

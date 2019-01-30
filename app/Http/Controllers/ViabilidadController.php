@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\viabilidad;
 use App\User;
 use App\Image;
+use App\Comentario;
+use App\Alert;
 use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\UploadRequests;
@@ -186,6 +188,11 @@ class ViabilidadController extends Controller
             \File::delete($ruta);
         }
         $images = Image::where('viabilidad_id',$id);//volvemos hacer una instancia para poder eliminar la imagen en la base de datos
+        $coment = Comentario::where('viabilidad_id',$id);
+        $alert = Alert::where('viabilidad_id',$id);
+
+        $alert->delete();
+        $coment->delete();
         $images->delete();
         $viabilidad->delete();
         flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha eliminado correctamente")->success()->important();
