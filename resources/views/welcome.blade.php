@@ -11,7 +11,7 @@
        <p class="card-text">EMCOMUNITEL S.A.S.</p>
      </div>
      <div class="card-footer text-muted">
-        Desde esta aplicaron web podrás hacer los avances requeridos a todos los proyectos que se generen
+        Desde esta aplicación web podrás hacer los avances requeridos a todos los proyectos que se generen
      </div>
    </div>
 </div>   

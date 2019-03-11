@@ -1,6 +1,5 @@
 @extends('admin.plantilla.main')
 @section('title',$viabilidades->nombre)
-@section('marca2','active')
 @section('content')
 <div class="alert alert-info alert-dismissible fade show" id="alert" role="alert">
    Imagen eliminada correctamente
@@ -18,7 +17,6 @@
 	    <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Archivos</a>
 	  </li>
 	 
-	  	  
 	</ul>
 	<div class="tab-content" id="myTabContent">
 	
@@ -80,6 +78,7 @@
 						<ul class="list-group">
 							<li class="list-group-item"><h5>Red: <b>{{$viabilidades->red}}</b></h5></li>
 							<li class="list-group-item"><h5>Tipo de trabajo: <b>{{$viabilidades->tipo_trabajo}}</b></h5></li>
+							<li class="list-group-item"><h5>Area: <b>{{$viabilidades->area}}</b></h5></li>
 							<li class="list-group-item"><h5>Contacto: <b>{{$viabilidades->contacto}}</b></h5></li>
 							<li class="list-group-item"><h5>Numero contacto: <b>{{$viabilidades->contacto_num}}</b></h5></li>
 							@foreach($users as $user)
@@ -110,8 +109,6 @@
 		</div> 
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 	  	<div class="row">
-
-	  	
 	  		@foreach ($viabilidades->images as $image)
 	  		<div class="col-sm-12 col-md-2 img">
 	  			<span>
@@ -210,8 +207,9 @@
 		    </div>
 		     {!!Form::submit('Subir',['class'=>'btn btn-outline-primary'])!!}
 		     {!!Form::close()!!}
+		     <small>Tamaño maximo de archivo 5mb</small>
 		</div>
-<small>Tamaño maximo de archivo 5mb</small>
+
 		 
 		 
 	<div class="row">

@@ -35,11 +35,10 @@ class viabilidad extends Model
         return $query->where('nombre','LIKE','%'.$search.'%')
         
         ->orWhere('numero_vb','LIKE','%'.$search.'%')
-        ->orWhere('numero_pre','LIKE','%'.$search.'%')
-        ->orWhere('numero_ot','LIKE','%'.$search.'%')
         ->orWhere('direccion','LIKE','%'.$search.'%')
         ->orWhere('red','LIKE','%'.$search.'%')
-        ->orWhere('estado','LIKE','%'.$search.'%');
+        ->orWhere('estado','LIKE','%'.$search.'%')
+        ->orWhere('tipo_trabajo','LIKE','%'.$search.'%');
     }
 
     public function scopeAsignacion($query, $buscar)

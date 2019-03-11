@@ -12,7 +12,13 @@
     <ul class="navbar-nav mr-auto text-center">
 
       <li class="nav-item @yield('marca2')">
-        <a class="nav-link" href="{{route('admin.viabilidad.index')}}"> <i class="fa fa-eye"></i> Terreno</a>
+        <a class="nav-link" href="{{route('admin.viabilidad.index')}}"> <i class="fa fa-eye"></i> P. Externa</a>
+      </li>
+
+      <li class="nav-item">
+          <a class="nav-link @yield('marca6') "  href="{{route('masivos.index')}}"><i class="fa fa-eye"></i> Masivos
+            <span class="badge badge-light"></span>
+          </a>
       </li>
      
       <li class="nav-item">
@@ -24,7 +30,8 @@
           <a class="nav-link @yield('marca5') "  href="{{route('admin.alert')}}"><i class="fa fa-comment"></i> Avances
             <span class="badge badge-light"></span>
           </a>
-      </li>   
+      </li>
+         
       @endif
 
       @if (Auth::user()->admin()) {{-- admin es una funcion de el modelo user --}}

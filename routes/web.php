@@ -15,6 +15,7 @@ Route::group(['middleware'=>'admin'],function(){
 		'uses'=>'UserController@destroy',
 		'as'=>'admin.users.destroy'
 	]);
+
 	Route::get('user/{id}/active',[
 		'uses'=>'UserController@active',
 		'as'=>'admin.users.active'
@@ -29,6 +30,9 @@ Route::group(['middleware'=>'admin'],function(){
 	
 Route::group(['middleware'=>'gestor'],function(){
 	Route::resource('viabilidad','ViabilidadController');
+
+	Route::get('masivos','ViabilidadController@indexMasivos')->name('masivos.index');
+
 	Route::get('viabilidad/{id}/destroy',[
 		'uses'=>'ViabilidadController@destroy',
 		'as'=>'admin.viabilidad.destroy'
@@ -44,6 +48,9 @@ Route::group(['middleware'=>'gestor'],function(){
 	]);
 	Route::get('export','ViabilidadController@exportar')
 	->name('admin.exportar');
+
+	Route::get('export/masivos','ViabilidadController@exportarMasivos')
+	->name('export.masivos');
 
 	Route::post('import',[
 		'uses' => 'ViabilidadController@importar',

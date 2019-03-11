@@ -29,7 +29,8 @@ class Alert extends Model
       public function scopeSearch($query, $buscar)
     {
       return $query->whereHas('viabilidad' , function ($query)use($buscar) {
-          $query->where('nombre', 'like','%'.$buscar.'%');
+          $query->where('nombre', 'like','%'.$buscar.'%')
+                ->orWhere('numero_vb','LIKE','%'.$buscar.'%');
       });
     }
 }

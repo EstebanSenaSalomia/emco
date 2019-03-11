@@ -86,11 +86,28 @@
 		
 
 		<div class="form-group row">
-			{!! Form::label('tipo_trabajo','tipo_trabajo',['class'=>'col-sm-2 col-form-label'])!!}
+			{!! Form::label('tipo_trabajo','tipo trabajo',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
-				{!! Form::select('tipo_trabajo',['Mantenimiento'=>'Mantenimiento','Construccion'=>'Construcción','Viabilidad'=>'Viabilidad'],null,['placeholder' => 'Selecciona tipo trabajo...','required','class'=>'custom-select']) !!}
+				{!! Form::select('tipo_trabajo',['Mantenimiento'=>'Mantenimiento','Construccion'=>'Construcción','Viabilidad'=>'Viabilidad','Garantias'=>'Garantias'],null,['placeholder' => 'Selecciona tipo trabajo...','required','class'=>'custom-select']) !!}
 			</div>
 		</div>
+
+		<div class="form-group row">
+			{!! Form::label('area','Area',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::select('area',['Masivos'=>'Masivos','Planta Externa'=>'Planta Externa'],null,['placeholder' => 'Selecciona tipo trabajo...','required','class'=>'custom-select']) !!}
+			</div>
+		</div>
+		
+		<div class="form-group">
+		    <div class="form-check">
+		      {!!Form::checkbox('notificacion', 'true', true)!!}	
+		      <label class="form-check-label" for="gridCheck">
+		        ¿Enviar correo de notificación?
+		      </label>
+		    </div>
+		 </div>
+
 
 		<div class="text-center">
 			{!!Form::submit('Guardar',['class'=>'btn btn-outline-success'])!!}

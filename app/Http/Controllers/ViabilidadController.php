@@ -7,10 +7,12 @@ use App\User;
 use App\Image;
 use App\Comentario;
 use App\Alert;
+use App\Mail\Asignaciones;
 use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\UploadRequests;
 use App\Http\Requests\ViabilidadEditRequests;
+use Illuminate\Support\Facades\Mail;
 use laracasts\flash;
 use Carbon\Carbon;
 use Excel;
@@ -34,7 +36,7 @@ class ViabilidadController extends Controller
         Carbon::setLocale('es');
         $date = Carbon::today();//solo trae la fecha
         $ultimo = new Carbon("last day of this month");
-        $viabilidad = viabilidad::search($request->search)->orderBy('id','DESC')->paginate(70);
+        $viabilidad = viabilidad::where('area','Planta Externa')->search($request->search)->orderBy('id','DESC')->paginate(70);
         
 
         //dd($viabilidad);
@@ -45,6 +47,21 @@ class ViabilidadController extends Controller
         ->with('ultimo',$ultimo);
         
     }
+
+     public function indexMasivos(Request $request)
+    {
+        Carbon::setLocale('es');
+        $date = Carbon::today();//solo trae la fecha
+        $ultimo = new Carbon("last day of this month");
+        $viabilidad = viabilidad::where('area','Masivos')->search($request->search)->orderBy('id','DESC')->paginate(70);
+
+        return view('admin.viabilidad.masivos')
+        ->with('viabilidades',$viabilidad)
+        ->with('date',$date)
+        ->with('ultimo',$ultimo);
+        
+    }
+
 
     public function showindex(Request $request)
     {
@@ -100,7 +117,15 @@ class ViabilidadController extends Controller
         $viabilidad = new viabilidad($request->all());//all sirve para traer los datos oragnizados
         $viabilidad->save();
         $viabilidad->user()->sync($request->users);
-        flash('Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." creada correctamente")->success()->important();
+
+        if ($request->notificacion == "true") {
+            foreach ($viabilidad->user as $user) {
+                Mail::to($user->email)
+                ->send(new Asignaciones($request->nombre,$request->numero_vb));
+            }
+        }
+        
+        flash('Proyecto '.'<strong>'.$viabilidad->nombre.'</strong>'." creada correctamente")->success()->important();
         return redirect('admin/viabilidad/');
     }
 
@@ -148,17 +173,27 @@ class ViabilidadController extends Controller
         $viabilidad->fill($request->all());
         $viabilidad->update();
         $viabilidad->user()->sync($request->users);
-        flash('La Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
+
+        if ($request->notificacion == "true") {
+            foreach ($viabilidad->user as $user) {
+                Mail::to($user->email)
+                ->send(new Asignaciones($request->nombre,$request->numero_vb));
+            }
+        }
+        flash('El proyecto '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/viabilidad');
     }
 
     public function active($id){
 
-        $viabilidad = viabilidad::find($id);
-        $viabilidad->estado='Activa';
-        $viabilidad->update();
+    	$viabilidad = viabilidad::find($id);
+    	dd($viabilidad);
 
-        flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha reinyectado correctamente")->info()->important();
+        // $viabilidad = viabilidad::find($id);
+        // $viabilidad->estado='Activa';
+        // $viabilidad->update();
+
+        flash('El proyecto'.'<strong>'.$viabilidad->nombre.'</strong>'." se ha reinyectado correctamente")->info()->important();
         return redirect('admin/viabilidad');
     }
 
@@ -201,9 +236,20 @@ class ViabilidadController extends Controller
     }
 
     public function exportar(){
-        $viabilidad = viabilidad::join('user_viabilidad','user_viabilidad.viabilidad_id', '=','viabilidades.id')
-        ->join('users','users.id','=','user_viabilidad.user_id')
-        ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','estado','contacto','contacto_num')->get();
+        $viabilidad = viabilidad::leftJoin('user_viabilidad','user_viabilidad.viabilidad_id', '=','viabilidades.id')
+        ->leftJoin('users','users.id','=','user_viabilidad.user_id')
+        ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','area','estado','contacto','contacto_num')->get();
+        return Excel::create('Proyectos',function($excel) use ($viabilidad){
+            $excel->sheet('mysheet',function($sheet) use ($viabilidad){
+                $sheet->fromArray($viabilidad);
+            });
+        })->download('xls');
+    }
+
+    public function exportarMasivos(){
+        $viabilidad = viabilidad::leftJoin('user_viabilidad','user_viabilidad.viabilidad_id', '=','viabilidades.id')
+        ->leftJoin('users','users.id','=','user_viabilidad.user_id')
+        ->select('users.name AS Responsable','numero_vb','numero_pre','numero_ot','nombre','direccion','red','fecha_reque','localidad','tipo_trabajo','area','estado','contacto','contacto_num')->where('area','Masivos')->get();
         return Excel::create('Proyectos',function($excel) use ($viabilidad){
             $excel->sheet('mysheet',function($sheet) use ($viabilidad){
                 $sheet->fromArray($viabilidad);
@@ -230,9 +276,11 @@ class ViabilidadController extends Controller
                     $viabilidad->nombre = $value->nombre;
                     $viabilidad->direccion = $value->direccion;
                     $viabilidad->localidad = $value->localidad;
+                    $viabilidad->estado = $value->estado;//Ojo con este campo
                     $viabilidad->red = $value->red;
                     $viabilidad->fecha_reque = $value->fecha_reque;
                     $viabilidad->tipo_trabajo = $value->tipo_trabajo;
+                    $viabilidad->area = $value->area;
                     $viabilidad->contacto = $value->contacto;
                     $viabilidad->contacto_num = $value->contacto_num;
                     $viabilidad->save();                    

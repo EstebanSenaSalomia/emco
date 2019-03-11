@@ -1,6 +1,6 @@
 @extends('admin.plantilla.main')
-@section('title','Planta Externa')
-@section('marca2','active')
+@section('title','Masivos')
+@section('marca6','active')
 @section('content')
 
 <p>&nbsp</p>
@@ -20,7 +20,7 @@
                      <div class="form-group row">
                             <label for="exportar" class="col-sm-3 col-form-label">Exportar</label>
                             <div class="col-sm-9">
-                                <a href="{{route('admin.exportar')}}" class="btn btn-primary btn-sm active  " role="button" aria-pressed="true" id="exportar">Exportar</a> 
+                                <a href="{{route('export.masivos')}}" class="btn btn-primary btn-sm active  " role="button" aria-pressed="true" id="exportar">Exportar</a> 
                             </div>
                      </div>
                      <div class="form-group row">
@@ -41,7 +41,7 @@
         <!-- Modal --><!-- Modal --><!-- Modal --><!-- Modal --><!-- Modal --><!-- Modal -->
 <div class="card">
 	<div class="card-body">
-		{!! Form::open(['route'=>'admin.viabilidad.index','method'=>'GET','class'=>''])!!}
+		{!! Form::open(['route'=>'masivos.index','method'=>'GET','class'=>''])!!}
 			{{ csrf_field() }}
   			<div class="form-row align-items-right">
 				@if (Auth::User()->admin() or Auth::User()->gestor())  
