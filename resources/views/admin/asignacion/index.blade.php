@@ -15,10 +15,6 @@
                         {!! Form::select('user_id',$users,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create card-text']) !!}
                         {!!Form::submit('buscar',['class'=>'btn btn-outline-primary'])!!}
                     </div>
-                    {{-- <div class="col-sm-2">
-                        <a type="button" class="btn btn-outline-info" href="{{route('viabilidad.asignacion.export','$user->id')}}">exportar</a>
-                    </div> --}}
-                      
                </div>       
             </div>
     </div>

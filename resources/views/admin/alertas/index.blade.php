@@ -28,7 +28,7 @@
 	@foreach($alerts as $alert)
 	
 		<div class="list-group">
-		  <div " class="list-group-item list-group-item-action flex-column align-items-start">
+		  <div class="list-group-item list-group-item-action flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h6 class="mb-1">{{$alert->user->name}} realizó un avance en <strong>{{$alert->viabilidad->nombre}}</strong></h6>
 		      <hr>
@@ -47,8 +47,6 @@
 		    	<a href="{{route('terreno.index',['id'=>$alert->viabilidad->id])}}" data-toggle="tooltip" data-placement="top" title="Ver" class="btn btn-outline-info"><i class="fa fa-eye"></i></a>
 		    </small>
 		  </div>
-	
 		</div>
-
 	@endforeach
 @endsection

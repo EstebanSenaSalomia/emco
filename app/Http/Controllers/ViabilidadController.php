@@ -72,7 +72,7 @@ class ViabilidadController extends Controller
         // $date->toDateString();
         
         if (Auth::user()->type != 'supervisor') {
-              $viabilidad = viabilidad::asignacion($request->user_id)->orderBy('id','DESC')->paginate(50);
+              $viabilidad = viabilidad::asignacion($request->user_id)->orderBy('estado','asc')->orderBy('id','DESC')->paginate(50);
         }
         else{
                 $viabilidad = viabilidad::whereHas('user' , function ($query) {
@@ -187,8 +187,6 @@ class ViabilidadController extends Controller
     public function active($id){
 
     	$viabilidad = viabilidad::find($id);
-    	dd($viabilidad);
-
         // $viabilidad = viabilidad::find($id);
         // $viabilidad->estado='Activa';
         // $viabilidad->update();
@@ -209,6 +207,9 @@ class ViabilidadController extends Controller
         $viabilidad->estado = "Terminada";
         $viabilidad->update();
 
+        $alert = Alert::where('viabilidad_id',$id);
+        $alert->delete();
+        
         flash('La viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha cerrado correctamente")->info()->important();
          return redirect('admin/viabilidad');
     }
