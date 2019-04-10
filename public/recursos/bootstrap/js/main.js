@@ -13,6 +13,7 @@ $('.select-viabilidad').chosen({
 	width: "95%"
 });
 
+
 function formReset()
 {
 document.getElementById("myForm").reset();

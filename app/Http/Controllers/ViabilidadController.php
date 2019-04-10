@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\viabilidad;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\ViabilidadEditRequests;
@@ -32,6 +33,13 @@ class ViabilidadController extends Controller
         return view('admin.viabilidad.index')->with('viabilidades',$viabilidad);
     }
 
+    public function showindex(Request $request)
+    {
+       
+        $viabilidad = viabilidad::search($request->nombre)->orderBy('id','DESC')->paginate(10);
+        return view('admin.asignacion.index')->with('viabilidades',$viabilidad);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,8 +47,9 @@ class ViabilidadController extends Controller
      */
     public function create()
     {
-
-        return view('admin.viabilidad.create');        
+        $users = User::orderBy('name','ASC')->pluck('name','id');
+        return view('admin.viabilidad.create')
+        ->with('user',$users);        
     }
 
     /**
@@ -81,8 +90,12 @@ class ViabilidadController extends Controller
      */
     public function edit($id)
     {
+         $users = User::orderBy('name','ASC')->pluck('name','id');
          $viabilidad = viabilidad::find($id);
-         return view('admin.viabilidad.edit')->with('viabilidades',$viabilidad);
+         $viabilidad->user;
+         return view('admin.viabilidad.edit')
+         ->with('viabilidades',$viabilidad)
+         ->with('users',$users);
     }
 
     /**
@@ -100,6 +113,7 @@ class ViabilidadController extends Controller
         flash('La Viabilidad '.'<strong>'.$viabilidad->nombre.'</strong>'." se ha modificado correctamente")->success()->important();
          return redirect('admin/viabilidad');
     }
+
     public function active($id){
 
         $viabilidad = viabilidad::find($id);

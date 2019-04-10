@@ -26,20 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-/*
-    public function viabilidades(){
 
-        return $this->hasMany('App\viabilidad');
-    }
-*/
-    //  public function viabilidad()
-    // {
-    //     return $this->belongsToMany('App\viabilidad');
-    // }
-
-    public function asignarVb()
+    public function viabilidad()
     {
-        return $this->hasOne('App\asignarVb');
+        return $this->hasOne('App\viabilidad');
     }
     
     public function comentarios()
@@ -47,7 +37,7 @@ class User extends Authenticatable
         return $this->hasMany('App\comentario');
     }
 
-     public function users()
+     public function images()
     {
         return $this->hasMany('App\Image');
     }

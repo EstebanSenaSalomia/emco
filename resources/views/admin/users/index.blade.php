@@ -27,7 +27,7 @@
 	    <div class="table-responsive d-none d-md-block">
 			<table class="table table-hover ">
 			    <thead>
-			    	<th>ID</th>
+			    	
 			    	<th>NOMBRE</th>
 			    	<th>E-MAIL</th>
 			    	<th>CEDULA</th>
@@ -49,7 +49,7 @@
 			    	@if (Auth::user()->id != $user->id)
 			    		
 					<tr class="{{$estado}}">
-						<td>{{$user->id}}</td>
+						
 						<td>{{$user->name}}</td>
 						<td>{{$user->email}}</td>
 						<td>{{$user->cedula}}</td>

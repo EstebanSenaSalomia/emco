@@ -8,16 +8,16 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
-    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo'];
+    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','user_id'];
 
     protected $dates = [
       'fecha_reque'
     ];
 
     
-    public function asignarvb()
+    public function user()
     {
-      return $this->belongsToMany('App\asignarvb');
+      return $this->belongsTo('App\User');
     }
     
      public function images()//nombre de la tabla que se va a relacionar en plural 

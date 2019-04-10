@@ -26,7 +26,6 @@
           <div class="dropdown-menu">
             @if(Auth::user()->type != 'supervisor')
                 <a class="dropdown-item" href="{{route('asignacion.index')}}">Bandeja</a>
-                <a class="dropdown-item" href="{{route('asignacion.create')}}">Asignar</a>
             @else
                 <a class="dropdown-item" href="{{route('asignacion.index')}}">Mi bandeja</a>
             @endif

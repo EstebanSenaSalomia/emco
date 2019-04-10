@@ -46,6 +46,7 @@
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/bootstrap.js')}}"></script>
     <script type="text/javascript" src="{{asset('recursos/chosen/chosen.jquery.js')}}"></script>
+    @yield('js')
     <script type="text/javascript" src="{{asset('recursos/bootstrap/js/main.js')}}"></script>
     
     <!-- Include all compiled plugins (below), or include individual files as needed -->

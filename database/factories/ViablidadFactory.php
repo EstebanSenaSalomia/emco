@@ -5,6 +5,8 @@ use Faker\Generator as Faker;
 $factory->define(App\viabilidad::class, function (Faker $faker) {
 	
     return [
+        
+        'user_id' => $faker->unique()->numberBetween($min = 1, $max = 20),    
         'numero_vb' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
         'numero_pre' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
         'numero_ot' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
