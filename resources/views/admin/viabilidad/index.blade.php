@@ -66,7 +66,7 @@
 						<div class=""><i class="fas fa-tv"></i>  {{$viabilidad->red}}</div>
 					@endif
 					</td>
-					<td>{{$viabilidad->fecha_reque}}</td>
+					<td>{{$viabilidad->fecha_reque->toFormattedDateString()}}</td>
 					<td><a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></td>
 					@if (Auth::User()->admin() or Auth::User()->gestor())
 					@if ($viabilidad->estado=='Terminada')

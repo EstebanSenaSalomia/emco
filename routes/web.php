@@ -19,12 +19,12 @@ Route::group(['middleware'=>'admin'],function(){
 		'as'=>'admin.users.active'
 	]);
 });
-	Route::resource('asignacion','AsignacionController');
-	Route::get('asignacion/{id}/destroy',[
-		'uses'=>'UserController@destroy',
-		'as'=>'admin.users.destroy'
+	
+	Route::get('asignacion/index',[
+		'uses'=>'ViabilidadController@showindex',
+		'as'  =>'asignacion.index'
 	]);
-
+	
 Route::group(['middleware'=>'gestor'],function(){
 	Route::resource('viabilidad','ViabilidadController');
 	Route::get('viabilidad/{id}/destroy',[

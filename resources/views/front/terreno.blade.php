@@ -8,6 +8,12 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+@if (Auth::User()->admin() or Auth::User()->gestor())
+    <div class="card col-sm-2">
+    	<a href="{{route('viabilidad.edit',$terreno->id)}}" class="btn btn-outline-info btn-block">Editar</a>
+    </div>
+@endif
+
 <hr>
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	  <li class="nav-item">
@@ -16,11 +22,20 @@
 	  <li class="nav-item">
 	    <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Fotos</a>
 	  </li>
-	  
+	  @if (Auth::User()->admin() or Auth::User()->gestor())
+		   <li class="nav-item">
+		    <a class="nav-link " id="editar-tab" data-toggle="tab" href="#editar" role="tab" aria-controls="editar" aria-selected="false">Editar</a>
+		  </li>
+	  @endif	  
 	</ul>
 	<div class="tab-content" id="myTabContent">
+
+	<div class="tab-pane fade" id="editar" role="tabpanel" aria-labelledby="editar-tab">
+		@include('admin.viabilidad.edit',[''=>'$terreno->id'])
+	</div>	
 	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 	  	<div>
+
 	  	<ul class="list-group">
 	  	  <li class="list-group-item disabled">Datos del proyecto</li>
 	  	  <li class="list-group-item"><h5>Fecha requerida: <b>{{$terreno->fecha_reque->toFormattedDateString()}}</b></h5></li>
@@ -31,9 +46,12 @@
 	  	  <li class="list-group-item"><h5>localidad: <b>{{$terreno->localidad}}</b></h5></li>
 	  	  <li class="list-group-item"><h5>Red: <b>{{$terreno->red}}</b></h5></li>
 	  	  <li class="list-group-item"><h5>Tipo de trabajo: <b>{{$terreno->tipo_trabajo}}</b></h5></li>
-	  	  <li class="list-group-item"><h5>Responable: </h5></li>
+	  	  <li class="list-group-item"><h5>Responable: <b>{{$terreno->user->name}}</b></h5></li>
 	  	</ul>
 	  	</div>
+	  </div>
+	  <div class="tab-pane fade" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+			hola
 	  </div>
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 	  	<div class="row">
@@ -90,3 +108,5 @@
 		</div>
 	</div>
 @endsection
+{{-- hay que tratar de hacer el include de la vista editar 
+como hacer el include apropiado? --}}
