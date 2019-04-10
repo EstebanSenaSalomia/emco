@@ -24,10 +24,11 @@ class ViabilidadRequests extends FormRequest
     public function rules()
     {
         return [
-            'nombre'   => 'Min:10|Max:100|Required',
+            'nombre'   => 'Min:3|Max:100|Required',
             'direccion'=> 'Required',
             'red'      => 'Required',
             'localidad'=> 'Required'
+            
         ];
     }
 }

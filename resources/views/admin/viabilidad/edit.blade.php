@@ -6,11 +6,19 @@
 	<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['route'=>['viabilidad.update',$viabilidades],'method'=>'PUT'])!!}
+<<<<<<< HEAD
 
 		<div class="form-group row">
 			{!! Form::label('user_id','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::select('user_id',$users,$viabilidades->user->id,['placeholder' => 'Selecciona una opción','required','class'=>'select-user']) !!}
+=======
+		{{ csrf_field() }}
+		<div class="form-group row">
+			{!! Form::label('users','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::select('users[]',$users,$my_users,['required','class'=>'select-create2','multiple']) !!}
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 			</div>
 		</div>
 		
@@ -74,12 +82,28 @@
 		<div class="form-group row">
 			{!! Form::label('tipo_trabajo','tipo_trabajo',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
-				{!! Form::select('tipo_trabajo',['Mantenimiento'=>'Mantenimiento','Construccion'=>'Construcción','Viabilidad'=>'Viabilidad'],$viabilidades->tipo_trabajo,['placeholder' => 'Selecciona tipo de trabajo','required','class'=>'custom-select']) !!}
+				{!! Form::select('tipo_trabajo',['Mantenimiento'=>'Mantenimiento','Garantias'=>'Garantias','Construccion'=>'Construcción','Viabilidad'=>'Viabilidad'],$viabilidades->tipo_trabajo,['placeholder' => 'Selecciona tipo de trabajo','required','class'=>'custom-select']) !!}
 			</div>
 		</div>
 
+		<div class="form-group row">
+			{!! Form::label('area','Area',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::select('area',['Masivos'=>'Masivos','Planta Externa'=>'Planta Externa'],$viabilidades->area,['placeholder' => 'Selecciona tipo trabajo...','required','class'=>'custom-select']) !!}
+			</div>
+		</div>
+
+		<div class="form-group">
+		    <div class="form-check">
+		      {!!Form::checkbox('notificacion', 'true', true)!!}	
+		      <label class="form-check-label" for="gridCheck">
+		        ¿Enviar correo de notificación?
+		      </label>
+		    </div>
+		  </div>
+
 		<div class="text-center">
-			{!!Form::submit('Actualizar',['class'=>'btn btn-outline-success'])!!}
+			{!!Form::submit('Actualizar',['class'=>'btn btn-outline-primary'])!!}
 		</div>
 		{!! Form::close() !!}
 	</div>

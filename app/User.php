@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -29,7 +30,11 @@ class User extends Authenticatable
 
     public function viabilidad()
     {
+<<<<<<< HEAD
         return $this->hasOne('App\viabilidad');
+=======
+        return $this->belongsToMany('App\viabilidad');
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
     }
     
     public function comentarios()
@@ -42,10 +47,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Image');
     }
 
-
-    public function scopeSearch($query, $cedula)
+    public function scopeSearch($query, $buscar)
     {
-        return $query->where('cedula','LIKE','%'.$cedula.'%');
+        return $query->where('name','LIKE','%'.$buscar.'%')
+        ->orWhere('cedula','LIKE','%'.$buscar.'%')
+        ->orWhere('type','LIKE','%'.$buscar.'%')
+        ->orWhere('empresa','LIKE','%'.$buscar.'%')
+        ;
     }
 
     public function admin()
@@ -56,5 +64,16 @@ class User extends Authenticatable
     public function gestor()
     {
         return $this->type === 'admin' or $this->type === 'gestor';
+    }
+
+      /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
