@@ -16,7 +16,6 @@ class AddImagesTable extends Migration
          Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('extension');
             $table->integer('viabilidad_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();

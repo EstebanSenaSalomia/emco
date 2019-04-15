@@ -45,14 +45,8 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function showLoginForminForm(){
+    protected function showLoginForm(){
 
         return view('admin.auth.login');
     }
-
-    public function username(){
-
-        return 'cedula';
-    }
-
 }

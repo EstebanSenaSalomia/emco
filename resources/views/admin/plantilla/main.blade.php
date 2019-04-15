@@ -26,7 +26,6 @@
     @include('admin.plantilla.nav')
     <p>&nbsp</p>
     @yield('welcome')
-    
     <!-- Grey with black text -->
     <section>
       <div class="container">

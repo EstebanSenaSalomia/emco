@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
 
@@ -13,16 +12,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-
-    public function boot(UrlGenerator $url)
+    public function boot()
     {
-        // if(env('REDIRECT_HTTPS')) {
-        //     $url->formatScheme('https');
-        // }
-        Schema::defaultStringLength(191);
-        Carbon::setLocale(config('app.locale'));
+         Schema::defaultStringLength(191);
+         Carbon::setLocale(config('app.locale'));
     }
-  
 
     /**
      * Register any application services.
@@ -31,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         if(env('REDIRECT_HTTPS')) {
-            $this->app['request']->server->set('HTTPS', true);
-        }
+        //
     }
 }

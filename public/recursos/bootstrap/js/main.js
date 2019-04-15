@@ -1,18 +1,8 @@
-$('.carousel').carousel()
+$('.carousel').carousel({
+  interval: 4000
+})
 
 $('.select-user').chosen({
-	disable_search_threshold: 10,
-	width: '100%',
-	no_results_text: "Oops, no hay resultados!"
-});
-$('.select-create').chosen({
-	disable_search_threshold: 10,
-	width: '50%',
-	no_results_text: "Oops, no hay resultados!"
-});
-$('.select-create2').chosen({
-	max_selected_options:3,
-	placeholder_text_multiple:"Seleccione Un maximo de 3 responsables",
 	disable_search_threshold: 10,
 	width: '100%',
 	no_results_text: "Oops, no hay resultados!"
@@ -52,6 +42,5 @@ $(document).ready(function(){
 		});
 	});
 });
-
 
 

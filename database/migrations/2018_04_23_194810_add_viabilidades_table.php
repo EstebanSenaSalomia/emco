@@ -20,8 +20,6 @@ class AddViabilidadesTable extends Migration
             $table->string('numero_pre')->nullable();
             $table->string('numero_ot')->nullable();
             $table->string('nombre');
-            $table->string('contacto')->nullable();
-            $table->string('contacto_num')->nullable();
             $table->string('direccion');
             $table->enum('estado',['Activa','Terminada'])->default('Activa');
             $table->enum('red', ['fibra','cobre','television'])->default('television');
@@ -31,30 +29,10 @@ class AddViabilidadesTable extends Migration
             $table->enum('tipo_trabajo',['Construccion','Mantenimiento','Viabilidad'])->default('Viabilidad');
             $table->timestamps();
 
-<<<<<<< HEAD
-=======
-        });
-
-         Schema::create('user_viabilidad', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('viabilidad_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-
->>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
-<<<<<<< HEAD
-=======
-
-            $table->foreign('viabilidad_id')
-            ->references('id')
-            ->on('viabilidades')
-            ->onDelete('cascade');
-
-            $table->timestamps();
->>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
         });
 
     }
@@ -66,7 +44,7 @@ class AddViabilidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_viabilidad');
+        
         Schema::dropIfExists('viabilidades');
       
     }
