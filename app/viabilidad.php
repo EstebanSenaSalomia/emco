@@ -8,7 +8,11 @@ class viabilidad extends Model
 {
     protected $table = "viabilidades";
 
+<<<<<<< HEAD
+    protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','user_id'];
+=======
     protected $fillable = ['numero_vb','numero_pre','numero_ot','nombre','direccion','estado','red','asignacion','fecha_reque','localidad','tipo_trabajo','contacto','contacto_num'];
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 
     protected $dates = [
       'fecha_reque'
@@ -17,7 +21,11 @@ class viabilidad extends Model
     
     public function user()
     {
+<<<<<<< HEAD
+      return $this->belongsTo('App\User');
+=======
       return $this->belongsToMany('App\User');
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
     }
     
      public function images()//nombre de la tabla que se va a relacionar en plural 

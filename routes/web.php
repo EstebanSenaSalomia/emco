@@ -23,6 +23,10 @@ Route::group(['middleware'=>'admin'],function(){
 
 	Route::get('user/export','UserController@exportar')->name('admin.user.export');
 });
+<<<<<<< HEAD
+	
+=======
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 	Route::get('asignacion/index',[
 		'uses'=>'ViabilidadController@showindex',
 		'as'  =>'asignacion.index'

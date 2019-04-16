@@ -39,8 +39,23 @@
         <a class="nav-link" href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
       @endif
+<<<<<<< HEAD
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle @yield('marca4')" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hand-point-right"></i> Asignaciones</a>
+          <div class="dropdown-menu">
+            @if(Auth::user()->type != 'supervisor')
+                <a class="dropdown-item" href="{{route('asignacion.index')}}">Bandeja</a>
+            @else
+                <a class="dropdown-item" href="{{route('asignacion.index')}}">Mi bandeja</a>
+            @endif
+            
+            
+          </div>
+        </li>
+=======
 
 
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
     </ul>
     <div class="my-2 my-lg-0">
       <div class="nav-item dropdown ">

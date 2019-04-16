@@ -67,6 +67,51 @@
   		{!! Form::close()!!}	
 	    <p>&nbsp</p>
 		<div class="table-responsive d-none d-md-block">
+<<<<<<< HEAD
+		  <table class="table table-hover ">
+		    <thead>
+		    	<th>NUMERO_VB</th>
+		    	<th>NUMERO_PRE</th>
+		    	<th>NUMERO_OT</th>
+		    	<th>NOMBRE</th>
+		    	<th>DIRECCION</th>
+		    	<th>RED</th>
+		    	<th>FECHA REQUERIDA</th>
+		    	<th>VER</th>		
+		    </thead>
+		    <tbody>
+		    	@foreach($viabilidades as $viabilidad)
+    	    	@if ($viabilidad->estado=='Terminada')
+    	    		@php
+    	    			$estado="table-secondary";
+    	    		@endphp
+    	    	@else
+    				@php
+    	    			$estado="";
+    	    		@endphp
+    	    	@endif
+
+    	    	@if ($viabilidad->estado=='Activa' or (Auth::User()->type != 'supervisor'))
+    	    	
+				<tr class="{{$estado}}">
+					<td>{{$viabilidad->numero_vb}}</td>
+					<td>{{$viabilidad->numero_pre}}</td>
+					<td>{{$viabilidad->numero_ot}}</td>
+					<td>{{$viabilidad->nombre}}</td>
+					<td>{{$viabilidad->direccion}}</td>
+					<td>
+					@if($viabilidad->red == 'fibra')
+						<div class=""><i class="fa fa-wifi"></i>  {{$viabilidad->red}}</div>
+					@elseif($viabilidad->red =='cobre')
+						<div class=""><i class="fas fa-phone"></i>  {{$viabilidad->red}}</div>
+					@else
+						<div class=""><i class="fas fa-tv"></i>  {{$viabilidad->red}}</div>
+					@endif
+					</td>
+					<td>{{$viabilidad->fecha_reque->toFormattedDateString()}}</td>
+					<td><a href="{{route('terreno.index',$viabilidad->id)}}">Ver más</a></td>
+					@if (Auth::User()->admin() or Auth::User()->gestor())
+=======
 		  	<table class="table table-hover ">
 				<thead>
 					{{-- <th>RESPONSABLE</th> --}}
@@ -81,6 +126,7 @@
 				</thead>
 				<tbody>
 					@foreach($viabilidades as $viabilidad)
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 					@if ($viabilidad->estado=='Terminada')
 						@php
 							$estado="table-secondary";

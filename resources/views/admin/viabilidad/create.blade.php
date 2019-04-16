@@ -6,11 +6,19 @@
 	<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['action'=>'ViabilidadController@store','method'=>'POST'])!!}
+<<<<<<< HEAD
+
+		<div class="form-group row">
+			{!! Form::label('user_id','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::select('user_id',$user,null,['required','placeholder'=>'Selecciona una opción','class'=>'select-create']) !!}
+=======
 		{{ csrf_field() }}
 		<div class="form-group row">
 			{!! Form::label('users','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::select('users[]',$user,null,['required','class'=>'select-create','multiple']) !!}
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 			</div>
 		</div>
 		
@@ -120,10 +128,16 @@
 @section('js')
 	<script>
 		$('.select-create').chosen({
+<<<<<<< HEAD
+			disable_search_threshold: 10,
+			width: '100%',
+			no_results_text: "Oops, no hay resultados!"
+=======
 			max_selected_options:3,
 			placeholder_text_multiple:"Seleccione Un maximo de 3 responsables",
 		    no_results_text: "Oops, no hay resultados!",
 		    width: "100%"
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 		});
 	</script>
 @endsection

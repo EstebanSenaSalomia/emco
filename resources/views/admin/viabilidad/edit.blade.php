@@ -6,11 +6,19 @@
 	<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['route'=>['viabilidad.update',$viabilidades],'method'=>'PUT'])!!}
+<<<<<<< HEAD
+
+		<div class="form-group row">
+			{!! Form::label('user_id','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::select('user_id',$users,$viabilidades->user->id,['placeholder' => 'Selecciona una opción','required','class'=>'select-user']) !!}
+=======
 		{{ csrf_field() }}
 		<div class="form-group row">
 			{!! Form::label('users','Responsable',['class'=>'col-sm-2 col-form-label'])!!}
 			<div class="col-sm-10">
 				{!! Form::select('users[]',$users,$my_users,['required','class'=>'select-create2','multiple']) !!}
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 			</div>
 		</div>
 		

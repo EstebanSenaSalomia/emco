@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\viabilidad;
 use App\User;
+<<<<<<< HEAD
+=======
 use App\Image;
 use App\Comentario;
 use App\Alert;
 use App\Mail\Asignaciones;
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 use Illuminate\Http\Request;
 use App\Http\Requests\ViabilidadRequests;
 use App\Http\Requests\UploadRequests;
@@ -93,6 +96,13 @@ class ViabilidadController extends Controller
         
     }
 
+    public function showindex(Request $request)
+    {
+       
+        $viabilidad = viabilidad::search($request->nombre)->orderBy('id','DESC')->paginate(10);
+        return view('admin.asignacion.index')->with('viabilidades',$viabilidad);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -148,6 +158,14 @@ class ViabilidadController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
+         $users = User::orderBy('name','ASC')->pluck('name','id');
+         $viabilidad = viabilidad::find($id);
+         $viabilidad->user;
+         return view('admin.viabilidad.edit')
+         ->with('viabilidades',$viabilidad)
+         ->with('users',$users);
+=======
 
          $viabilidad = viabilidad::find($id);
          $my_users = $viabilidad->user->pluck('id')->ToArray();
@@ -158,6 +176,7 @@ class ViabilidadController extends Controller
          ->with('users',$users)
          ->with('my_users',$my_users);
          
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
     }
 
     /**

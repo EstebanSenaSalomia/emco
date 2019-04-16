@@ -6,10 +6,17 @@ $factory->define(App\viabilidad::class, function (Faker $faker) {
 	
     return [
         
+<<<<<<< HEAD
+        'user_id' => $faker->unique()->numberBetween($min = 1, $max = 20),    
+        'numero_vb' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
+        'numero_pre' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
+        'numero_ot' => $faker->unique()->numberBetween($min = 1000, $max = 9000),
+=======
         // 'user_id' => $faker->numberBetween($min = 1, $max = 20),    
         'numero_vb' => $faker->numberBetween($min = 1000, $max = 9000),
         'numero_pre' => $faker->numberBetween($min = 1000, $max = 9000),
         'numero_ot' => $faker->numberBetween($min = 1000, $max = 9000),
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
         'nombre' => $faker->name,
         'direccion' => $faker->address,
         'red' => $faker->randomElement($array = array ('Fibra','Cobre','Televisión')),

@@ -2,6 +2,12 @@
 	@section('title','Asignaciones')
 	@section('marca4','active')
 @section('content')
+<<<<<<< HEAD
+
+@foreach($viabilidades as $viabilidad)
+  @if ($viabilidad->estado=='Activa' and $viabilidad->user_id==Auth::user()->id or (Auth::User()->type != 'supervisor'))
+    
+=======
 @if (Auth::User()->admin() or Auth::User()->gestor())
     {!! Form::open(['route'=>'asignacion.index','method'=>'GET'])!!}
     {{ csrf_field() }}
@@ -23,10 +29,28 @@
 
 @foreach($viabilidades as $viabilidad)
     {{-- {{$loop->iteration}} --}}
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
      <div class="list-group">
       <a href="{{route('terreno.index',['id'=>$viabilidad->id])}}" class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{$viabilidad->nombre}}</h5>
+<<<<<<< HEAD
+          <small>Asignado {{$viabilidad->created_at->diffForHumans()}}<br>
+            @if ($viabilidad->estado=="Terminada")
+                <span id="color">Estado {{$viabilidad->estado}}</span></small>
+            @else
+                <span id="color2">Estado {{$viabilidad->estado}}</span></small>
+            @endif
+          
+        </div>
+        <p class="mb-1">Requerida {{$viabilidad->fecha_reque->toFormattedDateString()}}</small>
+      </a>
+    </div>
+      
+  @endif
+
+@endforeach
+=======
           
             @if ($viabilidad->estado=="Terminada")
                 <span id="color">Estado {{$viabilidad->estado}}</span></small>
@@ -87,5 +111,6 @@
 <div class="mx-auto pagination justify-content-center" style="width: 200px";>
     {{$viabilidades->appends(Request::all())->render("pagination::simple-bootstrap-4")}}
 </div>
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
 	
 @endsection

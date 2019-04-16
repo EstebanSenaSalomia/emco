@@ -15,6 +15,7 @@ class AddViabilidadesTable extends Migration
     {
          Schema::create('viabilidades', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('numero_vb')->nullable();
             $table->string('numero_pre')->nullable();
             $table->string('numero_ot')->nullable();
@@ -30,6 +31,8 @@ class AddViabilidadesTable extends Migration
             $table->enum('tipo_trabajo',['Construccion','Mantenimiento','Viabilidad'])->default('Viabilidad');
             $table->timestamps();
 
+<<<<<<< HEAD
+=======
         });
 
          Schema::create('user_viabilidad', function (Blueprint $table) {
@@ -37,10 +40,13 @@ class AddViabilidadesTable extends Migration
             $table->integer('viabilidad_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+<<<<<<< HEAD
+=======
 
             $table->foreign('viabilidad_id')
             ->references('id')
@@ -48,6 +54,7 @@ class AddViabilidadesTable extends Migration
             ->onDelete('cascade');
 
             $table->timestamps();
+>>>>>>> 2df378eac9d47a4696da71a1304ebee78a1aa496
         });
 
     }
