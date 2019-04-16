@@ -5,7 +5,7 @@
 	<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['action'=>'UserController@store','method'=>'POST'])!!}
-		
+		{{ csrf_field() }}
 		<div class="form-group row">
 			{!! Form::label('name','Nombre Completo',['class'=>'col-sm-2 col-form-label'])!!}
 			 <div class="col-sm-10">
@@ -33,6 +33,14 @@
 				{!! Form::password('password',['class'=>'form-control','required'])!!}
 			</div>	
 		</div>
+
+		<div class="form-group row">
+			{!! Form::label('password_confirmation','Confirmar contraseña',['class'=>'col-sm-2 col-form-label'])!!}
+			<div class="col-sm-10">
+				{!! Form::password('password_confirmation',['class'=>'form-control','required'])!!}
+			</div>	
+		</div>
+
 
 		<div class="form-group row">
 			{!! Form::label('telefono','Celular',['class'=>'col-sm-2 col-form-label'])!!}

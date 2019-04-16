@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageRequest;
 use App\Image;
+use App\Alert;
 use laracasts\flash;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,20 +16,7 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -39,11 +27,10 @@ class ImageController extends Controller
     public function store(ImageRequest $request)
 
     {   
-
-
-        $reglas = array('image.*' => 'mimes:jpeg,png|required');//aqui capturamos las reglas de validacion
+        $reglas = array('image.*' => 'max:5120|required');//aqui capturamos las reglas de validacion
         $messages = [//personalizacion el mensaje
-            'image.*.mimes' => 'Has seleccionado un archivo que no es una imagen',//el * captura todos los valores de la matriz
+            // 'image.*.mimes' => 'Has seleccionado un archivo con extension no valida',//el * captura todos los valores de la matriz
+            'image.*.max' => 'El archivo excede el limite permitido, 5 mb'
         ];
         $validacion = Validator::make($request->all(),$reglas,$messages);
         if ($validacion->fails())
@@ -56,17 +43,25 @@ class ImageController extends Controller
         $con = 1;
 
       foreach ($files as $file) {
-            $name = 'sov_' . time() .$con++.'.'.$file->getClientOriginalExtension();
+            $name =  time() .$con++.'_'.$file->getClientOriginalName();
             $path =  public_path().'/images/viabilidades/';
+            $extend = $file->getClientOriginalExtension();
             $file->move($path,$name);
             $image = new Image();
+            $image->extension = $extend;
             $image->name=$name;
             $image->viabilidad_id = $request->viabilidad_id;
             $image->user_id = \Auth::user()->id;
             $image->save();
-        }  
+        }
+
+        $alert = new Alert();
+        $alert->user_id = \Auth::user()->id;
+        $alert->viabilidad_id = $request->viabilidad_id;
+        $alert->comentario_id = null;
+        $alert->save();  
         
-        flash('Imagenes cargadas correctamente')->success()->important();
+        flash('Archivos cargados correctamente')->success()->important();
         return redirect()->route('terreno.index',['id'=>$request->viabilidad_id]);
     }
 
@@ -76,9 +71,12 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    protected function download($id)
     {
-        
+       $image = Image::find($id);
+       $rutaArchivo = public_path().'/images/viabilidades/'.$image->name;
+       return response()->download($rutaArchivo);
+
     }
 
     /**

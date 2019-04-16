@@ -5,7 +5,7 @@
 	<div class="card text-center">
 	  <div class="card-body">
 		{!! Form::open(['route'=>['users.update',$user],'method'=>'PUT']) !!}
-		
+		{{ csrf_field() }}
 		<div class="form-group row">
 			{!! Form::label('name','Nombre completo',['class'=>'col-sm-2 col-form-label'])!!}
 			 <div class="col-sm-10">
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 		<div class="text-center">
-			{!!Form::submit('Guardar',['class'=>'btn btn-outline-success btn-lg'])!!}
+			{!!Form::submit('ACTUALIZAR',['class'=>'btn btn-outline-primary btn-lg'])!!}
 		</div>
 		{!! Form::close() !!}
 	</div>
