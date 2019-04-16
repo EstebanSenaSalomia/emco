@@ -53,7 +53,7 @@ class ViabilidadController extends Controller
         Carbon::setLocale('es');
         $date = Carbon::today();//solo trae la fecha
         $ultimo = new Carbon("last day of this month");
-        $viabilidad = viabilidad::where('area','Masivos')->search($request->search)->orderBy('id','DESC')->paginate(70);
+        $viabilidad = viabilidad::where('area','Masivos')->search($request->search)->orderBy('id','DESC')->orderBy('estado','ASC')->paginate(70);
 
         return view('admin.viabilidad.masivos')
         ->with('viabilidades',$viabilidad)
